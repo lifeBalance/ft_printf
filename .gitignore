@@ -4,6 +4,7 @@
 # Whitelist specific files:
 !.gitignore
 !Makefile
+!author
 
 # Whitelist directories:
 !*/
