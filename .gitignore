@@ -1,0 +1,18 @@
+# Ignore everything
+*
+
+# Whitelist specific files:
+!.gitignore
+!Makefile
+
+# Whitelist directories:
+!*/
+
+# Whitelist specific files in subdirectories:
+!/libft/includes/*.h
+!/libft/srcs/**/*.c
+!/libft/Makefile
+
+!/srcs/*.c
+!/includes/*.h
+!/eval_tests/
