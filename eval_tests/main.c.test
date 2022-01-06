@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main.c.test                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/05 13:35:40 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:13:43 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	main(void)
 {
-	ft_printf("hello printf!\n");
-	ft_putstr("test_printf: libft ready!\n");
+	printf(" return: %d\n",    printf("|%s|", "hello"));
+	printf(" return: %d\n", ft_printf("|%s|", "hello"));
 	return (0);
 }
+/* vi: filetype=c */
