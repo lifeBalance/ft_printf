@@ -1,42 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   pf_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/07 18:10:36 by rodrodri         ###   ########.fr       */
+/*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/07 18:10:18 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
+#include "ft_printf.h"
 
 /*
-**	Nested headers:
+**	Prints a string. Returns its length.
+**	Extracts conversion parameters directly from the format string.
 */
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <stdint.h>
-
-/*
-**	Data types:
-*/
-typedef struct s_conv_spec
+int	to_string(t_conv_spec *conv_spec, char *str)
 {
-	uint8_t		flags;
-	int			width;
-	int			precision;
-	int			length;
-	int			specifier;
-}	t_conv_spec;
-
-/*
-**	Prototypes:
-*/
-int		ft_printf(const char *format, ...);
-int		to_string(t_conv_spec *conv_spec, char *str);
-
-#endif
+	(void)conv_spec; // here we would extract the relevant info from the struct
+	ft_putstr(str);
+	return (ft_strlen(str));
+}
