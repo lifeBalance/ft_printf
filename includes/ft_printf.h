@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/07 18:10:36 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/07 19:43:37 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,19 @@
 /*
 **	Data types:
 */
-typedef struct s_conv_spec
+typedef struct s_spec
 {
 	uint8_t		flags;
 	int			width;
 	int			precision;
 	int			length;
 	int			specifier;
-}	t_conv_spec;
+}	t_spec;
 
 /*
 **	Prototypes:
 */
 int		ft_printf(const char *format, ...);
-int		to_string(t_conv_spec *conv_spec, char *str);
+int		to_string(t_spec *spec, char *str);
 
 #endif
