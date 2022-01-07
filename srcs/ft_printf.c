@@ -6,59 +6,73 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/06 14:02:57 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/07 14:37:58 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-static int	parse_fmt_str(const char *fmt_str, va_list data_args, int *len);
-static int	convert_s(char *str);
+static int	convert(char **fmt_str, va_list data_args);
+static int	to_string(char *fmt_str, char *str);
 
-int	ft_printf(const char *fmt_str, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	data_args;
 	int		len;
+	char	*fmt_str;
 
-	va_start(data_args, fmt_str);
+	fmt_str = (char *)format;
+	va_start(data_args, format);
 	len = 0;
-	len = parse_fmt_str(fmt_str, data_args, &len);
+	while (*fmt_str)
+	{
+		if (*fmt_str == '%')
+			len += convert(&fmt_str, data_args);
+		else
+		{
+			ft_putchar(*fmt_str);
+			fmt_str++;
+			len++;
+		}
+	}
 	va_end(data_args);
 	return (len);
 }
 
 /*
-**	To get the ball rolling, let's assume we only have to deal with
-**	the '%s' conversion specification ;-)
+**	Parse the Conversion Specification.
+**	Maybe here I should be parsing the spec. to find the proper specifier?
+**	Advance the format string to the end of the specification.
+**	Calls the function corresponding to the specifier.
 */
-static int	parse_fmt_str(const char *fmt_str, va_list data_args, int *len)
+static int	convert(char **fmt_str, va_list data_args)
 {
-	int	i;
+	int		len;
+	int		adv;
+	char	specifier;
 
-	i = 0;
-	while (fmt_str[i])
+	len = 0; // the proper "converter" would return the value for 'len'
+	// find_specifier: parses the specification, finding the specifier at
+	// the end. It also sets how many characters we have to advance 
+	// the format string to pass the specification.
+	specifier = (*fmt_str)[1];
+	adv = 2;
+	if (specifier == 's')
 	{
-		if (fmt_str[i] == '%' && fmt_str[i + 1] == 's')
-		{
-			*len += convert_s(va_arg(data_args, char *));
-			i += 2;
-		}
-		else
-		{
-			ft_putchar(fmt_str[i]);
-			i++;
-			(*len)++;
-		}
+		(*fmt_str) += adv;
+		len = to_string(*fmt_str, va_arg(data_args, char *));
 	}
-	return (*len);
+	return (len);
 }
 
 /*
 **	Prints a string. Returns its length.
+**	Extracts conversion parameters directly from the format string.
 */
-static int	convert_s(char *str)
+static int	to_string(char *fmt_str, char *str)
 {
+	(void)fmt_str; // here we would parse the fmt_str to extract intel
 	ft_putstr(str);
 	return (ft_strlen(str));
 }
