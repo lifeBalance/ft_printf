@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/07 15:21:22 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/07 20:22:36 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	main(void)
 {
 	printf(" return: %d\n",    printf("|%s|", "hello"));
 	printf(" return: %d\n", ft_printf("|%s|", "hello"));
-	// printf(" test percent: %"); // error: incomplete format specifier
-	// printf(" test percent: % \n"); // error: invalid conversion specifier '\x0a'
+	#ifdef DEBUG
+	system("leaks test_printf");
+	#endif
 	return (0);
 }
 /* vi: filetype=c */

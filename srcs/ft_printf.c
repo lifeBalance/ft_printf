@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/07 19:46:29 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/07 20:21:57 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ft_printf.h"
 
 static int		convert(char **fmt_str, va_list data_args, t_spec *spec);
-static t_spec	*init_conv_spec(void);
+static t_spec	*init_conv_spec(t_spec *spec);
 static int		parse_spec(char *fmt_str, t_spec *spec);
 
 int	ft_printf(const char *format, ...)
@@ -77,20 +77,15 @@ static int	convert(char **fmt_str, va_list data_args, t_spec *spec)
 	int		len;
 
 	len = 0;
-	spec = init_conv_spec();
+	spec = init_conv_spec(spec);
 	*fmt_str += parse_spec(*fmt_str, spec);
 	if (spec->specifier == 's')
 		len = to_string(spec, va_arg(data_args, char *));
 	return (len);
 }
 
-static t_spec	*init_conv_spec(void)
+static t_spec	*init_conv_spec(t_spec *spec)
 {
-	t_spec	*spec;
-
-	spec = (t_spec *)malloc(sizeof(*spec));
-	if (!spec)
-		return (NULL);
 	spec->flags = 0;
 	spec->length = 0;
 	spec->precision = 0;
