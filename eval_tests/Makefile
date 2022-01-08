@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/07 20:10:02 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/08 19:27:57 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,9 @@ $(NAME):	$(SRCS)
 
 debug:	CFLAGS	+=	-g -D DEBUG
 debug:	$(NAME)
+
+libft.a:
+	make -C ../libft re
 
 fclean:
 	/bin/rm -f $(NAME)

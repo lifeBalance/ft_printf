@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/07 20:22:36 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/08 21:50:39 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,14 @@
 
 int	main(void)
 {
-	printf(" return: %d\n",    printf("|%s|", "hello"));
-	printf(" return: %d\n", ft_printf("|%s|", "hello"));
+	// Testing string
+	printf(" return: %d\n", ft_printf("|%s|", "hello") - 2); // subtract the two pipes
+	printf(" return: %d\n", printf("|%s|", "hello") - 2);
+	// Testing percent sign followed by a string
+	printf(" return: %d\n",    printf("|%%%s|", "hello") - 2);
+	printf(" return: %d\n", ft_printf("|%%%s|", "hello") - 2);
+	// printf(" return: %d\n", printf("|%-*s|", 10, "hello") - 2);
+	// printf(" return: %d\n", printf("|%-*.*s|", 10, 4, "hello") - 2);
 	#ifdef DEBUG
 	system("leaks test_printf");
 	#endif
