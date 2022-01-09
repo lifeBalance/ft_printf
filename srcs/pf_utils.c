@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/08 20:34:54 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 12:18:11 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	Prints a string. Returns its length.
 **	Extracts conversion parameters directly from the format string.
 */
-int	to_string(t_spec *conv_spec, va_list data_args)
+int	to_string(va_list data_args, t_spec *conv_spec)
 {
 	char *str;
 	(void)conv_spec; // here we would extract the relevant info from the struct
@@ -28,10 +28,23 @@ int	to_string(t_spec *conv_spec, va_list data_args)
 }
 
 /*
-**	Prints a percent sign. Returns its length, 1.
+**	Prints a percent sign. Returns the amount of bytes written.
 */
-int	to_percent(void)
+int	to_percent(va_list data_args, t_spec *conv_spec)
 {
+	(void)data_args;
+	(void)conv_spec;
+	ft_putchar('%');
+	return (1);
+}
+
+/*
+**	Prints a character sign. Returns the amount of bytes written.
+*/
+int	to_char(va_list data_args, t_spec *conv_spec)
+{
+	(void)data_args;
+	(void)conv_spec;
 	ft_putchar('%');
 	return (1);
 }

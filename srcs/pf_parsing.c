@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/08 21:43:09 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 12:40:00 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ int	parse_spec(char **fmt_str, t_spec *spec)
 		if (i > 0 && ft_strchr("cspdiuxX%", (*fmt_str)[i]))
 		{
 			if ((*fmt_str)[i] == '%')
-				set_bit(PERCENT, &spec->specifier);
-			if ((*fmt_str)[i] == 's')
-				set_bit(STRING, &spec->specifier);
-			// if (ft_isdigit((*fmt_str)[i]))
+				spec->specifier = 0;
+			else if ((*fmt_str)[i] == 'c')
+				spec->specifier = 1;
+			else if ((*fmt_str)[i] == 's')
+				spec->specifier = 2;
 			// parse_digits(fmt_str, &i, spec);
 			i++;
 			break ;
