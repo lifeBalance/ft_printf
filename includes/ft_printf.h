@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 14:50:10 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 20:02:32 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdint.h>
-# include <stdio.h>// DELETE BEFORE SUBMITTING!!!
 
 /*
 **	Data types:
@@ -30,11 +29,16 @@ typedef struct s_spec
 	uint16_t	flags;
 	int			width;
 	int			precision;
-	int			length;
+	uint16_t	length;
 	int			specifier;
 }	t_spec;
 
 typedef int	(*t_disp)(va_list data_args, t_spec *spec);
+
+/*
+**	Functions in the dispatcher (one per specifier + the one for'%%'):
+*/
+# define FUN	3
 
 /*
 **	Macros for flags:
@@ -44,12 +48,6 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define MINUS	3
 # define PLUS	4
 # define SPACE	5
-# define DOT	6
-
-/*
-**	Functions in the dispatcher (one per specifier + the one for'%%'):
-*/
-# define FUN	3
 
 /*
 **	Macros for specifiers:
@@ -58,10 +56,21 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define PERCENT	0
 # define CHAR		1
 # define STRING		2
-# define SINT		3
-# define UINT		4
-# define SSHORT		5
-# define USHORT		6
+# define ADDRESS	3
+# define LOWHEX		4
+# define UPPHEX		5
+# define INT		6
+# define FLOAT		7
+
+/*
+**	Macros for length:
+*/
+# define H		1
+# define HH		2
+# define ELL	3
+# define ELLELL	4
+# define UPPELL	5
+# define DOT	6
 
 /*
 **	Prototypes:

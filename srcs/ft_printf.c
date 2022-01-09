@@ -6,13 +6,14 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 15:09:50 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 20:00:49 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
+#include "debug.h" // <================== DELETE BEFORE SUBMITING!!!
 
 static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
 static t_spec	*init_conv_spec(t_spec *spec);
@@ -63,6 +64,13 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 		return (0);
 	if (spec->specifier == NOT_SET)
 		return (0);
+	// mb add 'spec' validation here? e.g. '#' or '0' flags with 's' specifier
+#ifdef DEBUGFLAGS 
+	(void)disp;
+	(void)args;
+	print_spec(spec);
+	return (len);
+#endif
 	len = disp[spec->specifier](args, spec);
 	return (len);
 }
