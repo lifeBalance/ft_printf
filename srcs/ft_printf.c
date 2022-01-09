@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 12:41:21 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 14:51:08 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ int	ft_printf(const char *format, ...)
 **	Initializes the 'conv_spec' structure to hold all the information
 **	contained in the Conversion Specification. The struct is filled by
 **	'parse_spec', which returns 0 if there was some error in the specification.
-**	Calls the function corresponding to the specifier.
-**	Prints the converted data argument according to the specification.
+**	Calls the conversion function corresponding to the specifier using a
+**	FUNCTION DISPATCHER.
 **	Returns the amount of characters taken by the printed data argument.
 */
 static int	convert(char **fmt_str, va_list data_args, t_spec *spec)
@@ -61,7 +61,7 @@ static int	convert(char **fmt_str, va_list data_args, t_spec *spec)
 	init_dispatcher(dispatcher);
 	if (!parse_spec(fmt_str, spec))
 		return(0);
-	if (spec->specifier < 0)
+	if (spec->specifier == NOT_SET)
 		return(0);
 	// The awesome function dispatcher!!
 	len = dispatcher[spec->specifier](data_args, spec);
@@ -74,10 +74,16 @@ static t_spec	*init_conv_spec(t_spec *spec)
 	spec->width = 0;
 	spec->length = 0;
 	spec->precision = 0;
-	spec->specifier = -1;
+	spec->specifier = NOT_SET;
 	return (spec);
 }
 
+/*
+**	Initializes the elements in the FUNCTION DISPATCHER, which is an array
+**	of function pointers. Each index in the array is represented using a
+**	descriptive macro. Updating the dispatcher is a matter of adding a
+**	new element (function pointer) to the array (easily extensible code).
+*/
 static void	init_dispatcher(t_disp *dispatcher)
 {
 	dispatcher[PERCENT] = to_percent;

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 12:45:46 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 14:50:10 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_spec
 	int			width;
 	int			precision;
 	int			length;
-	uint16_t	specifier;
+	int			specifier;
 }	t_spec;
 
 typedef int	(*t_disp)(va_list data_args, t_spec *spec);
@@ -54,6 +54,7 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 /*
 **	Macros for specifiers:
 */
+# define NOT_SET	-1
 # define PERCENT	0
 # define CHAR		1
 # define STRING		2

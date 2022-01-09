@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 12:40:00 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 14:56:26 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 
+static int	parse_specifier(char ch, t_spec *spec);
 // static void	parse_digits(char **fmt_str, int *i, t_spec *spec);
 
 /*
@@ -28,27 +29,39 @@ int	parse_spec(char **fmt_str, t_spec *spec)
 	int	i;
 
 	i = 0;
-	while ((*fmt_str)[i])
+	while (spec->specifier == NOT_SET)
 	{
 		if (i > 0 && ft_strchr("cspdiuxX%", (*fmt_str)[i]))
-		{
-			if ((*fmt_str)[i] == '%')
-				spec->specifier = 0;
-			else if ((*fmt_str)[i] == 'c')
-				spec->specifier = 1;
-			else if ((*fmt_str)[i] == 's')
-				spec->specifier = 2;
-			// parse_digits(fmt_str, &i, spec);
+			i += parse_specifier((*fmt_str)[i], spec);
+		// else if (i > 0 && ft_strchr("#0-+ ", (*fmt_str)[i]))
+		// 	(*fmt_str) += parse_flags();
+		// else if (i > 0 && ft_strchr("hlL", (*fmt_str)[i]))
+		// 	(*fmt_str) += parse_length();
+		// else if (i > 0 && ft_strchr("0123456789", (*fmt_str)[i]))
+		// 	(*fmt_str) += parse_digits(fmt_str, &i, spec);
+		else
 			i++;
-			break ;
-		}
-		i++;
 	}
 	(*fmt_str) += i;
 	return (1);
 }
 
-// static void	parse_digits(char ch, int *i, t_spec *spec)
+/*
+**	Receives a specifier character and set the specifier field in the 'spec'
+**	structure. Returns 1 (length of the specifier), that the caller can use
+**	to advance the format string.
+*/
+static int	parse_specifier(char ch, t_spec *spec)
+{
+	if (ch == '%')
+		spec->specifier = PERCENT;
+	else if (ch == 'c')
+		spec->specifier = CHAR;
+	else if (ch == 's')
+		spec->specifier = STRING;
+	return (1);
+}
+// static int	parse_digits(char ch, int *i, t_spec *spec)
 // {
 // 	while (ft_isdigit((*fmt_str)[*i]))
 // {
