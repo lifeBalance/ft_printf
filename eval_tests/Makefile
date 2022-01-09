@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/08 19:27:57 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/09 20:04:50 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ $(NAME):	$(SRCS)
 	make -C ../
 	$(CC) $(CFLAGS) -x c $(SRCS) -o $(NAME) $(LDFLAGS) $(LDLIBS)
 
-debug:	CFLAGS	+=	-g -D DEBUG
+debug:	CFLAGS	+=	-g -D LEAKS
 debug:	$(NAME)
 
 libft.a:

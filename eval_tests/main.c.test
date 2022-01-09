@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/08 21:50:39 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 20:04:32 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,28 @@ int	main(void)
 	// Testing string
 	printf(" return: %d\n", ft_printf("|%s|", "hello") - 2); // subtract the two pipes
 	printf(" return: %d\n", printf("|%s|", "hello") - 2);
+
 	// Testing percent sign followed by a string
 	printf(" return: %d\n",    printf("|%%%s|", "hello") - 2);
 	printf(" return: %d\n", ft_printf("|%%%s|", "hello") - 2);
+
+	// Testing width with a string (right and left alignment)
+	// printf(" return: %d\n", printf("|%10s|", "hello") - 2);
+	// printf(" return: %d\n", printf("|%-10s|", "hello") - 2);
+
+	// Testing width with a string using '*' (right and left alignment)
+	// printf(" return: %d\n", printf("|%*s|", 10, "hello") - 2);
 	// printf(" return: %d\n", printf("|%-*s|", 10, "hello") - 2);
+
+	// Testing width and  precision with a string using '*'
+	// printf(" return: %d\n", printf("|%10.4s|", "hello") - 2);
+	// printf(" return: %d\n", printf("|%-10.4s|", "hello") - 2);
+
+	// Testing width and  precision with a string using '*'
+	// printf(" return: %d\n", printf("|%*.*s|", 10, 4, "hello") - 2);
 	// printf(" return: %d\n", printf("|%-*.*s|", 10, 4, "hello") - 2);
-	#ifdef DEBUG
+
+	#ifdef LEAKS
 	system("leaks test_printf");
 	#endif
 	return (0);
