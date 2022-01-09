@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 14:51:08 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/09 15:09:50 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,33 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 
-static int		convert(char **fmt_str, va_list data_args, t_spec *spec);
+static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
 static t_spec	*init_conv_spec(t_spec *spec);
-static void		init_dispatcher(t_disp *dispatcher);
+static void		init_dispatcher(t_disp *disp);
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	data_args;
+	va_list	args;
 	int		len;
-	char	*fmt_str;
+	char	*fmt;
 	t_spec	*spec;
+	t_disp	disp[FUN];
 
+	init_dispatcher(disp);
 	spec = (t_spec *)malloc(sizeof(*spec));
 	if (!spec)
 		return (0);
-	fmt_str = (char *)format;
-	va_start(data_args, format);
+	fmt = (char *)format;
+	va_start(args, format);
 	len = 0;
-	while (*fmt_str)
+	while (*fmt)
 	{
-		if (*fmt_str == '%')
-			len += convert(&fmt_str, data_args, spec);
+		if (*fmt == '%')
+			len += convert(&fmt, args, spec, disp);
 		else
-			len += ft_putchar(*fmt_str++);
+			len += ft_putchar(*fmt++);
 	}
-	va_end(data_args);
+	va_end(args);
 	free(spec);
 	return (len);
 }
@@ -51,20 +53,17 @@ int	ft_printf(const char *format, ...)
 **	FUNCTION DISPATCHER.
 **	Returns the amount of characters taken by the printed data argument.
 */
-static int	convert(char **fmt_str, va_list data_args, t_spec *spec)
+static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 {
 	int		len;
-	t_disp	dispatcher[FUN];
 
 	len = 0;
 	spec = init_conv_spec(spec);
-	init_dispatcher(dispatcher);
-	if (!parse_spec(fmt_str, spec))
-		return(0);
+	if (!parse_spec(fmt, spec))
+		return (0);
 	if (spec->specifier == NOT_SET)
-		return(0);
-	// The awesome function dispatcher!!
-	len = dispatcher[spec->specifier](data_args, spec);
+		return (0);
+	len = disp[spec->specifier](args, spec);
 	return (len);
 }
 
@@ -84,9 +83,9 @@ static t_spec	*init_conv_spec(t_spec *spec)
 **	descriptive macro. Updating the dispatcher is a matter of adding a
 **	new element (function pointer) to the array (easily extensible code).
 */
-static void	init_dispatcher(t_disp *dispatcher)
+static void	init_dispatcher(t_disp *disp)
 {
-	dispatcher[PERCENT] = to_percent;
-	dispatcher[CHAR] = to_char;
-	dispatcher[STRING] = to_string;
+	disp[PERCENT] = to_percent;
+	disp[CHAR] = to_char;
+	disp[STRING] = to_string;
 }
