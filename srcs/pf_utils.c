@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 12:18:11 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:35:06 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,15 @@ int	to_char(va_list data_args, t_spec *conv_spec)
 	(void)data_args;
 	(void)conv_spec;
 	ft_putchar('%');
+	return (1);
+}
+
+/*
+**	Prints an integer. Returns the amount of bytes written.
+*/
+int	to_int(va_list data_args, t_spec *conv_spec)
+{
+	(void)data_args;
+	print_spec(conv_spec);
 	return (1);
 }

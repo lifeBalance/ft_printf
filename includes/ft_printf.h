@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 20:02:32 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:36:43 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdint.h>
-
+#include "debug.h" // <================== DELETE BEFORE SUBMITING!!!
 /*
 **	Data types:
 */
@@ -38,7 +38,7 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 /*
 **	Functions in the dispatcher (one per specifier + the one for'%%'):
 */
-# define FUN	3
+# define FUN	9
 
 /*
 **	Macros for flags:
@@ -60,7 +60,8 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define LOWHEX		4
 # define UPPHEX		5
 # define INT		6
-# define FLOAT		7
+# define UINT		7
+# define FLOAT		8
 
 /*
 **	Macros for length:
@@ -80,5 +81,6 @@ int	parse_spec(char **fmt_str, t_spec *spec);
 int	to_percent(va_list data_args, t_spec *conv_spec);
 int	to_char(va_list data_args, t_spec *conv_spec);
 int	to_string(va_list data_args, t_spec *conv_spec);
+int	to_int(va_list data_args, t_spec *conv_spec);
 
 #endif

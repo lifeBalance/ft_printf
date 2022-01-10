@@ -6,14 +6,13 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/10 12:27:11 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/10 21:37:41 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
-#include "debug.h" // <================== DELETE BEFORE SUBMITING!!!
 
 static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
 static t_spec	*init_conv_spec(t_spec *spec);
@@ -59,25 +58,16 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	int		len;
 
 	len = 0;
-	if ((*fmt)[1] == '%')
+	if ((*fmt)[1] && (*fmt)[1] == '%')
 	{
 		len = disp[PERCENT](args, spec);
-		*fmt += 2;
+		(*fmt) += 2;
 		return (len);
 	}
 	spec = init_conv_spec(spec);
-	parse_spec(fmt, spec);
 	// mb add 'spec' validation here? e.g. '#' or '0' flags with 's' specifier
-	// if (!parse_spec(fmt, spec))
-	// 	return (0);
-	// if (spec->specifier == NOT_SET)
-	// 	return (0);
-#ifdef DEBUGFLAGS 
-	(void)disp;
-	(void)args;
-	print_spec(spec);
-	return (len);
-#endif
+	if (parse_spec(fmt, spec) < 0)
+		exit (EXIT_FAILURE);
 	len = disp[spec->specifier](args, spec);
 	return (len);
 }
@@ -103,4 +93,10 @@ static void	init_dispatcher(t_disp *disp)
 	disp[PERCENT] = to_percent;
 	disp[CHAR] = to_char;
 	disp[STRING] = to_string;
+	disp[ADDRESS] = to_int;
+	disp[LOWHEX] = to_int;
+	disp[UPPHEX] = to_int;
+	disp[INT] = to_int;
+	disp[UINT] = to_int;
+	disp[FLOAT] = to_int;
 }

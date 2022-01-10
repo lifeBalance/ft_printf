@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 12:16:57 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/08 14:10:30 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/10 18:03:43 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		:=	clang
 
 CFLAGS	:=	-Wall -Werror -Wextra -Iincludes -Ilibft/includes
 
-SRCS	:=	ft_printf.c	pf_utils.c pf_parsing.c
+SRCS	:=	ft_printf.c	pf_utils.c pf_parsing.c debug.c
 
 vpath	%.c ./srcs
 

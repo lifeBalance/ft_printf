@@ -1,18 +1,5 @@
 #include "debug.h"
 
-void	print_spec(t_spec *spec);
-
-int	main(void)
-{
-	// Flag Parsing (disable dispatcher to test this)
-	ft_printf("%s");
-	ft_printf("%-s");
-	ft_printf("%c");
-	ft_printf("% c");
-	ft_printf("%#-+d");
-
-	return (0);
-}
 void	print_spec(t_spec *spec)
 {
 	printf("Conversion Specification tests: \n");
@@ -20,35 +7,40 @@ void	print_spec(t_spec *spec)
 	printf("0 flag: %d\n", test_bit(ZERO, spec->flags));
 	printf("Space flag: %d\n", test_bit(SPACE, spec->flags));
 	printf("- flag: %d\n", test_bit(MINUS, spec->flags));
-	printf("+ flag: %d\n", test_bit(PLUS, spec->flags));
+	printf("+ flag: %d\n\n", test_bit(PLUS, spec->flags));
+
+	printf("l len: %d\n", test_bit(ELL, spec->length));
+	printf("ll len: %d\n", test_bit(ELLELL, spec->length));
+	printf("h len: %d\n", test_bit(H, spec->length));
+	printf("hh len: %d\n", test_bit(HH, spec->length));
 	printf("Specifier: ");
 	switch (spec->specifier)
 	{
-	case -1:
+	case NOT_SET:
 		printf("Not set.\n");
 		break;
-	case 0:
+	case PERCENT:
 		printf("Percent.\n");
 		break;
-	case 1:
+	case CHAR:
 		printf("Char.\n");
 		break;
-	case 2:
+	case STRING:
 		printf("String.\n");
 		break;
-	case 3:
+	case ADDRESS:
 		printf("Address.\n");
 		break;
-	case 4:
+	case LOWHEX:
 		printf("Lowercase Hex.\n");
 		break;
-	case 5:
+	case UPPHEX:
 		printf("Uppercase Hex.\n");
 		break;
-	case 6:
+	case INT:
 		printf("Integer.\n");
 		break;
-	case 7:
+	case FLOAT:
 		printf("Float.\n");
 		break;
 	}
