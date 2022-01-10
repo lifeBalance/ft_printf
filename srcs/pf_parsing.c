@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 19:43:35 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:23:40 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 
-static int	parse_specifier(char ch, t_spec *spec);
-static int	parse_flags(char ch, t_spec *spec);
+static int	parse_specifier(char **fmt, t_spec *spec);
+static int	parse_flags(char **fmt, t_spec *spec);
 // static void	parse_digits(char **fmt_str, int *i, t_spec *spec);
 
 /*
@@ -25,26 +25,26 @@ static int	parse_flags(char ch, t_spec *spec);
 **	String pointer.
 **	Returns an integer with the status code of the parsing operation.
 */
-int	parse_spec(char **fmt_str, t_spec *spec)
+int	parse_spec(char **fmt, t_spec *spec)
 {
+	int	ret;
 	int	i;
 
 	i = 0;
 	while (spec->specifier == NOT_SET)
 	{
-		if (i > 0 && ft_strchr("cspdiuxX%", (*fmt_str)[i]))
-			i += parse_specifier((*fmt_str)[i], spec);
-		else if (i > 0 && ft_strchr("#0-+ ", (*fmt_str)[i]))
-			i += parse_flags((*fmt_str)[i], spec);
-		// else if (i > 0 && ft_strchr("hlL", (*fmt_str)[i]))
-		// 	(*fmt_str) += parse_length((*fmt_str)[i], spec);
-		// else if (i > 0 && ft_strchr("0123456789", (*fmt_str)[i]))
-		// 	(*fmt_str) += parse_digits(fmt_str, &i, spec);
+		if (i > 0 && ft_strchr("cspdiuxX", (*fmt)[i]))
+			ret = parse_specifier(fmt, spec);
+		else if (i > 0 && ft_strchr("#0-+ ", (*fmt)[i]))
+			ret = parse_flags(fmt, spec);
+		// else if (i > 0 && ft_strchr("hlL", (*fmt)[i]))
+		// 	(*fmt) += parse_length((*fmt)[i], spec);
+		// else if (i > 0 && ft_strchr("0123456789*", (*fmt)[i]))
+		// 	(*fmt) += parse_digits(fmt, &i, spec);
 		else
 			i++;
 	}
-	(*fmt_str) += i;
-	return (1);
+	return (ret);
 }
 
 /*
@@ -52,22 +52,21 @@ int	parse_spec(char **fmt_str, t_spec *spec)
 **	structure. Returns 1 (length of the specifier), that the caller can use
 **	to advance the format string.
 */
-static int	parse_specifier(char ch, t_spec *spec)
+static int	parse_specifier(char **fmt, t_spec *spec)
 {
-	if (ch == '%')
-		spec->specifier = PERCENT;
-	else if (ch == 'c')
+	if (**fmt == 'c')
 		spec->specifier = CHAR;
-	else if (ch == 's')
+	else if (**fmt == 's')
 		spec->specifier = STRING;
-	else if (ch == 'p')
+	else if (**fmt == 'p')
 		spec->specifier = ADDRESS;
-	else if (ch == 'd' || ch == 'i')
+	else if (**fmt == 'd' || **fmt == 'i')
 		spec->specifier = INT;
-	else if (ch == 'x')
+	else if (**fmt == 'x')
 		spec->specifier = LOWHEX;
-	else if (ch == 'X')
+	else if (**fmt == 'X')
 		spec->specifier = UPPHEX;
+	(*fmt)++;
 	return (1);
 }
 
@@ -76,18 +75,19 @@ static int	parse_specifier(char ch, t_spec *spec)
 **	Returns 1 (length of the specifier), that the caller 
 **	can use to advance the format string.
 */
-static int	parse_flags(char ch, t_spec *spec)
+static int	parse_flags(char **fmt, t_spec *spec)
 {
-	if (ch == '#')
+	if (**fmt == '#')
 		set_bit(SHARP, &spec->flags);
-	if (ch == '0')
+	if (**fmt == '0')
 		set_bit(ZERO, &spec->flags);
-	if (ch == '-')
+	if (**fmt == '-')
 		set_bit(MINUS, &spec->flags);
-	if (ch == '+')
+	if (**fmt == '+')
 		set_bit(PLUS, &spec->flags);
-	if (ch == ' ')
+	if (**fmt == ' ')
 		set_bit(SPACE, &spec->flags);
+	(*fmt)++;
 	return (1);
 }
 

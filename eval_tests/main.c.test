@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 20:04:32 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:25:25 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 
 int	main(void)
 {
+	// Testing string w/o conversion specifications
+	printf(" return: %d\n", ft_printf("|hello|") - 2); // subtract the two '|'
+
 	// Testing string
-	printf(" return: %d\n", ft_printf("|%s|", "hello") - 2); // subtract the two pipes
-	printf(" return: %d\n", printf("|%s|", "hello") - 2);
+	printf(" return: %d\n",    printf("|%s|", "hello") - 2);
+	printf(" return: %d\n", ft_printf("|%s|", "hello") - 2);
 
 	// Testing percent sign followed by a string
 	printf(" return: %d\n",    printf("|%%%s|", "hello") - 2);

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/09 20:00:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/10 12:27:11 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,19 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	int		len;
 
 	len = 0;
+	if ((*fmt)[1] == '%')
+	{
+		len = disp[PERCENT](args, spec);
+		*fmt += 2;
+		return (len);
+	}
 	spec = init_conv_spec(spec);
-	if (!parse_spec(fmt, spec))
-		return (0);
-	if (spec->specifier == NOT_SET)
-		return (0);
+	parse_spec(fmt, spec);
 	// mb add 'spec' validation here? e.g. '#' or '0' flags with 's' specifier
+	// if (!parse_spec(fmt, spec))
+	// 	return (0);
+	// if (spec->specifier == NOT_SET)
+	// 	return (0);
 #ifdef DEBUGFLAGS 
 	(void)disp;
 	(void)args;
