@@ -6,15 +6,17 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/10 21:37:41 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/11 17:46:02 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
+#include "pf_parsing.h"
 
 static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
+static int		parse_spec(char **fmt, t_spec *spec);
 static t_spec	*init_conv_spec(t_spec *spec);
 static void		init_dispatcher(t_disp *disp);
 
@@ -65,13 +67,46 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 		return (len);
 	}
 	spec = init_conv_spec(spec);
-	// mb add 'spec' validation here? e.g. '#' or '0' flags with 's' specifier
 	if (parse_spec(fmt, spec) < 0)
 		exit (EXIT_FAILURE);
+	// print_spec(spec);
+	// return (0);
 	len = disp[spec->specifier](args, spec);
 	return (len);
 }
 
+/*
+**	Parses the Conversion Specification, filling up the 'spec' structure
+**	with the flags, and stuff that appear in the format string after the '%',
+**	up to, and including, the specifier. It receives the address of the format
+**	string so that, while traversing the specification, it moves forward the
+**	Format String pointer.
+**	Returns an integer with the status code of the parsing operation (0 for
+**	no errors and -1 for error).
+*/
+int	parse_spec(char **fmt, t_spec *spec)
+{
+	int	ret;
+
+	ret = 0;
+	(*fmt)++;
+	if (ft_strchr("#0-+ ", **fmt))
+		ret += parse_flags(fmt, spec);
+	if (ft_strchr("0123456789*.", **fmt))
+		ret = parse_width_prec(fmt, spec);
+	if (ft_strchr("hlL", **fmt))
+		ret += parse_length(fmt, spec);
+	if (ft_strchr("cspdiuxX", **fmt))
+		ret += parse_specifier(fmt, spec);
+	if (spec->specifier == NOT_SET)
+		ret = -1;
+	return (ret);
+}
+
+/*
+**	Initializes the conversion specification structure (spec) with some
+**	default values.
+*/
 static t_spec	*init_conv_spec(t_spec *spec)
 {
 	spec->flags = 0;

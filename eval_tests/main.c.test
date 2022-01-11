@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/10 22:25:18 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/11 17:27:53 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	main(void)
 
 	// printf(" return: %d\n", ft_printf("|%# -d|") - 2);
 	// printf(" return: %d\n", ft_printf("|%lld|") - 2);
-	printf(" return: %d\n", ft_printf("|%#-0 +-hd|") - 2);
+	// printf(" return: %d\n", ft_printf("|%10.3d|") - 2);
+	printf(" return: %d\n", ft_printf("|%#.8d|") - 2);
 	// printf(" return: %d\n", ft_printf("|%hhd|") - 2);
 	// Testing width with a string (right and left alignment)
 	// printf(" return: %d\n", printf("|%10s|", "hello") - 2);

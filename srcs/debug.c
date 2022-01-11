@@ -2,13 +2,19 @@
 
 void	print_spec(t_spec *spec)
 {
-	printf("Conversion Specification tests: \n");
+	printf("FLAG tests: \n");
 	printf("# flag: %d\n", test_bit(SHARP, spec->flags));
 	printf("0 flag: %d\n", test_bit(ZERO, spec->flags));
 	printf("Space flag: %d\n", test_bit(SPACE, spec->flags));
 	printf("- flag: %d\n", test_bit(MINUS, spec->flags));
-	printf("+ flag: %d\n\n", test_bit(PLUS, spec->flags));
+	printf("+ flag: %d\n", test_bit(PLUS, spec->flags));
 
+	printf("\nWIDTH AND PRECISION: \n");
+	printf("dot: %d\n", test_bit(DOT, spec->digits));
+	printf("width: %d, precision: %d\n", spec->width, spec->precision);
+	printf("width*: %d, precision*: %d\n", test_bit(WIDTH_ARG, spec->digits),  test_bit(PREC_ARG, spec->digits));
+
+	printf("\nLENGTH FLAGS: \n");
 	printf("l len: %d\n", test_bit(ELL, spec->length));
 	printf("ll len: %d\n", test_bit(ELLELL, spec->length));
 	printf("h len: %d\n", test_bit(H, spec->length));
