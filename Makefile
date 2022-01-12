@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 12:16:57 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/11 22:35:35 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/12 21:29:01 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC		:=	clang
 CFLAGS	:=	-Wall -Werror -Wextra -Iincludes -Ilibft/includes
 
 SRCS	=	ft_printf.c	pf_parsing.c pf_parsing2.c pf_converters.c
-SRCS	+=	pf_to_string_converter.c debug.c
+SRCS	+=	pf_to_string_converter.c pf_to_percent_converter.c debug.c
 
 vpath	%.c ./srcs
 
