@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/11 17:46:02 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/12 21:23:12 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	int		len;
 
 	len = 0;
-	if ((*fmt)[1] && (*fmt)[1] == '%')
-	{
-		len = disp[PERCENT](args, spec);
-		(*fmt) += 2;
-		return (len);
-	}
 	spec = init_conv_spec(spec);
 	if (parse_spec(fmt, spec) < 0)
 		exit (EXIT_FAILURE);
@@ -96,7 +90,7 @@ int	parse_spec(char **fmt, t_spec *spec)
 		ret = parse_width_prec(fmt, spec);
 	if (ft_strchr("hlL", **fmt))
 		ret += parse_length(fmt, spec);
-	if (ft_strchr("cspdiuxX", **fmt))
+	if (ft_strchr("cspdiuxX%", **fmt))
 		ret += parse_specifier(fmt, spec);
 	if (spec->specifier == NOT_SET)
 		ret = -1;

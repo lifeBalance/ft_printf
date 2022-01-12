@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 17:53:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/12 21:22:49 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ int	main(void)
 	printf("\nTesting percent sign followed by a string (%%%%%%s)\n");
 	printf(" (std) returns: %d\n",  printf("|%%%s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%%%s|", "hello") - 2);
+
+	printf("\nTesting percent sign with some directives (%%-4.4%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%-4.4%|") - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%-4.4%|") - 2);
+
+	printf("\nTesting percent sign with some directives (%%*.*%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%*.*%|", 2, 2) - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%*.*%|", 2, 2) - 2);
 #endif
 #ifdef STRINGS_TEST
 	printf("Testing string without conversion specification\n");

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/11 17:51:39 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/12 21:23:52 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 */
 int	parse_specifier(char **fmt, t_spec *spec)
 {
-	if (**fmt == 'c')
+	if (**fmt == '%')
+		spec->specifier = PERCENT;
+	else if (**fmt == 'c')
 		spec->specifier = CHAR;
 	else if (**fmt == 's')
 		spec->specifier = STRING;
