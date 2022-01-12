@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 21:22:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/12 22:42:06 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ int	main(void)
 	printf(" (std) returns: %d\n",     printf("|%*.*%|", 2, 2) - 2);
 	printf(" (ft_) returns: %d\n",  ft_printf("|%*.*%|", 2, 2) - 2);
 #endif
+#ifdef CHAR_TEST
+	printf("Testing barebones '%%c' specifier\n");
+	printf(" (std) returns: %d\n",    printf("|%c|", 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%c|", 'x') - 2);
+
+	printf("\nTesting width directive (right and left alignment)\n");
+	printf(" (std) returns: %d\n",    printf("|%3c|", 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%3c|", 'x') - 2);
+	printf(" (std) returns: %d\n",    printf("|%-3c|", 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-3c|", 'x') - 2);
+
+	printf("\nTesting width with a '*' (right and left alignment)\n");
+	printf(" (std) returns: %d\n",    printf("|%*c|", 3, 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*c|", 3, 'x') - 2);
+	printf(" (std) returns: %d\n",    printf("|%-*c|", 3, 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*c|", 3, 'x') - 2);
+#endif
 #ifdef STRINGS_TEST
 	printf("Testing string without conversion specification\n");
 	printf(" (std) returns: %d\n",    printf("|hello|") - 2); // subtract the two '|'
@@ -42,31 +59,31 @@ int	main(void)
 	printf(" (std) returns: %d\n",  printf("|%s|", "hello string") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%s|", "hello string") - 2);
 
-	printf("\nTesting width (right and left alignment)\n");
+	printf("\nTesting width directive (right and left alignment)\n");
 	printf(" (std) returns: %d\n", printf("|%10s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%10s|", "hello") - 2);
 	printf(" (std) returns: %d\n", printf("|%-10s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-10s|", "hello") - 2);
 
-	printf("\nTesting width using '*' (right and left alignment)\n");
+	printf("\nTesting width directive using '*' (right and left alignment)\n");
 	printf(" (std) returns: %d\n",    printf("|%*s|", 10, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%*s|", 10, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-*s|", 10, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*s|", 10, "hello") - 2);
 
-	printf("\nTesting precision with a string\n");
+	printf("\nTesting precision directive with a string\n");
 	printf(" (std) returns: %d\n",    printf("|%.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%.4s|", "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-.4s|", "hello") - 2);
 
-	printf("\nTesting width and precision with a string\n");
+	printf("\nTesting width and precision directives with a string\n");
 	printf(" (std) returns: %d\n",    printf("|%10.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%10.4s|", "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-10.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-10.4s|", "hello") - 2);
 
-	printf("\nTesting width and  precision with a string using '*'\n");
+	printf("\nTesting width and precision directives using '*'\n");
 	printf(" (std) returns: %d\n",    printf("|%*.*s|", 10, 4, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%*.*s|", 10, 4, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);

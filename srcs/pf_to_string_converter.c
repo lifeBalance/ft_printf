@@ -6,17 +6,15 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 17:55:40 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/12 22:40:08 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
+#include "pf_converting.h"
 
-static void	set_width(t_spec *spec, va_list data_args, int *width);
-static void	set_precision(t_spec *spec, va_list data_args, int *prec);
-static int	putstr_repeat(char *s, int n);
 static int	putstr_upto_n(char *s, int n);
 
 /*
@@ -47,20 +45,6 @@ int	to_string(va_list data_args, t_spec *spec)
 }
 
 /*
-**	Prints a string argument 'n' times.
-**	Returns the amount of characters (bytes) written.
-*/
-static int	putstr_repeat(char *s, int n)
-{
-	int	ret;
-
-	ret = 0;
-	while (n--)
-		ret += ft_putstr(s);
-	return (ret);
-}
-
-/*
 **	It prints up to 'n' characters from a string argument. It returns the
 **	amount of written characters (bytes). 
 */
@@ -77,33 +61,4 @@ static int	putstr_upto_n(char *s, int n)
 		i++;
 	}
 	return (ret);
-}
-
-/*
-**	It returns the value of the width directive extracted from the 'spec'; if
-**	it's not set, it returns '0'.
-*/
-static void	set_width(t_spec *spec, va_list data_args, int *width)
-{
-	if (test_bit(WIDTH_ARG, spec->digits))
-		*width = va_arg(data_args, int);
-	else if (test_bit(WIDTH, spec->digits))
-		*width = spec->width;
-	else
-		*width = -1;
-}
-
-/*
-**	If the precision directive is equal or greater than the string length,
-**	it returns the length of the string. Otherwise returns the value of the
-**	precision, which is stored in the 'spec' structure.
-*/
-static void	set_precision(t_spec *spec, va_list data_args, int *prec)
-{
-	if (test_bit(PREC_ARG, spec->digits))
-		*prec = va_arg(data_args, int);
-	else if (test_bit(PREC, spec->digits))
-		*prec = spec->precision;
-	else
-		*prec = -1;
 }

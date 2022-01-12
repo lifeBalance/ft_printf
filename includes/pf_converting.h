@@ -1,35 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_converters.c                                    :+:      :+:    :+:   */
+/*   pf_converting.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 21:28:32 by rodrodri         ###   ########.fr       */
+/*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/12 22:39:39 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "ft_printf.h"
+#ifndef PF_CONVERTING_H
+# define PF_CONVERTING_H
 
-/*
-**	Prints a character sign. Returns the amount of bytes written.
-*/
-int	to_char(va_list data_args, t_spec *conv_spec)
-{
-	(void)data_args;
-	(void)conv_spec;
-	ft_putchar('%');
-	return (1);
-}
+void	set_width(t_spec *spec, va_list data_args, int *width);
+void	set_precision(t_spec *spec, va_list data_args, int *prec);
+int		putstr_repeat(char *s, int n);
 
-/*
-**	Prints an integer. Returns the amount of bytes written.
-*/
-int	to_int(va_list data_args, t_spec *conv_spec)
-{
-	(void)data_args;
-	print_spec(conv_spec);
-	return (1);
-}
+#endif

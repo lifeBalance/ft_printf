@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/12 17:57:46 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/12 22:29:02 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,11 +37,15 @@ percent:	$(NAME)
 strings:	CFLAGS	+= -D STRINGS_TEST
 strings:	$(NAME)
 
+char:	CFLAGS	+= -D CHAR_TEST
+char:	$(NAME)
+
 libft.a:
 	make -C ../libft re
 
 fclean:
 	/bin/rm -f $(NAME)
+	make -C .. fclean
 
 re:		fclean all
 
