@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/11 22:38:11 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/12 17:53:49 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,59 @@
 
 int	main(void)
 {
-	// Testing string w/o conversion specifications
-	// printf(" return: %d\n", ft_printf("|hello|") - 2); // subtract the two '|'
+#ifdef PERCENT_TEST
+	printf("Testing percent sign (%%%%)\n");
+	printf(" (std) returns: %d\n",  printf("|%%|") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%%|") - 2);
 
-	// Testing string
-	// printf(" return: %d\n", ft_printf("|%s|", "hello string") - 2);
-	// printf(" return: %d\n\n",  printf("|%s|", "hello string") - 2);
+	printf("\nTesting percent sign followed by a string (%%%%%%s)\n");
+	printf(" (std) returns: %d\n",  printf("|%%%s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%%%s|", "hello") - 2);
+#endif
+#ifdef STRINGS_TEST
+	printf("Testing string without conversion specification\n");
+	printf(" (std) returns: %d\n",    printf("|hello|") - 2); // subtract the two '|'
+	printf(" (ft_) returns: %d\n", ft_printf("|hello|") - 2);
 
-	// Testing percent sign followed by a string
-	// printf(" return: %d\n", ft_printf("|%%%s|", "hello") - 2);
-	// printf(" return: %d\n\n",  printf("|%%%s|", "hello") - 2);
+	printf("\nTesting barebones string specifier\n");
+	printf(" (std) returns: %d\n",  printf("|%s|", "hello string") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%s|", "hello string") - 2);
 
-	// printf(" return: %d\n", ft_printf("|%# -d|") - 2);
-	// printf(" return: %d\n", ft_printf("|%lld|") - 2);
-	// printf(" return: %d\n", ft_printf("|%10.3d|") - 2);
-	// printf(" return: %d\n", ft_printf("|%#.8d|") - 2);
-	// printf(" return: %d\n", ft_printf("|%hhd|") - 2);
+	printf("\nTesting width (right and left alignment)\n");
+	printf(" (std) returns: %d\n", printf("|%10s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%10s|", "hello") - 2);
+	printf(" (std) returns: %d\n", printf("|%-10s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-10s|", "hello") - 2);
 
-	// Testing width with a string (right and left alignment)
-	// printf(" return: %d\n", printf("|%10s|", "hello") - 2);
-	// printf(" return: %d\n", printf("|%-10s|", "hello") - 2);
-	// printf(" return: %d\n", ft_printf("|%10s|", "hello") - 2);
-	// printf(" return: %d\n", ft_printf("|%-10s|", "hello") - 2);
+	printf("\nTesting width using '*' (right and left alignment)\n");
+	printf(" (std) returns: %d\n",    printf("|%*s|", 10, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*s|", 10, "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-*s|", 10, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*s|", 10, "hello") - 2);
 
-	// Testing width with a string using '*' (right and left alignment)
-	printf(" return: %d\n", printf("|%*s|", 10, "hello") - 2);
-	printf(" return: %d\n", printf("|%-*s|", 10, "hello") - 2);
-	printf(" return: %d\n", ft_printf("|%*s|", 10, "hello") - 2);
-	printf(" return: %d\n", ft_printf("|%-*s|", 10, "hello") - 2);
+	printf("\nTesting precision with a string\n");
+	printf(" (std) returns: %d\n",    printf("|%.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.4s|", "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-.4s|", "hello") - 2);
 
-	// Testing width and  precision with a string using '*'
-	// printf(" return: %d\n", printf("|%10.4s|", "hello") - 2);
-	// printf(" return: %d\n", printf("|%-10.4s|", "hello") - 2);
+	printf("\nTesting width and precision with a string\n");
+	printf(" (std) returns: %d\n",    printf("|%10.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%10.4s|", "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-10.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-10.4s|", "hello") - 2);
 
-	// Testing width and  precision with a string using '*'
-	// printf(" return: %d\n", printf("|%*.*s|", 10, 4, "hello") - 2);
-	// printf(" return: %d\n", printf("|%-*.*s|", 10, 4, "hello") - 2);
+	printf("\nTesting width and  precision with a string using '*'\n");
+	printf(" (std) returns: %d\n",    printf("|%*.*s|", 10, 4, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*.*s|", 10, 4, "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*.*s|", 10, 4, "hello") - 2);
+#endif
+	// printf(" (std) returns: %d\n", ft_printf("|%# -d|") - 2);
+	// printf(" (std) returns: %d\n", ft_printf("|%lld|") - 2);
+	// printf(" (std) returns: %d\n", ft_printf("|%10.3d|") - 2);
+	// printf(" (std) returns: %d\n", ft_printf("|%#.8d|") - 2);
+	// printf(" (std) returns: %d\n", ft_printf("|%hhd|") - 2);
 
 	#ifdef LEAKS
 	system("leaks test_printf");
