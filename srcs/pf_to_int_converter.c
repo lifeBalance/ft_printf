@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_converters.c                                    :+:      :+:    :+:   */
+/*   pf_to_int_converter.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 22:12:57 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/13 11:46:37 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@
 /*
 **	Prints an integer. Returns the amount of bytes written.
 */
-int	to_int(va_list data_args, t_spec *conv_spec)
+int	to_int(va_list data_args, t_spec *spec)
 {
-	(void)data_args;
-	print_spec(conv_spec);
-	return (1);
+	int	n;
+	int	ret;
+(void)spec;
+	ret = 0;
+	n = va_arg(data_args, int);
+	ret = ft_putnbr(n);
+	return (ret);
 }

@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/12 22:29:02 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/13 10:45:52 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,9 @@ strings:	$(NAME)
 
 char:	CFLAGS	+= -D CHAR_TEST
 char:	$(NAME)
+
+int:	CFLAGS	+= -D INT_TEST
+int:	$(NAME)
 
 libft.a:
 	make -C ../libft re

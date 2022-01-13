@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 22:42:06 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/13 11:57:54 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,18 @@ int	main(void)
 	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*.*s|", 10, 4, "hello") - 2);
 #endif
-	// printf(" (std) returns: %d\n", ft_printf("|%# -d|") - 2);
+#ifdef INT_TEST
+	printf("Testing barebones 'int' specifiers ('%%d and %%i')\n");
+	printf(" (std) returns: %d\n",    printf("|%d|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%d|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%d|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%d|", -42) - 2);
+
 	// printf(" (std) returns: %d\n", ft_printf("|%lld|") - 2);
 	// printf(" (std) returns: %d\n", ft_printf("|%10.3d|") - 2);
 	// printf(" (std) returns: %d\n", ft_printf("|%#.8d|") - 2);
 	// printf(" (std) returns: %d\n", ft_printf("|%hhd|") - 2);
-
+#endif
 	#ifdef LEAKS
 	system("leaks test_printf");
 	#endif
