@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 22:43:12 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/13 16:54:28 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,17 @@ int	putstr_repeat(char *s, int n)
 	while (n--)
 		ret += ft_putstr(s);
 	return (ret);
+}
+
+/*
+**	Cancels flags in the 'spec' structure:
+**	- A - overrides a 0 if both are given.
+**	- A + overrides a space if both are used.
+*/
+void	cancel_flags(t_spec *spec)
+{
+	if (test_bit(ZERO, spec->flags) && test_bit(MINUS, spec->flags))
+		clear_bit(ZERO, &spec->flags);
+	if (test_bit(PLUS, spec->flags) && test_bit(SPACE, spec->flags))
+		clear_bit(SPACE, &spec->flags);
 }

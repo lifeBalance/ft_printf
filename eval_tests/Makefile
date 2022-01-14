@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/13 10:45:52 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/13 17:48:44 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME	:=	test_printf
 CC		:=	clang
 
 CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
+# CFLAGS	=	-I../includes -I../libft/includes
 
 LDFLAGS	:=	-L../
 
@@ -41,7 +42,10 @@ char:	CFLAGS	+= -D CHAR_TEST
 char:	$(NAME)
 
 int:	CFLAGS	+= -D INT_TEST
-int:	$(NAME)
+int:	touch $(NAME)
+
+touch:
+	touch main.c.test
 
 libft.a:
 	make -C ../libft re
@@ -52,4 +56,4 @@ fclean:
 
 re:		fclean all
 
-.PHONY:	all fclean re
+.PHONY:	all fclean re int
