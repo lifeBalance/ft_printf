@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 12:33:54 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/14 22:13:29 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ int	main(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%*.*s|", 10, 4, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*.*s|", 10, 4, "hello") - 2);
+#endif
+#ifdef ADDR_TEST
+	int	var;
+	printf("Testing printing simple address ('%%p')\n");
+	printf(" (std) returns: %d\n",    printf("|%p", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%p", &var) - 2);
 #endif
 #ifdef INT_TEST
 	// printf("Testing barebones 'int' specifiers ('%%d and %%i')\n");

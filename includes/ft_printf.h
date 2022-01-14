@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 18:34:46 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/14 22:25:59 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,33 +42,6 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define FUN	9
 
 /*
-**	Macros for flags:
-*/
-# define SHARP	1
-# define ZERO	2
-# define MINUS	3
-# define PLUS	4
-# define SPACE	5
-
-/*
-**	Macros for digits flags:
-*/
-# define WIDTH_ARG	1
-# define PREC_ARG	2
-# define DOT		3
-# define WIDTH		4
-# define PREC		5
-
-/*
-**	Macros for length:
-*/
-# define H		1
-# define HH		2
-# define ELL	3
-# define ELLELL	4
-# define UPPELL	5
-
-/*
 **	Macros for specifiers:
 */
 # define NOT_SET	-1
@@ -83,12 +56,13 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define FLOAT		8
 
 /*
-**	Prototypes:
+**	Function prototypes:
 */
 int	ft_printf(const char *format, ...);
 int	to_percent(va_list data_args, t_spec *conv_spec);
 int	to_char(va_list data_args, t_spec *conv_spec);
 int	to_string(va_list data_args, t_spec *conv_spec);
+int	to_address(va_list data_args, t_spec *spec);
 int	to_int(va_list data_args, t_spec *conv_spec);
 
 #endif

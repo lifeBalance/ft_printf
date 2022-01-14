@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 21:23:12 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/14 21:52:49 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ static void	init_dispatcher(t_disp *disp)
 	disp[PERCENT] = to_percent;
 	disp[CHAR] = to_char;
 	disp[STRING] = to_string;
-	disp[ADDRESS] = to_int;
+	disp[ADDRESS] = to_address;
 	disp[LOWHEX] = to_int;
 	disp[UPPHEX] = to_int;
 	disp[INT] = to_int;

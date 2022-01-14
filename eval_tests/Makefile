@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/13 17:48:44 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/14 22:13:04 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,17 +38,20 @@ percent:	$(NAME)
 strings:	CFLAGS	+= -D STRINGS_TEST
 strings:	$(NAME)
 
-char:	CFLAGS	+= -D CHAR_TEST
-char:	$(NAME)
+char:		CFLAGS	+= -D CHAR_TEST
+char:		$(NAME)
 
-int:	CFLAGS	+= -D INT_TEST
-int:	touch $(NAME)
+address:	CFLAGS	+= -D ADDR_TEST
+address:	touch $(NAME)
+
+int:		CFLAGS	+= -D INT_TEST
+int:		touch $(NAME)
 
 touch:
 	touch main.c.test
 
-libft.a:
-	make -C ../libft re
+libftprintf.a:
+	make -C ../libftprintf.a re
 
 fclean:
 	/bin/rm -f $(NAME)
