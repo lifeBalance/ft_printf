@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 12:27:07 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/14 23:08:30 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 #include "pf_converting.h"
+#include "pf_parsing.h"
 
 static int	amount_of_digits(int n);
 static int	align_left(int n, int width, t_spec *spec);

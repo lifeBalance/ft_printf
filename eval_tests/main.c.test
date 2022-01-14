@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 22:13:29 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/14 23:25:47 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,25 @@ int	main(void)
 #endif
 #ifdef ADDR_TEST
 	int	var;
+	printf("No tests for '+ 0' flags -> undefined behaviour!!\n");
 	printf("Testing printing simple address ('%%p')\n");
-	printf(" (std) returns: %d\n",    printf("|%p", &var) - 2);
-	printf(" (ft_) returns: %d\n", ft_printf("|%p", &var) - 2);
+	printf(" (std) returns: %d\n",    printf("|%p|", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%p|", &var) - 2);
+
+	printf("\n----------------------------------------------------\n");
+	printf("Width. Right aligned \n");
+	printf(" (std) returns: %d\n",    printf("|%20p|", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%20p|", &var) - 2);
+	printf("Width Argument (*). Right aligned.\n");
+	printf(" (std) returns: %d\n",    printf("|%*p|", 20, &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*p|", 20, &var) - 2);
+
+	printf("Width. Left aligned.\n");
+	printf(" (std) returns: %d\n",    printf("|%-20p|", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-20p|", &var) - 2);
+	printf("Width Argument (*). Left aligned.\n");
+	printf(" (std) returns: %d\n",    printf("|%-*p|", 20, &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*p|", 20, &var) - 2);
 #endif
 #ifdef INT_TEST
 	// printf("Testing barebones 'int' specifiers ('%%d and %%i')\n");

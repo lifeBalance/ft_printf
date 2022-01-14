@@ -6,13 +6,14 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 22:38:20 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/14 23:09:13 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 #include "pf_converting.h"
+#include "pf_parsing.h"
 
 /*
 **	Prints a character sign. Returns the amount of bytes written.
