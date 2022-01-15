@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 22:25:59 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 13:42:24 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define UPPHEX		5
 # define INT		6
 # define UINT		7
-# define FLOAT		8
+# define OCTAL		8
+# define FLOAT		9
 
 /*
 **	Function prototypes:
