@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 16:53:55 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 19:10:22 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include "pf_converting.h"
 #include "pf_parsing.h"
 
-static int	align_left(int n, int width, t_spec *spec, char *digits);
-static int	align_right(int n, int width, t_spec *spec, char *digits);
-static int	align_right_pos(int n, int width, t_spec *spec, char *digits);
+static int	align_left(long long n, int width, t_spec *spec, char *digits);
+static int	align_right(long long n, int width, t_spec *spec, char *digits);
+static int	align_right_pos(long long n, int width, t_spec *spec, char *digits);
 static int	print_split_sign(long long n, char *digits);
 
 /*
@@ -27,16 +27,16 @@ static int	print_split_sign(long long n, char *digits);
 */
 int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 {
-	int	n;
-	int	ret;
-	int	width;
+	long long	n;
+	int			ret;
+	int			width;
 
 	set_width(spec, data_args, &width);
+	set_num(spec, data_args, &n);
 	ret = 0;
 	cancel_flags(spec);
 	if (width > 0)
 	{
-		n = va_arg(data_args, int);
 		if (test_bit(MINUS, spec->flags))
 			ret += align_left(n, width, spec, digits);
 		else
@@ -44,7 +44,6 @@ int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 	}
 	if (width <= 0)
 	{
-		n = va_arg(data_args, int);
 		if (test_bit(SPACE, spec->flags) && n >= 0)
 			ret += ft_putchar(' ');
 		if (test_bit(PLUS, spec->flags) && n >= 0)
@@ -61,7 +60,7 @@ int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 **	 ' ' which appends spaces if the width requires it.)
 **	Returns the amount of characters (bytes) written.
 */
-static int	align_left(int n, int width, t_spec *spec, char *digits)
+static int	align_left(long long n, int width, t_spec *spec, char *digits)
 {
 	int					ret;
 	unsigned long long	base;
@@ -98,7 +97,7 @@ static int	align_left(int n, int width, t_spec *spec, char *digits)
 **	the '-' flag is not present)
 **	Returns the amount of characters (bytes) written.
 */
-static int	align_right(int n, int width, t_spec *spec, char *digits)
+static int	align_right(long long n, int width, t_spec *spec, char *digits)
 {
 	unsigned long long	base;
 	int					ret;
@@ -127,7 +126,7 @@ static int	align_right(int n, int width, t_spec *spec, char *digits)
 	return (ret);
 }
 
-static int	align_right_pos(int n, int width, t_spec *spec, char *digits)
+static int	align_right_pos(long long n, int width, t_spec *spec, char *digits)
 {
 	unsigned long long	base;
 	int					ret;
@@ -148,7 +147,7 @@ static int	align_right_pos(int n, int width, t_spec *spec, char *digits)
 		ret += putstr_repeat(" ", width - amount_of_digits(n, base) - 1);
 		ret += ft_putchar('+');
 	}
-	else
+	else if (width > amount_of_digits(n, base))
 		ret += putstr_repeat(" ", width - amount_of_digits(n, base));
 	ret += print_split_sign(n, digits);
 	return (ret);

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/12 21:23:52 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:22:43 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	parse_specifier(char **fmt, t_spec *spec)
 		spec->specifier = ADDRESS;
 	else if (**fmt == 'd' || **fmt == 'i')
 		spec->specifier = INT;
+	else if (**fmt == 'o')
+		spec->specifier = OCTAL;
 	else if (**fmt == 'u')
 		spec->specifier = UINT;
 	else if (**fmt == 'x')

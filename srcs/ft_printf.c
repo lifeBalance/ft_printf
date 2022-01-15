@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 21:52:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 17:23:38 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	parse_spec(char **fmt, t_spec *spec)
 		ret = parse_width_prec(fmt, spec);
 	if (ft_strchr("hlL", **fmt))
 		ret += parse_length(fmt, spec);
-	if (ft_strchr("cspdiuxX%", **fmt))
+	if (ft_strchr("cspdiouxX%", **fmt))
 		ret += parse_specifier(fmt, spec);
 	if (spec->specifier == NOT_SET)
 		ret = -1;
@@ -127,5 +127,6 @@ static void	init_dispatcher(t_disp *disp)
 	disp[UPPHEX] = to_int;
 	disp[INT] = to_int;
 	disp[UINT] = to_int;
+	disp[OCTAL] = to_octal;
 	disp[FLOAT] = to_int;
 }

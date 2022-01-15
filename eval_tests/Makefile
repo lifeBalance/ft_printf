@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/14 22:13:04 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/15 17:29:50 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,9 @@ address:	touch $(NAME)
 
 int:		CFLAGS	+= -D INT_TEST
 int:		touch $(NAME)
+
+octal:		CFLAGS	+= -D OCTAL_TEST
+octal:		touch $(NAME)
 
 touch:
 	touch main.c.test

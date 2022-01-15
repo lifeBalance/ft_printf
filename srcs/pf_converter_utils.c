@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 16:43:19 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 19:07:18 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,42 @@ void	set_width(t_spec *spec, va_list data_args, int *width)
 		*width = spec->width;
 	else
 		*width = -1;
+}
+
+/*
+**	It sets the value of the number according to the length flags
+**	extracted from the 'spec'; if converts the sign to positive and casts
+**	to the appropriate types: 'h', 'hh', 'l', and 'll'.
+*/
+void	set_num(t_spec *spec, va_list data_args, long long *num)
+{
+	if (spec->specifier == INT)
+	{
+		if (test_bit(H, spec->length))
+			*num = (short)va_arg(data_args, int);
+		else if (test_bit(HH, spec->length))
+			*num = (char)va_arg(data_args, int);
+		else if (test_bit(ELL, spec->length))
+			*num = va_arg(data_args, long);
+		else if (test_bit(ELLELL, spec->length))
+			*num = va_arg(data_args, long long);
+		else
+			*num = va_arg(data_args, int);
+	}
+	else if (spec->specifier == UINT || spec->specifier == OCTAL || \
+	spec->specifier == UPPHEX || spec->specifier == LOWHEX)
+	{
+		if (test_bit(H, spec->length))
+			*num = (unsigned short)va_arg(data_args, unsigned int);
+		else if (test_bit(HH, spec->length))
+			*num = (unsigned char)va_arg(data_args, unsigned int);
+		else if (test_bit(ELL, spec->length))
+			*num = va_arg(data_args, unsigned long);
+		else if (test_bit(ELLELL, spec->length))
+			*num = va_arg(data_args, unsigned long long);
+		else
+			*num = va_arg(data_args, unsigned int);
+	}
 }
 
 /*
@@ -54,8 +90,12 @@ int	putstr_repeat(char *s, int n)
 	int	ret;
 
 	ret = 0;
-	while (n--)
+	// while (n--)
+	while (n > 0)
+	{
 		ret += ft_putstr(s);
+		n--;
+	}
 	return (ret);
 }
 
