@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 23:09:02 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 12:14:39 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ int	to_string(va_list data_args, t_spec *spec)
 	set_width(spec, data_args, &width);
 	set_precision(spec, data_args, &prec);
 	str = va_arg(data_args, char *);
-	if (prec < 0)
-		prec = ft_strlen(str);
-	if (prec > (int)ft_strlen(str))
+	if (prec < 0 || prec > (int)ft_strlen(str))
 		prec = ft_strlen(str);
 	len = 0;
 	if (width > 0 && prec < width && !test_bit(MINUS, spec->flags))
