@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 16:42:17 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:53:55 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,16 +143,13 @@ static int	align_right_pos(int n, int width, t_spec *spec, char *digits)
 		}
 		ret += putstr_repeat("0", width - amount_of_digits(n, base));
 	}
-	else
+	else if (test_bit(PLUS, spec->flags))
 	{
-		if (test_bit(PLUS, spec->flags))
-		{
-			ret += putstr_repeat(" ", width - amount_of_digits(n, base) - 1);
-			ret += ft_putchar('+');
-		}
-		else
-			ret += putstr_repeat(" ", width - amount_of_digits(n, base));
+		ret += putstr_repeat(" ", width - amount_of_digits(n, base) - 1);
+		ret += ft_putchar('+');
 	}
+	else
+		ret += putstr_repeat(" ", width - amount_of_digits(n, base));
 	ret += print_split_sign(n, digits);
 	return (ret);
 }
