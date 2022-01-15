@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 15:10:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:38:35 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,4 @@ void	set_base(unsigned long long *base, char *digits)
 	*base = 0;
 	while (digits[*base])
 		(*base)++;
-}
-
-/*
-**	Receives an 'long long int' argument and if it's negative, prints the '-'
-**	before changing the number to positive; that's necessary since the
-**	'put_ull_base' function only deals with UNSIGNED numbers.
-**	Returns the amount of printed characters (bytes).
-*/
-int	print_split_sign(long long n, char *digits)
-{
-	int	ret;
-
-	ret = 0;
-	if (n < 0)
-	{
-		ret += ft_putchar('-');
-		n = -n;
-	}
-	ret += put_ull_base(n, digits);
-	return (ret);
 }

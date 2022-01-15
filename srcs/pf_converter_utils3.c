@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 15:21:35 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/15 16:42:17 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 static int	align_left(int n, int width, t_spec *spec, char *digits);
 static int	align_right(int n, int width, t_spec *spec, char *digits);
 static int	align_right_pos(int n, int width, t_spec *spec, char *digits);
+static int	print_split_sign(long long n, char *digits);
 
 /*
 **	Prints a number in any given base, according to some specifications
@@ -48,8 +49,6 @@ int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 			ret += ft_putchar(' ');
 		if (test_bit(PLUS, spec->flags) && n >= 0)
 			ret += ft_putchar('+');
-		// ret += ft_putnbr(n);
-		// ret += put_ull_base(n, digits);
 		ret += print_split_sign(n, digits);
 	}
 	return (ret);
@@ -84,8 +83,6 @@ static int	align_left(int n, int width, t_spec *spec, char *digits)
 		ret += ft_putchar('-');
 		width--;
 	}
-	// ret += ft_putnbr(n);
-	// ret += put_ull_base(n, digits);
 	ret += print_split_sign(n, digits);
 	ret += putstr_repeat(" ", width - amount_of_digits(n, base));
 	return (ret);
@@ -124,8 +121,6 @@ static int	align_right(int n, int width, t_spec *spec, char *digits)
 			width--;
 		}
 		ret += print_split_sign(n, digits);
-		// ret += put_ull_base(n, digits);
-		// ret += ft_putnbr(n);
 	}
 	else if (n >= 0)
 		ret += align_right_pos(n, width, spec, digits);
@@ -158,8 +153,26 @@ static int	align_right_pos(int n, int width, t_spec *spec, char *digits)
 		else
 			ret += putstr_repeat(" ", width - amount_of_digits(n, base));
 	}
-	// ret += ft_putnbr(n);
-	// ret += put_ull_base(n, digits);
 	ret += print_split_sign(n, digits);
+	return (ret);
+}
+
+/*
+**	Receives an 'long long int' argument and if it's negative, prints the '-'
+**	before changing the number to positive; that's necessary since the
+**	'put_ull_base' function only deals with UNSIGNED numbers.
+**	Returns the amount of printed characters (bytes).
+*/
+static int	print_split_sign(long long n, char *digits)
+{
+	int	ret;
+
+	ret = 0;
+	if (n < 0)
+	{
+		ret += ft_putchar('-');
+		n = -n;
+	}
+	ret += put_ull_base(n, digits);
 	return (ret);
 }
