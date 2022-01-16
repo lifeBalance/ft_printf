@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 12:34:04 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:46:06 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int	to_int(va_list data_args, t_spec *conv_spec);
 int	to_uint(va_list data_args, t_spec *spec);
 int	to_octal(va_list data_args, t_spec *spec);
 int	to_hex(va_list data_args, t_spec *spec);
+int	to_upphex(va_list data_args, t_spec *spec);
 
 #endif

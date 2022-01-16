@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 12:37:17 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 12:46:31 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ static void	init_dispatcher(t_disp *disp)
 	disp[STRING] = to_string;
 	disp[ADDRESS] = to_address;
 	disp[LOWHEX] = to_hex;
-	disp[UPPHEX] = to_int;
+	disp[UPPHEX] = to_upphex;
 	disp[INT] = to_int;
 	disp[UINT] = to_uint;
 	disp[OCTAL] = to_octal;
