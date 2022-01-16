@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 12:46:31 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:28:59 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ int	parse_spec(char **fmt, t_spec *spec)
 static t_spec	*init_conv_spec(t_spec *spec)
 {
 	spec->flags = 0;
-	spec->width = 0;
+	spec->width = NOT_SET;
 	spec->length = 0;
-	spec->precision = 0;
+	spec->prec = NOT_SET;
 	spec->specifier = NOT_SET;
 	return (spec);
 }

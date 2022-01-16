@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/16 12:42:40 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/16 18:31:20 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME	:=	test_printf
 
 CC		:=	clang
 
-# CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
-CFLAGS	=	-I../includes -I../libft/includes
+CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
+# CFLAGS	=	-I../includes -I../libft/includes
 
 LDFLAGS	:=	-L../
 
@@ -36,10 +36,10 @@ percent:	CFLAGS	+= -D PERCENT_TEST
 percent:	$(NAME)
 
 strings:	CFLAGS	+= -D STRINGS_TEST
-strings:	$(NAME)
+strings:	touch $(NAME)
 
 char:		CFLAGS	+= -D CHAR_TEST
-char:		$(NAME)
+char:		touch $(NAME)
 
 address:	CFLAGS	+= -D ADDR_TEST
 address:	touch $(NAME)

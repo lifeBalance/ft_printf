@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 17:22:43 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:04:19 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int	parse_digits(char **fmt, t_spec *spec)
 		!test_bit(PREC_ARG, spec->digits))
 	{
 		set_bit(PREC, &spec->digits);
-		spec->precision = n;
+		spec->prec = n;
 		return (0);
 	}
 	else if (!test_bit(DOT, spec->digits) && !test_bit(WIDTH, spec->digits) && \

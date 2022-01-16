@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 12:46:06 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 14:54:10 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_spec
 	uint16_t	flags;
 	uint16_t	digits;
 	int			width;
-	int			precision;
+	int			prec;
 	uint16_t	length;
 	int			specifier;
 }	t_spec;

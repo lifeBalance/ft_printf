@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 12:14:39 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:29:18 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,19 @@ static int	putstr_upto_n(char *s, int n);
 int	to_string(va_list data_args, t_spec *spec)
 {
 	char	*str;
-	int		prec;
-	int		width;
 	int		len;
 
-	set_width(spec, data_args, &width);
-	set_precision(spec, data_args, &prec);
+	set_width_arg(spec, data_args);
+	set_prec_arg(spec, data_args);
 	str = va_arg(data_args, char *);
-	if (prec < 0 || prec > (int)ft_strlen(str))
-		prec = ft_strlen(str);
+	if (spec->prec == NOT_SET || spec->prec > (int)ft_strlen(str))
+		spec->prec = ft_strlen(str);
 	len = 0;
-	if (width > 0 && prec < width && !test_bit(MINUS, spec->flags))
-		len += putstr_repeat(" ", width - prec);
-	len += putstr_upto_n(str, prec);
-	if (width > 0 && prec < width && test_bit(MINUS, spec->flags))
-		len += putstr_repeat(" ", width - prec);
+	if (spec->width > 0 && spec->prec < spec->width && !test_bit(MINUS, spec->flags))
+		len += putstr_repeat(" ", spec->width - spec->prec);
+	len += putstr_upto_n(str, spec->prec);
+	if (spec->width > 0 && spec->prec < spec->width && test_bit(MINUS, spec->flags))
+		len += putstr_repeat(" ", spec->width - spec->prec);
 	return (len);
 }
 

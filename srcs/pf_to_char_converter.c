@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/14 23:09:13 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/16 18:15:55 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@
 */
 int	to_char(va_list data_args, t_spec *spec)
 {
-	int		width;
 	int		len;
 
 	len = 0;
-	set_width(spec, data_args, &width);
-	if (width > 0 && !test_bit(MINUS, spec->flags))
-		len += putstr_repeat(" ", width - 1);
+	set_width_arg(spec, data_args);
+	if (spec->width > 0 && !test_bit(MINUS, spec->flags))
+		len += putstr_repeat(" ", spec->width - 1);
 	len += ft_putchar(va_arg(data_args, int));
-	if (width > 0 && test_bit(MINUS, spec->flags))
-		len += putstr_repeat(" ", width - 1);
+	if (spec->width > 0 && test_bit(MINUS, spec->flags))
+		len += putstr_repeat(" ", spec->width - 1);
 	return (len);
 }
