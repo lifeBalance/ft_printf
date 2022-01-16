@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/16 12:18:05 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/16 12:33:22 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,9 @@ uint:		touch $(NAME)
 
 octal:		CFLAGS	+= -D OCTAL_TEST
 octal:		touch $(NAME)
+
+hex:		CFLAGS	+= -D HEX_TEST
+hex:		touch $(NAME)
 
 touch:
 	touch main.c.test
