@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/15 17:29:50 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/16 12:18:05 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME	:=	test_printf
 
 CC		:=	clang
 
-CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
-# CFLAGS	=	-I../includes -I../libft/includes
+# CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
+CFLAGS	=	-I../includes -I../libft/includes
 
 LDFLAGS	:=	-L../
 
@@ -46,6 +46,9 @@ address:	touch $(NAME)
 
 int:		CFLAGS	+= -D INT_TEST
 int:		touch $(NAME)
+
+uint:		CFLAGS	+= -D UINT_TEST
+uint:		touch $(NAME)
 
 octal:		CFLAGS	+= -D OCTAL_TEST
 octal:		touch $(NAME)
