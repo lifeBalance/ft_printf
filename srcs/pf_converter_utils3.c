@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 12:15:18 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:22:29 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,14 @@ int	handle_prec(long long n, long long base, t_spec *spec, char *digits)
 		spaces = spec->width - spec->prec;
 	else
 		spaces = 0;
-	if (n < 0 || (n >= 0 && test_bit(PLUS, spec->flags)))
+	if (n < 0 || (n >= 0 && \
+		(test_bit(PLUS, spec->flags) || test_bit(SPACE, spec->flags))))
 		spaces--;
 	ret += putstr_repeat(" ", spaces);
 	if (n >= 0 && test_bit(PLUS, spec->flags))
 		ret += ft_putchar('+');
+	if (n >= 0 && test_bit(SPACE, spec->flags))
+		ret += ft_putchar(' ');
 	if (n < 0)
 	{
 		ret += ft_putchar('-');

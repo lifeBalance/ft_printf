@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 11:54:37 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:20:22 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,22 @@ int	main(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+.*d|", 4, 0) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+.*d|", 4, -42) - 2);
+	
+	printf("Testing Precision (no width, '%% .*d' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, -42) - 2);
+	
+	printf("Testing Precision (no width, '%%+ .*d' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, -42) - 2);
 
 	printf("\n----------------------------------------------------\n");
 	printf("Testing Width (6) and Precision (4) ('%%6.*d)\n");
@@ -171,7 +187,6 @@ int	main(void)
 	printf(" (std) returns: %d\n",    printf("|%+06.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+06.*d|", 4, -42) - 2);
 	
-	printf("\n----------------------------------------------------\n");
 	printf("\n----------------------------------------------------\n");
 	printf("No Width. ' ' flag. Right aligned (no '-' flag possible).\n");
 	printf(" (std) returns: %d\n",    printf("|% d|", 42) - 2);
