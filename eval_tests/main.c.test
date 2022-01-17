@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 12:20:22 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:32:28 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ int	main(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%*.*s|", 10, 4, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*.*s|", 10, 4, "hello") - 2);
+
+	printf("\nTesting empty string with ' ' flag (undefined behaviour)\n");
+	printf(" (std) returns: %d\n",    printf("|% s|", " ") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% s|", " ") - 2);
 #endif
 #ifdef ADDR_TEST
 	int	var;
@@ -155,12 +159,20 @@ int	main(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, -42) - 2);
 	
 	printf("Testing Precision (no width, '%%+ .*d' flag)\n");
-	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 42) - 2);
-	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 42) - 2);
-	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 0) - 2);
-	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 0) - 2);
-	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, -42) - 2);
-	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+ .*d|", 4, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+ .*d|", 4, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+ .*d|", 4, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+ .*d|", 4, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+ .*d|", 4, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+ .*d|", 4, -42) - 2);
+	
+	printf("Testing Precision (no width, '%%+0.*d' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|%+0.*d|", 4, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+0.*d|", 4, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+0.*d|", 4, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+0.*d|", 4, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+0.*d|", 4, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+0.*d|", 4, -42) - 2);
 
 	printf("\n----------------------------------------------------\n");
 	printf("Testing Width (6) and Precision (4) ('%%6.*d)\n");
@@ -283,13 +295,6 @@ int	main(void)
 	printf("\nWidth directive ('-0' flags, '0' is ignored)\n");
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", -42) - 2);
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", 42) - 2);
-
-	// printf("\n---------------------------------------------\n");
-	// printf("\nTest length directives\n");
-	// printf(" (std) returns: %d\n", ft_printf("|%lld|") - 2);
-	// printf(" (std) returns: %d\n", ft_printf("|%10.3d|") - 2);
-	// printf(" (std) returns: %d\n", ft_printf("|%#.8d|") - 2);
-	// printf(" (std) returns: %d\n", ft_printf("|%hhd|") - 2);
 #endif
 #ifdef UINT_TEST
 	printf("Testing barebones 'unsigned int' specifiers ('%%u')\n");
@@ -727,6 +732,56 @@ int	main(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|% -4o|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|% -4o|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% -4o|", -42) - 2);
+#endif
+#ifdef FLOAT_TEST
+	printf("Testing barebones float specifier ('%%f')\n");
+	printf(" (std) returns: %d\n",    printf("|%f|", 4.2) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%f|", 4.2) - 2);
+	printf(" (std) returns: %d\n",    printf("|%f|", 0.0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%f|", 0.0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%f|", -4.2) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%f|", -4.2) - 2);
+
+	printf("Testing Precision (4) (no width, no flags)\n");
+	printf(" (std) returns: %d\n",    printf("|%.*f|", 4, 4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%.*f|", 4, 4.2) - 2);
+	printf(" (std) returns: %d\n",    printf("|%.*f|", 4, 0.0) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%.*f|", 4, 0.0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%.*f|", 4, -4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%.*f|", 4, -4.2) - 2);
+
+	printf("Testing Precision (4) (no width, '%%+.*f' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|%+.*f|", 4, 4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+.*f|", 4, 4.2) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+.*f|", 4, 0.0) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+.*f|", 4, 0.0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+.*f|", 4, -4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+.*f|", 4, -4.2) - 2);
+	
+	printf("Testing Precision (4) (no width, '%% .*d' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|% .*f|", 4, 4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|% .*f|", 4, 4.2) - 2);
+	printf(" (std) returns: %d\n",    printf("|% .*f|", 4, 0.0) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|% .*f|", 4, 0.0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% .*f|", 4, -4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|% .*f|", 4, -4.2) - 2);
+	
+	printf("Testing Precision (4) (no width, '%%+ .*d' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|%+ .*f|", 4, 4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+ .*f|", 4, 4.2) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+ .*f|", 4, 0.0) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+ .*f|", 4, 0.0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+ .*f|", 4, -4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+ .*f|", 4, -4.2) - 2);
+	
+	printf("Testing Precision (4) (no width, '%%+0.*d' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|%+0.*f|", 4, 4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+0.*f|", 4, 4.2) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+0.*f|", 4, 0.0) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+0.*f|", 4, 0.0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+0.*f|", 4, -4.2) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|%+0.*f|", 4, -4.2) - 2);
+	printf("\n----------------------------------------------------\n");
 #endif
 	#ifdef LEAKS
 	system("leaks test_printf");

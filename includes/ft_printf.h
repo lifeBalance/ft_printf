@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 14:54:10 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:26:49 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 /*
 **	Functions in the dispatcher (one per specifier + the one for'%%'):
 */
-# define FUN	9
+# define FUN	10
 
 /*
 **	Macros for specifiers:
@@ -69,5 +69,6 @@ int	to_uint(va_list data_args, t_spec *spec);
 int	to_octal(va_list data_args, t_spec *spec);
 int	to_hex(va_list data_args, t_spec *spec);
 int	to_upphex(va_list data_args, t_spec *spec);
+int	to_float(va_list data_args, t_spec *spec);
 
 #endif

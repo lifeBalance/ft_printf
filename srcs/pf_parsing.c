@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 18:04:19 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 19:13:54 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	parse_specifier(char **fmt, t_spec *spec)
 		spec->specifier = LOWHEX;
 	else if (**fmt == 'X')
 		spec->specifier = UPPHEX;
+	else if (**fmt == 'f')
+		spec->specifier = FLOAT;
 	(*fmt)++;
 	return (0);
 }

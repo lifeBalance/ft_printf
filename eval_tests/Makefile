@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/17 12:11:58 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/17 19:16:23 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ debug:	CFLAGS	+=	-g -D LEAKS
 debug:	$(NAME)
 
 percent:	CFLAGS	+= -D PERCENT_TEST
-percent:	$(NAME)
+percent:	touch $(NAME)
 
 strings:	CFLAGS	+= -D STRINGS_TEST
 strings:	touch $(NAME)
@@ -58,6 +58,9 @@ hex:		touch $(NAME)
 
 upphex:		CFLAGS	+= -D UPPHEX_TEST
 upphex:		touch $(NAME)
+
+float:		CFLAGS	+= -D FLOAT_TEST
+float:		touch $(NAME)
 
 touch:
 	touch main.c.test
