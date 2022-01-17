@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 22:02:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:15:18 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "pf_parsing.h"
 
 static int
-handle_no_width(long long n,  long long base, t_spec *spec, char *digits);
+handle_no_width(long long n, long long base, t_spec *spec, char *digits);
 
 /*
 **	Prints a number in any given base, according to some specifications
@@ -55,12 +55,12 @@ int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 **	Returns the amount of characters (bytes) written.
 */
 static int
-handle_no_width(long long n, long long base, t_spec *spec, char *digits)
+	handle_no_width(long long n, long long base, t_spec *spec, char *digits)
 {
-	int			ret;
+	int	ret;
 
 	ret = 0;
-	if (spec->prec > amount_of_digits(n, base))
+	if (spec->prec > amount_digits(n, base))
 		ret += handle_prec(n, base, spec, digits);
 	else
 	{
@@ -113,7 +113,7 @@ int	handle_prec(long long n, long long base, t_spec *spec, char *digits)
 		ret += ft_putchar('-');
 		n = -n;
 	}
-	ret += putstr_repeat("0", spec->prec - amount_of_digits(n, base));
+	ret += putstr_repeat("0", spec->prec - amount_digits(n, base));
 	ret += put_ull_base(n, digits);
 	return (ret);
 }

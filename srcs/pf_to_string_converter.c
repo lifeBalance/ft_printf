@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 18:29:18 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:14:36 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,12 @@ int	to_string(va_list data_args, t_spec *spec)
 	if (spec->prec == NOT_SET || spec->prec > (int)ft_strlen(str))
 		spec->prec = ft_strlen(str);
 	len = 0;
-	if (spec->width > 0 && spec->prec < spec->width && !test_bit(MINUS, spec->flags))
+	if (spec->width > 0 && spec->prec < spec->width && \
+		!test_bit(MINUS, spec->flags))
 		len += putstr_repeat(" ", spec->width - spec->prec);
 	len += putstr_upto_n(str, spec->prec);
-	if (spec->width > 0 && spec->prec < spec->width && test_bit(MINUS, spec->flags))
+	if (spec->width > 0 && spec->prec < spec->width && \
+		test_bit(MINUS, spec->flags))
 		len += putstr_repeat(" ", spec->width - spec->prec);
 	return (len);
 }

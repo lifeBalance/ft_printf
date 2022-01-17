@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/16 18:31:20 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/17 12:11:58 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@ NAME	:=	test_printf
 
 CC		:=	clang
 
-CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
-# CFLAGS	=	-I../includes -I../libft/includes
+# CFLAGS	=	-Wall -Werror -Wextra -I../includes -I../libft/includes
+CFLAGS	=	-I../includes -I../libft/includes
 
 LDFLAGS	:=	-L../
 

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 21:49:44 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:04:43 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void
 **	Returns the amount of digits of the 'unsigned long long int' argument,
 **	in the given 'unsigned long long' base.
 */
-int	amount_of_digits(long long n, long long base)
+int	amount_digits(long long n, long long base)
 {
 	int	ret;
 

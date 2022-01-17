@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 18:28:59 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/17 12:13:21 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	spec = init_conv_spec(spec);
 	if (parse_spec(fmt, spec) < 0)
 		exit (EXIT_FAILURE);
-	// print_spec(spec);
-	// return (0);
 	len = disp[spec->specifier](args, spec);
 	return (len);
 }
