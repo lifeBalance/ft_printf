@@ -6,28 +6,32 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/18 15:11:41 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/18 17:12:28 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
-#include "debug.h"
+#include <stdio.h>
 
 int	main(void)
 {
 #ifdef PERCENT_TEST
-	printf("Testing percent sign (%%%%)\n");
+	printf("Testing barebones percent sign specifier(%%%%)\n");
 	printf(" (std) returns: %d\n",  printf("|%%|") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%%|") - 2);
 
-	printf("\nTesting percent sign followed by a string (%%%%%%s)\n");
+	printf("\nPercent sign followed by a string (%%%%%%s)\n");
 	printf(" (std) returns: %d\n",  printf("|%%%s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%%%s|", "hello") - 2);
 
-	printf("\nTesting percent sign with some directives (%%-4.4%%)\n");
-	printf(" (std) returns: %d\n",     printf("|%-4.4%|") - 2);
-	printf(" (ft_) returns: %d\n",  ft_printf("|%-4.4%|") - 2);
+	printf("\nPercent sign. Width (5) Right aligned (%%5%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%5%|") - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%5%|") - 2);
+
+	printf("\nPercent sign. Width (5) Left aligned (%%-5%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%-5%|") - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%-5%|") - 2);
 
 	printf("\nTesting percent sign with some directives (%%*.*%%)\n");
 	printf(" (std) returns: %d\n",     printf("|%*.*%|", 2, 2) - 2);

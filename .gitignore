@@ -16,5 +16,7 @@
 
 !/srcs/*.c
 !/includes/*.h
-!/eval_tests/*.c.test
 !/eval_tests/Makefile
+!/eval_tests/*.c.test
+!/eval_tests/*.h
+!/eval_tests/*.md
