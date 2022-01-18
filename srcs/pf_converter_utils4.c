@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 12:08:08 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/18 15:45:38 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,29 @@ static int
 		ret += putstr_repeat(" ", spec->width - amount_digits(n, base));
 	ret += print_split_sign(n, digits);
 	return (ret);
+}
+
+/*
+**	Splits a double argument into two parts:
+**	- An integer part.
+**	- A decimal part.
+**	Returns both parts as a 't_float' (a struct with two members).
+*/
+t_float	split_float(double num, int pos)
+{
+	unsigned long long	amount;
+	unsigned long long	biggie;
+	unsigned long long	trunc;
+	int					sign;
+
+	sign = 1;
+	if (num < 0)
+		sign = -1;
+	num *= sign;
+	amount = 10;
+	while (--pos > 0)
+		amount *= 10;
+	biggie = num * amount;
+	trunc = (unsigned long long)num;
+	return ((t_float){trunc * sign, biggie - trunc * amount});
 }

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/18 13:09:02 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/18 15:56:42 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,10 @@
 #include "pf_converting.h"
 #include "pf_parsing.h"
 
-#define DEFAULT_PREC 6
-
-typedef struct s_part {
-	long long			integer;
-	unsigned long long	decimal;
-}	t_float;
-
-static t_float	split_float(double num, int pos);
 static int		no_precision_right(t_float *n, t_spec *spec);
 static int		no_precision_left(t_float *n, t_spec *spec);
 static int		add_spaces(t_float *n, t_spec *spec);
 static int		handle_precision(t_float *n, t_spec *spec);
-
-// static int		print_posit_float(t_float *n, t_spec *spec);
 
 /*
 **	Prints a floating point number. Returns the amount of bytes written.
@@ -57,6 +47,36 @@ int	to_float(va_list data_args, t_spec *spec)
 	return (ret);
 }
 
+/*
+**	Handles the printing and alignment of a floating point number when the
+**	precision directive is greater than zero.
+**	Returns the amount of bytes written.
+*/
+static int	handle_precision(t_float *n, t_spec *spec)
+{
+	int		ret;
+
+	ret = 0;
+	spec->width -= spec->prec;
+	spec->width -= 1;
+	if (test_bit(MINUS, spec->flags))
+		ret += no_precision_left(n, spec);
+	else
+		ret += no_precision_right(n, spec);
+	ret += ft_putchar('.');
+	ret += put_ull_base(n->decimal, DECDIGITS);
+	if (amount_digits(n->decimal, 10) < spec->prec)
+		ret += putstr_repeat("0", spec->prec - amount_digits(n->decimal, 10));
+	if (test_bit(MINUS, spec->flags))
+		ret += add_spaces(n, spec);
+	return (ret);
+}
+
+/*
+**	Adds spaces to pad a floating point number, aligned to the right or to the
+**	left. It accounts for the sign (- or +) and for the ' ' flag.
+**	Returns the amount of characters (bytes) written.
+*/
 static int	add_spaces(t_float *n, t_spec *spec)
 {
 	int	ret;
@@ -72,24 +92,10 @@ static int	add_spaces(t_float *n, t_spec *spec)
 	return (ret);
 }
 
-static int	handle_precision(t_float *n, t_spec *spec)
-{
-	int		ret;
-
-	ret = 0;
-	if (n->integer < 0)
-	{
-		ret += ft_putchar('-');
-		n->integer *= -1;
-	}
-	ret += put_ull_base(n->integer, DECDIGITS);
-	ret += ft_putchar('.');
-	ret += put_ull_base(n->decimal, DECDIGITS);
-	if (amount_digits(n->decimal, 10) < spec->prec)
-		ret += putstr_repeat("0", spec->prec - amount_digits(n->decimal, 10));
-	return (ret);
-}
-
+/*
+**	Prints a floating point number, aligned to the right, when the precision
+**	is zero. Returns the amount of characters (bytes) written.
+*/
 static int	no_precision_right(t_float *n, t_spec *spec)
 {
 	int		ret;
@@ -119,6 +125,10 @@ static int	no_precision_right(t_float *n, t_spec *spec)
 	return (ret);
 }
 
+/*
+**	Prints a floating point number, aligned to the left, when the precision
+**	is zero. Returns the amount of characters (bytes) written.
+*/
 static int	no_precision_left(t_float *n, t_spec *spec)
 {
 	int	ret;
@@ -135,38 +145,7 @@ static int	no_precision_left(t_float *n, t_spec *spec)
 	if (n->integer < 0)
 		sign *= -1;
 	ret += put_ull_base(n->integer * sign, DECDIGITS);
-	ret += add_spaces(n, spec);
+	if (spec->prec == 0)
+		ret += add_spaces(n, spec);
 	return (ret);
 }
-
-static t_float	split_float(double num, int pos)
-{
-	unsigned long long	amount;
-	unsigned long long	biggie;
-	unsigned long long	trunc;
-	int					sign;
-
-	sign = 1;
-	if (num < 0)
-		sign = -1;
-	num *= sign;
-	amount = 10;
-	while (--pos > 0)
-		amount *= 10;
-	biggie = num * amount;
-	trunc = (unsigned long long)num;
-	return ((t_float){trunc * sign, biggie - trunc * amount});
-}
-
-// static int	print_posit_float(t_float *n, t_spec *spec)
-// {
-// 	int	ret;
-
-// 	ret = 0;
-// 	ret += put_ull_base(n->integer, DECDIGITS);
-// 	ret += ft_putchar('.');
-// 	ret += put_ull_base(n->decimal, DECDIGITS);
-// 	if (amount_digits(n->decimal, 10) < spec->prec)
-// 		ret += putstr_repeat("0", spec->prec - amount_digits(n->decimal, 10));
-// 	return (ret);
-// }

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 19:26:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/18 15:57:16 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdlib.h>
 # include <stdarg.h>
 # include <stdint.h>
-#include "debug.h" // <================== DELETE BEFORE SUBMITING!!!
+
 /*
 **	Data types:
 */
