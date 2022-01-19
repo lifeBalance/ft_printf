@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 15:58:08 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 16:57:36 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	test_percent(void)
 	printf("\nPercent sign. Width (5) Right aligned (%%*%%)\n");
 	printf(" (std) returns: %d\n",     printf("|%*%|", 5) - 2);
 	printf(" (ft_) returns: %d\n",  ft_printf("|%*%|", 5) - 2);
-	// printf(" (ft_) returns: %d\n",  ft_printf("|%*% and %%|", 25) - 2);
 
 	printf("\nPercent sign. Width (5) Right aligned (%%0*%%)\n");
 	printf(" (std) returns: %d\n",     printf("|%0*%|", 5) - 2);
@@ -46,6 +45,10 @@ void	test_percent(void)
 	printf("\nPercent sign. Width (5) Left aligned (%%-*%%)\n");
 	printf(" (std) returns: %d\n",     printf("|%-*%|", 5) - 2);
 	printf(" (ft_) returns: %d\n",  ft_printf("|%-*%|", 5) - 2);
+
+	printf("\nPercent sign. Multiple ' ' flags (%%   %%)\n");
+	printf(" (std) returns: %d\n",     printf("|%   %|", "test") - 2); // can't reproduce the test result??
+	printf(" (ft_) returns: %d\n",  ft_printf("|%   %|", "test") - 2); // mine throws an error...
 	printf("End of tests\n");
 }
 /* vi: filetype=c */

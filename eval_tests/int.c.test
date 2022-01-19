@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   integer.c.test                                     :+:      :+:    :+:   */
+/*   int.c.test                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:21:58 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 21:02:56 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%i|", -42) - 2);
 	printf("\n----------------------------------------------------\n");
 
-	printf("Testing Precision (no width, no flags)\n");
+	printf("Precision (4) (no width, '%%.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%.*d|", 4, 0) - 2);
@@ -37,7 +37,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%.*d|", 4, -42) - 2);
 
-	printf("Testing Precision (no width, '%%+.*d' flag)\n");
+	printf("Precision (4) (no width, '%%+.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%+.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+.*d|", 4, 0) - 2);
@@ -45,7 +45,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%+.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+.*d|", 4, -42) - 2);
 
-	printf("Testing Precision (no width, '%% .*d' flag)\n");
+	printf("Precision (4) (no width, '%% .*d')\n");
 	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, 0) - 2);
@@ -53,7 +53,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|% .*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% .*d|", 4, -42) - 2);
 
-	printf("Testing Precision (no width, '%%+ .*d' flag)\n");
+	printf("Precision (4) (no width, '%%+ .*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%+ .*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+ .*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+ .*d|", 4, 0) - 2);
@@ -61,7 +61,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%+ .*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+ .*d|", 4, -42) - 2);
 
-	printf("Testing Precision (no width, '%%+0.*d' flag)\n");
+	printf("Precision (4) (no width, '%%+0.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%+0.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+0.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+0.*d|", 4, 0) - 2);
@@ -70,7 +70,7 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+0.*d|", 4, -42) - 2);
 
 	printf("\n----------------------------------------------------\n");
-	printf("Testing Width (6) and Precision (4) ('%%6.*d)\n");
+	printf("Width (6) and Precision (4) ('%%6.*d)\n");
 	printf(" (std) returns: %d\n",    printf("|%6.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%6.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%6.*d|", 4, 0) - 2);
@@ -78,7 +78,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%6.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%6.*d|", 4, -42) - 2);
 
-	printf("Testing Width (6) and Precision (4) ('%%06.*d' flag)\n");
+	printf("Width (6) and Precision (4) ('%%06.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%06.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%06.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%06.*d|", 4, 0) - 2);
@@ -86,7 +86,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%06.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%06.*d|", 4, -42) - 2);
 
-	printf("Testing Width (6) and Precision (4) ('%%+06.*d' flag)\n");
+	printf("Width (6) and Precision (4) ('%%+06.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%+06.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+06.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+06.*d|", 4, 0) - 2);
@@ -95,7 +95,7 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+06.*d|", 4, -42) - 2);
 
 	printf("\n----------------------------------------------------\n");
-	printf("No Width. ' ' flag. Right aligned (no '-' flag possible).\n");
+	printf("No Width. ' ' flag. Right aligned ('%% d').\n");
 	printf(" (std) returns: %d\n",    printf("|% d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|% d|", 0) - 2);
@@ -103,7 +103,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|% d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% d|", -42) - 2);
 
-	printf("\nNo Width. '+' flag. Right aligned (no ' -' flags possible).\n");
+	printf("\nNo Width. '+' flag. Right aligned ('%%+d').\n");
 	printf(" (std) returns: %d\n",    printf("|%+d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+d|", 0) - 2);
@@ -111,7 +111,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%+d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+d|", -42) - 2);
 
-	printf("\nNo Width.'0' flag. Right aligned (no '-' flag possible). \n");
+	printf("\nNo Width.'0' flag. Right aligned ('%%0d'). \n");
 	printf(" (std) returns: %d\n",    printf("|%0d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%0d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%0d|", 0) - 2);
@@ -119,7 +119,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%0d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%0d|", -42) - 2);
 
-	printf("\nNo Width. ' 0' flags. Right aligned (no '-' flag possible).\n");
+	printf("\nNo Width. ' 0' flags. Right aligned ('%% 0d').\n");
 	printf(" (std) returns: %d\n",    printf("|% 0d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% 0d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|% 0d|", 0) - 2);
@@ -128,7 +128,7 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|% 0d|", -42) - 2);
 
 	printf("\n---------------------------------------------\n");
-	printf("Width directive. Right aligned (No flags).\n");
+	printf("Width (4). Right aligned ('%%4d').\n");
 	printf(" (std) returns: %d\n",    printf("|%4d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%4d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%4d|", 0) - 2);
@@ -136,7 +136,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%4d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%4d|", -42) - 2);
 
-	printf("\nWidth directive. Right aligned (' ' flag).\n");
+	printf("\nWidth (3). Right aligned ('%% 3d' flag).\n");
 	printf(" (std) returns: %d\n",    printf("|% 3d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% 3d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|% 3d|", 0) - 2);
@@ -144,7 +144,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|% 3d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% 3d|", -42) - 2);
 
-	printf("\nWidth directive. Right aligned ('+' flag)\n");
+	printf("\nWidth (4). Right aligned ('%%+4d' flag)\n");
 	printf(" (std) returns: %d\n",    printf("|%+4d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+4d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+4d|", 0) - 2);
@@ -152,7 +152,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%+4d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+4d|", -42) - 2);
 
-	printf("\nWidth directive. Right aligned ('0' flag).\n");
+	printf("\nWidth (4). Right aligned ('%%04d' flag).\n");
 	printf(" (std) returns: %d\n",    printf("|%04d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%04d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%04d|", 0) - 2);
@@ -160,7 +160,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%04d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%04d|", -42) - 2);
 
-	printf("\nWidth directive. Right aligned ('0+' flags).\n");
+	printf("\nWidth (4). Right aligned ('%%+04d' flags).\n");
 	printf(" (std) returns: %d\n",    printf("|%+04d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+04d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+04d|", -42) - 2);
@@ -171,23 +171,23 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+04d|", 10) - 2);
 
 	printf("\n---------------------------------------------\n");
-	printf("Width directive. Left aligned ('-' flag).\n");
+	printf("Width (4). Left aligned ('%%-4d' flag).\n");
 	printf(" (std) returns: %d\n",    printf("|%-4d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-4d|", 42) - 2);
 
-	printf("\nWidth directive. Left aligned ('-+' flags)\n");
+	printf("\nWidth (4). Left aligned ('%%-+4d' flags)\n");
 	printf(" (std) returns: %d\n",    printf("|%-+4d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-+4d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%-+4d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-+4d|", -42) - 2);
 
-	printf("\nWidth directive. Left aligned ('- ' flag)\n");
+	printf("\nWidth (4). Left aligned ('%%- 4d' flag)\n");
 	printf(" (std) returns: %d\n",    printf("|% -4d|", 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% -4d|", 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|% -4d|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% -4d|", -42) - 2);
 
-	printf("\nWidth directive ('-0' flags, '0' is ignored)\n");
+	printf("\nWidth (4) ('-0' flags, '0' is ignored)\n");
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", -42) - 2);
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", 42) - 2);
 	printf("End of tests\n");

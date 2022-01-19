@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/18 15:45:38 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 21:15:08 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,7 @@ int	align_left(long long n, long long base, t_spec *spec, char *digits)
 			spec->width--;
 	}
 	else
-	{
-		n *= -1;
-		ret += ft_putchar('-');
 		spec->width--;
-	}
 	ret += print_split_sign(n, digits);
 	ret += putstr_repeat(" ", spec->width - amount_digits(n, base));
 	return (ret);
