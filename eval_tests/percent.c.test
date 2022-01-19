@@ -1,0 +1,51 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   percent.c.test                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/19 15:58:08 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_percent(void)
+{
+	printf("Testing barebones percent sign specifier(%%%%)\n");
+	printf(" (std) returns: %d\n",  printf("|%%|") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%%|") - 2);
+
+	printf("\nPercent sign followed by a string (%%%%%%s)\n");
+	printf(" (std) returns: %d\n",  printf("|%%%s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%%%s|", "hello") - 2);
+
+	printf("\nPercent sign. Width (5) Right aligned (%%5%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%5%|") - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%5%|") - 2);
+
+	printf("\nPercent sign. Width (5) Right aligned (%%05%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%05%|") - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%05%|") - 2);
+
+	printf("\nPercent sign. Width (5) Right aligned (%%*%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%*%|", 5) - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%*%|", 5) - 2);
+	// printf(" (ft_) returns: %d\n",  ft_printf("|%*% and %%|", 25) - 2);
+
+	printf("\nPercent sign. Width (5) Right aligned (%%0*%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%0*%|", 5) - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%0*%|", 5) - 2);
+
+	printf("\nPercent sign. Width (5) Left aligned (%%-5%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%-5%|") - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%-5%|") - 2);
+
+	printf("\nPercent sign. Width (5) Left aligned (%%-*%%)\n");
+	printf(" (std) returns: %d\n",     printf("|%-*%|", 5) - 2);
+	printf(" (ft_) returns: %d\n",  ft_printf("|%-*%|", 5) - 2);
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

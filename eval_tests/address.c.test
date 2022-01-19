@@ -1,0 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   address.c.test                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/19 14:21:36 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_address(void)
+{
+	int	var;
+
+	printf("Testing printing simple address ('%%p')\n");
+	printf(" (std) returns: %d\n",    printf("|%p|", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%p|", &var) - 2);
+
+	printf("\n----------------------------------------------------\n");
+	printf("(No tests for '+ 0' flags -> undefined behaviour!!)\n");
+	printf("\n----------------------------------------------------\n");
+	printf("Width. Right aligned \n");
+	printf(" (std) returns: %d\n",    printf("|%20p|", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%20p|", &var) - 2);
+	printf("Width Argument (*). Right aligned.\n");
+	printf(" (std) returns: %d\n",    printf("|%*p|", 20, &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*p|", 20, &var) - 2);
+
+	printf("\n----------------------------------------------------\n");
+	printf("Width. Left aligned.\n");
+	printf(" (std) returns: %d\n",    printf("|%-20p|", &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-20p|", &var) - 2);
+	printf("Width Argument (*). Left aligned.\n");
+	printf(" (std) returns: %d\n",    printf("|%-*p|", 20, &var) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*p|", 20, &var) - 2);
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

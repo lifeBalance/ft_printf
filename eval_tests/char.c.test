@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   char.c.test                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/19 14:21:25 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_char(void)
+{
+	printf("Testing barebones '%%c' specifier\n");
+	printf(" (std) returns: %d\n",    printf("|%c|", 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%c|", 'x') - 2);
+
+	printf("\nTesting width directive (right and left alignment)\n");
+	printf(" (std) returns: %d\n",    printf("|%3c|", 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%3c|", 'x') - 2);
+	printf(" (std) returns: %d\n",    printf("|%-3c|", 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-3c|", 'x') - 2);
+
+	printf("\nTesting width with a '*' (right and left alignment)\n");
+	printf(" (std) returns: %d\n",    printf("|%*c|", 3, 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*c|", 3, 'x') - 2);
+	printf(" (std) returns: %d\n",    printf("|%-*c|", 3, 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*c|", 3, 'x') - 2);
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

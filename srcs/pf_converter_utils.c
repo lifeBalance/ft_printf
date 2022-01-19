@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 21:39:40 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:47:45 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 static void	set_uint(t_spec *spec, va_list data_args, long long *num);
 
 /*
-**	It returns the value of the width directive extracted from the 'spec'; if
-**	it's not set, it returns '0'.
+**	It checks the 'digits' field of the 'spec' and ONLY if the WIDTH_ARG bit
+**	is set, extracts a value from the data arguments, and assigns it to
+**	the 'width' field.
 */
 void	set_width_arg(t_spec *spec, va_list data_args)
 {
@@ -29,9 +30,9 @@ void	set_width_arg(t_spec *spec, va_list data_args)
 }
 
 /*
-**	If the precision directive is equal or greater than the string length,
-**	it returns the length of the string. Otherwise returns the value of the
-**	precision, which is stored in the 'spec' structure.
+**	It checks the 'digits' field of the 'spec' and ONLY if the PREC_ARG bit
+**	is set, extracts a value from the data arguments, and assigns it to
+**	the 'precision' field.
 */
 void	set_prec_arg(t_spec *spec, va_list data_args)
 {

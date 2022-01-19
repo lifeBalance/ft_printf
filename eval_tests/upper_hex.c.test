@@ -1,0 +1,119 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   upper_hex.c.test                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/19 14:22:46 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_upper_hex(void)
+{
+	printf("Testing barebones hexadecimal specifiers ('%%X')\n");
+	printf(" (std) returns: %d\n",    printf("|%X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%X|", -42) - 2);
+
+	printf("\n----------------------------------------------------\n");
+	printf("No Width. ' ' flag. Right aligned (no '-').\n");
+	printf(" (std) returns: %d\n",    printf("|% X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% X|", -42) - 2);
+
+	printf("\nNo Width. '+' flag. Right aligned (no ' -').\n");
+	printf(" (std) returns: %d\n",    printf("|%+X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+X|", -42) - 2);
+
+	printf("\nNo Width.'0' flag. Right aligned (no '-'). \n");
+	printf(" (std) returns: %d\n",    printf("|%0X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%0X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%0X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%0X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%0X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%0X|", -42) - 2);
+
+	printf("\nNo Width. ' 0' flags. Right aligned (no '-').\n");
+	printf(" (std) returns: %d\n",    printf("|% 0X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 0X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 0X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0X|", -42) - 2);
+
+	printf("\n---------------------------------------------\n");
+	printf("Width directive. Right aligned (No flags).\n");
+	printf(" (std) returns: %d\n",    printf("|%4X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%4X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%4X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%4X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%4X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%4X|", -42) - 2);
+
+	printf("\nWidth directive. Right aligned (' ' flag).\n");
+	printf(" (std) returns: %d\n",    printf("|% 3X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 3X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 3X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 3X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 3X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 3X|", -42) - 2);
+
+	printf("\nWidth directive. Right aligned ('+' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|%+4X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+4X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+4X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+4X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+4X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+4X|", -42) - 2);
+
+	printf("\nWidth directive. Right aligned ('0' flag).\n");
+	printf(" (std) returns: %d\n",    printf("|%04X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%04X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%04X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%04X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%04X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%04X|", -42) - 2);
+
+	printf("\nWidth directive. Right aligned ('0+' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|%+04X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+04X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+04X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+04X|", -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+04X|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+04X|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+04X|", 10) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+04X|", 10) - 2);
+
+	printf("\n---------------------------------------------\n");
+	printf("Width directive. Left aligned ('-' flag).\n");
+	printf(" (std) returns: %d\n",    printf("|%-4X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-4X|", 42) - 2);
+
+	printf("\nWidth directive. Left aligned ('-+' flags)\n");
+	printf(" (std) returns: %d\n",    printf("|%-+4X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-+4X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%-+4X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-+4X|", -42) - 2);
+
+	printf("\nWidth directive. Left aligned ('- ' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|% -4X|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% -4X|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% -4X|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% -4X|", -42) - 2);
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

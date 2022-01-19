@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 12:16:57 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/17 12:36:23 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/19 15:59:52 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRCS	+=	pf_to_addr_converter.c pf_converter_utils2.c pf_converter_utils3.c
 SRCS	+=	pf_to_uint_converter.c pf_to_octal_converter.c
 SRCS	+=	pf_to_hex_converter.c pf_to_upphex_converter.c
 SRCS	+=	pf_converter_utils4.c pf_to_float_converter.c
+# SRCS	+=	debug.c
 
 vpath	%.c ./srcs
 

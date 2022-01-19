@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 19:30:09 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:55:10 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
 static int		parse_spec(char **fmt, t_spec *spec);
-static t_spec	*init_conv_spec(t_spec *spec);
+static void		init_conv_spec(t_spec *spec);
 static void		init_dispatcher(t_disp *disp);
 
 int	ft_printf(const char *format, ...)
@@ -43,7 +43,8 @@ int	ft_printf(const char *format, ...)
 			len += ft_putchar(*fmt++);
 	}
 	va_end(args);
-	free(spec);
+	ft_memset(spec, 0, sizeof(*spec));
+	ft_memdel((void *)&spec);
 	return (len);
 }
 
@@ -60,7 +61,7 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	int		len;
 
 	len = 0;
-	spec = init_conv_spec(spec);
+	init_conv_spec(spec);
 	if (parse_spec(fmt, spec) < 0)
 		exit (EXIT_FAILURE);
 	len = disp[spec->specifier](args, spec);
@@ -99,14 +100,13 @@ int	parse_spec(char **fmt, t_spec *spec)
 **	Initializes the conversion specification structure (spec) with some
 **	default values.
 */
-static t_spec	*init_conv_spec(t_spec *spec)
+static void	init_conv_spec(t_spec *spec)
 {
 	spec->flags = 0;
 	spec->width = NOT_SET;
 	spec->length = 0;
 	spec->prec = NOT_SET;
 	spec->specifier = NOT_SET;
-	return (spec);
 }
 
 /*

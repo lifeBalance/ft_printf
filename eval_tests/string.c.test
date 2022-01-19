@@ -1,0 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   string.c.test                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/19 14:31:08 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_string(void)
+{
+	printf("Testing string without conversion specification\n");
+	printf(" (std) returns: %d\n",    printf("|hello|") - 2); // subtract the two '|'
+	printf(" (ft_) returns: %d\n", ft_printf("|hello|") - 2);
+
+	printf("\nTesting barebones string specifier\n");
+	printf(" (std) returns: %d\n",  printf("|%s|", "hello string") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%s|", "hello string") - 2);
+
+	printf("\nTesting width directive (right and left alignment)\n");
+	printf(" (std) returns: %d\n", printf("|%10s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%10s|", "hello") - 2);
+	printf(" (std) returns: %d\n", printf("|%-10s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-10s|", "hello") - 2);
+
+	printf("\nTesting width directive using '*' (right and left alignment)\n");
+	printf(" (std) returns: %d\n",    printf("|%*s|", 10, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*s|", 10, "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-*s|", 10, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*s|", 10, "hello") - 2);
+
+	printf("\nTesting precision directive with a string\n");
+	printf(" (std) returns: %d\n",    printf("|%.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.4s|", "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-.4s|", "hello") - 2);
+
+	printf("\nTesting width and precision directives with a string\n");
+	printf(" (std) returns: %d\n",    printf("|%10.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%10.4s|", "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-10.4s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-10.4s|", "hello") - 2);
+
+	printf("\nTesting width and precision directives using '*'\n");
+	printf(" (std) returns: %d\n",    printf("|%*.*s|", 10, 4, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*.*s|", 10, 4, "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-*.*s|", 10, 4, "hello") - 2);
+
+	printf("\nTesting empty string with ' ' flag (undefined behaviour)\n");
+	printf(" (std) returns: %d\n",    printf("|% s|", " ") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% s|", " ") - 2);
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

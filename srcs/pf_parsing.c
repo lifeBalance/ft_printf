@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 19:13:54 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 15:46:57 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,6 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 #include "pf_parsing.h"
-
-/*
-**	Receives a specifier character and set the specifier field in the 'spec'
-**	structure. Returns 1 (length of the specifier), that the caller can use
-**	to advance the format string.
-*/
-int	parse_specifier(char **fmt, t_spec *spec)
-{
-	if (**fmt == '%')
-		spec->specifier = PERCENT;
-	else if (**fmt == 'c')
-		spec->specifier = CHAR;
-	else if (**fmt == 's')
-		spec->specifier = STRING;
-	else if (**fmt == 'p')
-		spec->specifier = ADDRESS;
-	else if (**fmt == 'd' || **fmt == 'i')
-		spec->specifier = INT;
-	else if (**fmt == 'o')
-		spec->specifier = OCTAL;
-	else if (**fmt == 'u')
-		spec->specifier = UINT;
-	else if (**fmt == 'x')
-		spec->specifier = LOWHEX;
-	else if (**fmt == 'X')
-		spec->specifier = UPPHEX;
-	else if (**fmt == 'f')
-		spec->specifier = FLOAT;
-	(*fmt)++;
-	return (0);
-}
 
 /*
 **	Receives the format string and sets the proper flag field using bit
@@ -107,7 +76,8 @@ int	parse_width_prec(char **fmt, t_spec *spec)
 	ret = 0;
 	while (**fmt && ft_strchr("0123456789*.", **fmt))
 	{
-		ret += repeated_width_prec(**fmt, spec);
+		if (repeated_width_prec(**fmt, spec) < 0)
+			return (-1);
 		if (**fmt == '.')
 		{
 			set_bit(DOT, &spec->digits);
@@ -141,19 +111,48 @@ int	parse_digits(char **fmt, t_spec *spec)
 		n = n * 10 + (**fmt - '0');
 		(*fmt)++;
 	}
-	if (test_bit(DOT, spec->digits) && !test_bit(PREC, spec->digits) && \
-		!test_bit(PREC_ARG, spec->digits))
-	{
-		set_bit(PREC, &spec->digits);
-		spec->prec = n;
-		return (0);
-	}
-	else if (!test_bit(DOT, spec->digits) && !test_bit(WIDTH, spec->digits) && \
-		!test_bit(WIDTH_ARG, spec->digits))
+	if (!test_bit(DOT, spec->digits) && spec->width == NOT_SET)
 	{
 		set_bit(WIDTH, &spec->digits);
 		spec->width = n;
 		return (0);
 	}
+	else if (test_bit(DOT, spec->digits) && spec->prec == NOT_SET)
+	{
+		set_bit(PREC, &spec->digits);
+		spec->prec = n;
+		return (0);
+	}
 	return (-1);
+}
+
+/*
+**	Receives a specifier character and set the specifier field in the 'spec'
+**	structure. Returns 1 (length of the specifier), that the caller can use
+**	to advance the format string.
+*/
+int	parse_specifier(char **fmt, t_spec *spec)
+{
+	if (**fmt == '%')
+		spec->specifier = PERCENT;
+	else if (**fmt == 'c')
+		spec->specifier = CHAR;
+	else if (**fmt == 's')
+		spec->specifier = STRING;
+	else if (**fmt == 'p')
+		spec->specifier = ADDRESS;
+	else if (**fmt == 'd' || **fmt == 'i')
+		spec->specifier = INT;
+	else if (**fmt == 'o')
+		spec->specifier = OCTAL;
+	else if (**fmt == 'u')
+		spec->specifier = UINT;
+	else if (**fmt == 'x')
+		spec->specifier = LOWHEX;
+	else if (**fmt == 'X')
+		spec->specifier = UPPHEX;
+	else if (**fmt == 'f')
+		spec->specifier = FLOAT;
+	(*fmt)++;
+	return (0);
 }

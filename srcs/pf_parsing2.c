@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:49:17 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/11 17:53:31 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:40:39 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	repeated_width_prec(char ch, t_spec *spec)
 {
 	if (ch == '.' && test_bit(DOT, spec->digits))
 		return (-1);
-	if (ch == '*' && test_bit(DOT, spec->digits))
-		if (test_bit(PREC, spec->digits) || test_bit(PREC_ARG, spec->digits))
-			return (-1);
-	if (ch == '*' && !test_bit(DOT, spec->digits))
-		if (test_bit(WIDTH, spec->digits) || test_bit(WIDTH_ARG, spec->digits))
-			return (-1);
+	else if (ch == '*' && !test_bit(DOT, spec->digits) && \
+		(test_bit(WIDTH_ARG, spec->digits) || test_bit(WIDTH, spec->digits)))
+		return (-1);
+	else if (ch == '*' && test_bit(DOT, spec->digits) && \
+		(test_bit(PREC_ARG, spec->digits) || test_bit(PREC, spec->digits)))
+		return (-1);
 	return (0);
 }
