@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 15:46:57 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 20:22:50 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	parse_flags(char **fmt, t_spec *spec)
 {
 	while (**fmt && ft_strchr("#0-+ ", **fmt))
 	{
-		if (repeated_flag(**fmt, spec) < 0)
-			return (-1);
+		// if (repeated_flag(**fmt, spec) < 0)
+		// 	return (-1);
 		if (**fmt == '#')
 			set_bit(SHARP, &spec->flags);
 		else if (**fmt == '0')
