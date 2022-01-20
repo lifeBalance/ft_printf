@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 17:42:42 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:45:10 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	assemble_num(long long n, t_spec *spec)
 	return (ret);
 }
 
-static int	print_padding (long long n, t_spec *spec)
+static int	print_padding(long long n, t_spec *spec)
 {
 	int		ret;
 	int		amount;
@@ -81,10 +81,11 @@ static int	print_padding (long long n, t_spec *spec)
 	if ((test_bit(SHARP, spec->flags) && n > 0) && \
 		(spec->specifier == LOWHEX || spec->specifier == UPPHEX))
 		spec->width -= 2;
-	else if ((test_bit(SHARP, spec->flags) && spec->specifier == OCTAL) || \
+	else if ((test_bit(SHARP, spec->flags) && \
+		spec->specifier == OCTAL && n > 0) || \
 		(test_bit(PLUS, spec->flags) && n >= 0) || \
 		(test_bit(SPACE, spec->flags) && n >= 0) || \
-		(test_bit(SPACE, spec->flags) && n >= 0) ||n < 0)
+		(test_bit(SPACE, spec->flags) && n >= 0) || n < 0)
 		spec->width -= 1;
 	if (spec->prec > 0 && spec->prec > amount_digits(n, spec))
 		amount = spec->width - spec->prec;

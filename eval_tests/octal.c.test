@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:22:08 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:05:14 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,16 @@ void	test_octal(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+04o|", 0) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+04o|", 10) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+04o|", 10) - 2);
+
+	printf("\nWidth directive. Right aligned ('#6o' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|%#6o|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#6o|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%#6o|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#6o|", -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%#6o|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#6o|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%#6o|", 2500) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#6o|", 2500) - 2);
 
 	printf("\n---------------------------------------------\n");
 	printf("Width directive. Left aligned ('-' flag).\n");

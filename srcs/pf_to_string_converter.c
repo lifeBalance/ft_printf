@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 12:14:36 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:51:26 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "pf_parsing.h"
 
 static int	putstr_upto_n(char *s, int n);
+static int	putstr_aligned(char *str, t_spec *spec);
 
 /*
 **	Prints a string. Returns its length.
@@ -25,22 +26,42 @@ static int	putstr_upto_n(char *s, int n);
 int	to_string(va_list data_args, t_spec *spec)
 {
 	char	*str;
-	int		len;
+	int		ret;
+	int		null_str;
 
 	set_width_arg(spec, data_args);
 	set_prec_arg(spec, data_args);
 	str = va_arg(data_args, char *);
+	null_str = 0;
+	if (str == NULL)
+	{
+		str = ft_strsub("(null)", 0, ft_strlen("(null)"));
+		if (!str)
+			exit (EXIT_FAILURE);
+		null_str = 1;
+	}
+	ret = 0;
+	ret += putstr_aligned(str, spec);
+	if (null_str)
+		ft_strdel(&str);
+	return (ret);
+}
+
+static int	putstr_aligned(char *str, t_spec *spec)
+{
+	int		ret;
+
+	ret = 0;
 	if (spec->prec == NOT_SET || spec->prec > (int)ft_strlen(str))
 		spec->prec = ft_strlen(str);
-	len = 0;
 	if (spec->width > 0 && spec->prec < spec->width && \
 		!test_bit(MINUS, spec->flags))
-		len += putstr_repeat(" ", spec->width - spec->prec);
-	len += putstr_upto_n(str, spec->prec);
+		ret += putstr_repeat(" ", spec->width - spec->prec);
+	ret += putstr_upto_n(str, spec->prec);
 	if (spec->width > 0 && spec->prec < spec->width && \
 		test_bit(MINUS, spec->flags))
-		len += putstr_repeat(" ", spec->width - spec->prec);
-	return (len);
+		ret += putstr_repeat(" ", spec->width - spec->prec);
+	return (ret);
 }
 
 /*

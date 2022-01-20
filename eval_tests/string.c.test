@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:31:08 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 18:43:46 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,12 @@ void	test_string(void)
 	printf("\nTesting empty string with ' ' flag (undefined behaviour)\n");
 	printf(" (std) returns: %d\n",    printf("|% s|", " ") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% s|", " ") - 2);
+
+	printf("\nTesting NULL string (must print '(null)')\n");
+	printf(" (std) returns: %d\n",    printf("|hello %s|", NULL) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|hello %s|", NULL) - 2);
+	printf(" (std) returns: %d\n",    printf("|hi %s %s|", NULL, "ho!") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|hi %s %s|", NULL, "ho!") - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
