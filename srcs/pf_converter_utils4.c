@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 21:15:08 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:58:36 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include "pf_parsing.h"
 
 static int
-align_right_pos(long long n, long long base, t_spec *spec, char *digits);
+align_right_pos(long long n, t_spec *spec, char *digits);
 static int
-align_right_neg(long long n, long long base, t_spec *spec, char *digits);
+align_right_neg(long long n, t_spec *spec, char *digits);
 
 /*
 **	Prints an integer aligned to the left, adding padding to the right.
@@ -28,7 +28,7 @@ align_right_neg(long long n, long long base, t_spec *spec, char *digits);
 **	 ' ' which appends spaces if the width requires it.)
 **	Returns the amount of characters (bytes) written.
 */
-int	align_left(long long n, long long base, t_spec *spec, char *digits)
+int	align_left(long long n, t_spec *spec, char *digits)
 {
 	int	ret;
 
@@ -45,7 +45,7 @@ int	align_left(long long n, long long base, t_spec *spec, char *digits)
 	else
 		spec->width--;
 	ret += print_split_sign(n, digits);
-	ret += putstr_repeat(" ", spec->width - amount_digits(n, base));
+	ret += putstr_repeat(" ", spec->width - amount_digits(n, spec));
 	return (ret);
 }
 
@@ -59,17 +59,17 @@ int	align_left(long long n, long long base, t_spec *spec, char *digits)
 **	the '-' flag is not present)
 **	Returns the amount of characters (bytes) written.
 */
-int	align_right(long long n, long long base, t_spec *spec, char *digits)
+int	align_right(long long n, t_spec *spec, char *digits)
 {
 	int	ret;
 
 	ret = 0;
-	if (spec->prec > amount_digits(n, base))
-		ret += handle_prec(n, base, spec, digits);
+	if (spec->prec > amount_digits(n, spec))
+		ret += handle_prec(n, spec, digits);
 	else if (n < 0)
-		ret += align_right_neg(n, base, spec, digits);
+		ret += align_right_neg(n, spec, digits);
 	else if (n >= 0)
-		ret += align_right_pos(n, base, spec, digits);
+		ret += align_right_pos(n, spec, digits);
 	return (ret);
 }
 
@@ -80,7 +80,7 @@ int	align_right(long long n, long long base, t_spec *spec, char *digits)
 ** 	per function.
 */
 static int
-	align_right_neg(long long n, long long base, t_spec *spec, char *digits)
+	align_right_neg(long long n, t_spec *spec, char *digits)
 {
 	int	ret;
 
@@ -90,12 +90,12 @@ static int
 	{
 		ret += ft_putchar('-');
 		spec->width--;
-		ret += putstr_repeat("0", spec->width - amount_digits(n, base));
+		ret += putstr_repeat("0", spec->width - amount_digits(n, spec));
 		ret += print_split_sign(n, digits);
 	}
 	else
 	{
-		ret += putstr_repeat(" ", spec->width - amount_digits(n, base) - 1);
+		ret += putstr_repeat(" ", spec->width - amount_digits(n, spec) - 1);
 		ret += ft_putchar('-');
 		spec->width--;
 		ret += print_split_sign(n, digits);
@@ -110,27 +110,27 @@ static int
 ** 	per function.
 */
 static int
-	align_right_pos(long long n, long long base, t_spec *spec, char *digits)
+	align_right_pos(long long n, t_spec *spec, char *digits)
 {
 	int	ret;
 
 	ret = 0;
-	if (test_bit(ZERO, spec->flags) || spec->prec > amount_digits(n, base))
+	if (test_bit(ZERO, spec->flags) || spec->prec > amount_digits(n, spec))
 	{
 		if (test_bit(PLUS, spec->flags))
 		{
 			ret += ft_putchar('+');
 			spec->width--;
 		}
-		ret += putstr_repeat("0", spec->width - amount_digits(n, base));
+		ret += putstr_repeat("0", spec->width - amount_digits(n, spec));
 	}
 	else if (test_bit(PLUS, spec->flags))
 	{
-		ret += putstr_repeat(" ", spec->width - amount_digits(n, base) - 1);
+		ret += putstr_repeat(" ", spec->width - amount_digits(n, spec) - 1);
 		ret += ft_putchar('+');
 	}
-	else if (spec->width > amount_digits(n, base))
-		ret += putstr_repeat(" ", spec->width - amount_digits(n, base));
+	else if (spec->width > amount_digits(n, spec))
+		ret += putstr_repeat(" ", spec->width - amount_digits(n, spec));
 	ret += print_split_sign(n, digits);
 	return (ret);
 }

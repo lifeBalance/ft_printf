@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hexadecimal.c.test                                 :+:      :+:    :+:   */
+/*   hex.c.test                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:21:46 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 22:10:56 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,24 @@ void	test_hexadecimal(void)
 	printf(" (std) returns: %d\n",    printf("|% -4x|", -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% -4x|", -42) - 2);
 
+	printf("\n---------------------------------------------\n");
+	printf("Width (8) Precision (4). Right aligned (No flags).\n");
+	printf(" (std) returns: %d\n",    printf("|%8.4x|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%8.4x|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%8.4x|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%8.4x|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%8.4x|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%8.4x|", -42) - 2);
+
+	printf("Width (8) Precision (4). Right aligned ('%%#8.4x').\n");
+	printf(" (std) returns: %d\n",    printf("|%#8.4x|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#8.4x|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%#8.4x|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#8.4x|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%#8.4x|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#8.4x|", -42) - 2);
+
+	printf("\n---------------------------------------------\n");
 	printf("\nWidth directive ('-0' flags, '0' is ignored)\n");
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", -42) - 2);
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", 42) - 2);

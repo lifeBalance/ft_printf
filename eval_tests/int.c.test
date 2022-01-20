@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 21:02:56 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/19 22:06:00 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,57 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+04d|", 0) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+04d|", 10) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+04d|", 10) - 2);
+
+	printf("\nWidth (4). Right aligned ('%% 04d' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|% 04d|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 04d|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 04d|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 04d|", -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 04d|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 04d|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 04d|", 10) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 04d|", 10) - 2);
+
+	printf("\n---------------------------------------------\n");
+	printf("\nWidth (8) Precision (4). Right aligned ('%%*.4d' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|%*.4d|", 8, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*.4d|", 8, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%*.4d|", 8, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*.4d|", 8, -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%*.4d|", 8, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*.4d|", 8, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%*.4d|", 8, 10) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%*.4d|", 8, 10) - 2);
+	
+	printf("\nWidth (8) Precision (4). Right aligned ('%%+*.4d' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|%+*.4d|", 8, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+*.4d|", 8, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+*.4d|", 8, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+*.4d|", 8, -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+*.4d|", 8, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+*.4d|", 8, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|%+*.4d|", 8, 10) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%+*.4d|", 8, 10) - 2);
+
+	printf("\nWidth (8) Precision (4). Right aligned ('%% *.4d' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|% *.4d|", 8, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% *.4d|", 8, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% *.4d|", 8, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% *.4d|", 8, -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% *.4d|", 8, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% *.4d|", 8, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% *.4d|", 8, 10) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% *.4d|", 8, 10) - 2);
+	
+	printf("\nWidth (8) Precision (4). Right aligned ('%% 0*.4d' flags).\n");
+	printf(" (std) returns: %d\n",    printf("|% 0*.4d|", 8, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0*.4d|", 8, 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 0*.4d|", 8, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0*.4d|", 8, -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 0*.4d|", 8, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0*.4d|", 8, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|% 0*.4d|", 8, 10) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% 0*.4d|", 8, 10) - 2);
 
 	printf("\n---------------------------------------------\n");
 	printf("Width (4). Left aligned ('%%-4d' flag).\n");

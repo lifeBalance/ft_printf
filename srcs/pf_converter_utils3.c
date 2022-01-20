@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/17 12:22:29 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:58:03 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "pf_parsing.h"
 
 static int
-handle_no_width(long long n, long long base, t_spec *spec, char *digits);
+handle_no_width(long long n, t_spec *spec, char *digits);
 
 /*
 **	Prints a number in any given base, according to some specifications
@@ -26,10 +26,10 @@ handle_no_width(long long n, long long base, t_spec *spec, char *digits);
 int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 {
 	long long	n;
-	long long	base;
+	// long long	base;
 	int			ret;
 
-	set_base(&base, digits);
+	// set_base(&base, digits);
 	set_width_arg(spec, data_args);
 	set_prec_arg(spec, data_args);
 	set_num(spec, data_args, &n);
@@ -38,12 +38,12 @@ int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 	if (spec->width > 0)
 	{
 		if (test_bit(MINUS, spec->flags))
-			ret += align_left(n, base, spec, digits);
+			ret += align_left(n, spec, digits);
 		else
-			ret += align_right(n, base, spec, digits);
+			ret += align_right(n, spec, digits);
 	}
 	else
-		ret += handle_no_width(n, base, spec, digits);
+		ret += handle_no_width(n, spec, digits);
 	return (ret);
 }
 
@@ -55,13 +55,13 @@ int	to_numeric(va_list data_args, t_spec *spec, char *digits)
 **	Returns the amount of characters (bytes) written.
 */
 static int
-	handle_no_width(long long n, long long base, t_spec *spec, char *digits)
+	handle_no_width(long long n, t_spec *spec, char *digits)
 {
 	int	ret;
 
 	ret = 0;
-	if (spec->prec > amount_digits(n, base))
-		ret += handle_prec(n, base, spec, digits);
+	if (spec->prec > amount_digits(n, spec))
+		ret += handle_prec(n, spec, digits);
 	else
 	{
 		if (test_bit(SPACE, spec->flags) && n >= 0)
@@ -93,7 +93,7 @@ int	print_split_sign(long long n, char *digits)
 	return (ret);
 }
 
-int	handle_prec(long long n, long long base, t_spec *spec, char *digits)
+int	handle_prec(long long n, t_spec *spec, char *digits)
 {
 	int	ret;
 	int	spaces;
@@ -116,7 +116,7 @@ int	handle_prec(long long n, long long base, t_spec *spec, char *digits)
 		ret += ft_putchar('-');
 		n = -n;
 	}
-	ret += putstr_repeat("0", spec->prec - amount_digits(n, base));
+	ret += putstr_repeat("0", spec->prec - amount_digits(n, spec));
 	ret += put_ull_base(n, digits);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:49:21 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:04:02 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,17 @@ static void
 **	Returns the amount of digits of the 'unsigned long long int' argument,
 **	in the given 'unsigned long long' base.
 */
-int	amount_digits(long long n, long long base)
+int	amount_digits(long long n, t_spec *spec)
 {
-	int	ret;
+	int			ret;
+	long long	base;
 
+	if (spec->specifier == OCTAL)
+		base = 8;
+	else if (spec->specifier == LOWHEX || spec->specifier == UPPHEX)
+		base = 16;
+	else
+		base = 10;
 	ret = 1;
 	if (n < 0)
 		n = -n;

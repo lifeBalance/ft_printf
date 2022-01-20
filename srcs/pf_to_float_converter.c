@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 15:56:27 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:00:53 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ static int	handle_precision(t_float *n, t_spec *spec)
 		ret += no_precision_right(n, spec);
 	ret += ft_putchar('.');
 	ret += put_ull_base(n->decimal, DECDIGITS);
-	if (amount_digits(n->decimal, 10) < spec->prec)
-		ret += putstr_repeat("0", spec->prec - amount_digits(n->decimal, 10));
+	if (amount_digits(n->decimal, spec) < spec->prec)
+		ret += putstr_repeat("0", spec->prec - amount_digits(n->decimal, spec));
 	if (test_bit(MINUS, spec->flags))
 		ret += add_spaces(n, spec);
 	return (ret);
@@ -83,7 +83,7 @@ static int	add_spaces(t_float *n, t_spec *spec)
 	int	amount;
 
 	ret = 0;
-	amount = spec->width - amount_digits(n->integer, 10);
+	amount = spec->width - amount_digits(n->integer, spec);
 	if (n->integer < 0 || test_bit(PLUS, spec->flags) || \
 		test_bit(SPACE, spec->flags))
 		ret += putstr_repeat(" ", amount - 1);
@@ -114,10 +114,10 @@ static int	no_precision_right(t_float *n, t_spec *spec)
 		if (n->integer < 0 || test_bit(PLUS, spec->flags) || \
 			test_bit(SPACE, spec->flags))
 			ret += putstr_repeat("0", spec->width - \
-				amount_digits(n->integer, 10) - 1);
+				amount_digits(n->integer, spec) - 1);
 		else
 			ret += putstr_repeat("0", spec->width - \
-				amount_digits(n->integer, 10));
+				amount_digits(n->integer, spec));
 	}
 	if (n->integer < 0)
 		n->integer *= -1;
