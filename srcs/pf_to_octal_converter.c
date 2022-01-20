@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 13:26:18 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:28:16 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	to_octal(va_list data_args, t_spec *spec)
 		clear_bit(PLUS, &spec->flags);
 	if (test_bit(SPACE, spec->flags))
 		clear_bit(SPACE, &spec->flags);
-	ret += to_numeric(data_args, spec, OCTALDIGITS);
+	ret += to_numeric(data_args, spec);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 22:06:00 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 15:37:32 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	test_integer(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%+0.*d|", 4, -42) - 2);
 
 	printf("\n----------------------------------------------------\n");
-	printf("Width (6) and Precision (4) ('%%6.*d)\n");
+	printf("Width (6) and Precision (4) Right aligned ('%%6.*d)\n");
 	printf(" (std) returns: %d\n",    printf("|%6.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%6.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%6.*d|", 4, 0) - 2);
@@ -78,7 +78,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%6.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%6.*d|", 4, -42) - 2);
 
-	printf("Width (6) and Precision (4) ('%%06.*d')\n");
+	printf("Width (6) and Precision (4) Right aligned ('%%06.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%06.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%06.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%06.*d|", 4, 0) - 2);
@@ -86,7 +86,7 @@ void	test_integer(void)
 	printf(" (std) returns: %d\n",    printf("|%06.*d|", 4, -42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%06.*d|", 4, -42) - 2);
 
-	printf("Width (6) and Precision (4) ('%%+06.*d')\n");
+	printf("Width (6) and Precision (4) Right aligned ('%%+06.*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%+06.*d|", 4, 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%+06.*d|", 4, 42) - 2);
 	printf(" (std) returns: %d\n",    printf("|%+06.*d|", 4, 0) - 2);

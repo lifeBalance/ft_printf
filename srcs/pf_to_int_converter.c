@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/15 17:26:31 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:23:38 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	to_int(va_list data_args, t_spec *spec)
 	int	ret;
 
 	ret = 0;
-	ret += to_numeric(data_args, spec, DECDIGITS);
+	ret += to_numeric(data_args, spec);
 	return (ret);
 }

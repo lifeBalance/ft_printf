@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 12:29:04 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:27:54 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ int	to_uint(va_list data_args, t_spec *spec)
 		clear_bit(PLUS, &spec->flags);
 	if (test_bit(SPACE, spec->flags))
 		clear_bit(SPACE, &spec->flags);
-	ret += to_numeric(data_args, spec, DECDIGITS);
+	ret += to_numeric(data_args, spec);
 	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/16 12:43:04 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:29:09 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	to_upphex(va_list data_args, t_spec *spec)
 		clear_bit(PLUS, &spec->flags);
 	if (test_bit(SPACE, spec->flags))
 		clear_bit(SPACE, &spec->flags);
-	ret += to_numeric(data_args, spec, HEXDIGITSUPP);
+	ret += to_numeric(data_args, spec);
 	return (ret);
 }

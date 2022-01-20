@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 11:58:03 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:42:42 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,107 +16,126 @@
 #include "pf_converting.h"
 #include "pf_parsing.h"
 
-static int
-handle_no_width(long long n, t_spec *spec, char *digits);
+static int	print_prefix(long long n, t_spec *spec);
+static int	print_padding(long long n, t_spec *spec);
+static int	print_number(long long n, t_spec *spec);
+static int	assemble_num(long long n, t_spec *spec);
 
 /*
 **	Prints a number in any given base, according to some specifications
 **	Returns the amount of written characters (bytes).
 */
-int	to_numeric(va_list data_args, t_spec *spec, char *digits)
+int	to_numeric(va_list data_args, t_spec *spec)
 {
 	long long	n;
-	// long long	base;
 	int			ret;
 
-	// set_base(&base, digits);
 	set_width_arg(spec, data_args);
 	set_prec_arg(spec, data_args);
 	set_num(spec, data_args, &n);
 	ret = 0;
 	cancel_flags(spec);
-	if (spec->width > 0)
+	ret += assemble_num(n, spec);
+	return (ret);
+}
+
+static int	assemble_num(long long n, t_spec *spec)
+{
+	int	ret;
+
+	ret = 0;
+	if (test_bit(MINUS, spec->flags))
 	{
-		if (test_bit(MINUS, spec->flags))
-			ret += align_left(n, spec, digits);
+		ret += print_prefix(n, spec);
+		ret += print_number(n, spec);
+		ret += print_padding(n, spec);
+	}
+	else
+	{
+		if (test_bit(ZERO, spec->flags) && spec->prec == NOT_SET)
+		{
+			ret += print_prefix(n, spec);
+			ret += print_padding(n, spec);
+		}
 		else
-			ret += align_right(n, spec, digits);
+		{
+			ret += print_padding(n, spec);
+			ret += print_prefix(n, spec);
+		}
+		ret += print_number(n, spec);
 	}
-	else
-		ret += handle_no_width(n, spec, digits);
 	return (ret);
 }
 
-/*
-**	Prints an integer when there is no width, hence no need for padding,
-**	or alineation. It also handles the flags:
-**	 '+' which prefix positive integers with +.
-**	 ' ' which appends spaces if the width requires it.
-**	Returns the amount of characters (bytes) written.
-*/
-static int
-	handle_no_width(long long n, t_spec *spec, char *digits)
+static int	print_padding (long long n, t_spec *spec)
 {
-	int	ret;
+	int		ret;
+	int		amount;
+	char	pad_char[2];
 
 	ret = 0;
-	if (spec->prec > amount_digits(n, spec))
-		ret += handle_prec(n, spec, digits);
+	if (test_bit(ZERO, spec->flags) && spec->prec == NOT_SET)
+		ft_strcpy(pad_char, "0\0");
 	else
-	{
-		if (test_bit(SPACE, spec->flags) && n >= 0)
-			ret += ft_putchar(' ');
-		if (test_bit(PLUS, spec->flags) && n >= 0)
-			ret += ft_putchar('+');
-		ret += print_split_sign(n, digits);
-	}
+		ft_strcpy(pad_char, " \0");
+	if ((test_bit(SHARP, spec->flags) && n > 0) && \
+		(spec->specifier == LOWHEX || spec->specifier == UPPHEX))
+		spec->width -= 2;
+	else if ((test_bit(SHARP, spec->flags) && spec->specifier == OCTAL) || \
+		(test_bit(PLUS, spec->flags) && n >= 0) || \
+		(test_bit(SPACE, spec->flags) && n >= 0) || \
+		(test_bit(SPACE, spec->flags) && n >= 0) ||n < 0)
+		spec->width -= 1;
+	if (spec->prec > 0 && spec->prec > amount_digits(n, spec))
+		amount = spec->width - spec->prec;
+	else
+		amount = spec->width - amount_digits(n, spec);
+	ret += putstr_repeat(pad_char, amount);
 	return (ret);
 }
 
-/*
-**	Receives an 'long long int' argument and if it's negative, prints the '-'
-**	before changing the number to positive; that's necessary since the
-**	'put_ull_base' function only deals with UNSIGNED numbers.
-**	Returns the amount of printed characters (bytes).
-*/
-int	print_split_sign(long long n, char *digits)
+static int	print_prefix(long long n, t_spec *spec)
 {
 	int	ret;
 
 	ret = 0;
 	if (n < 0)
-	{
 		ret += ft_putchar('-');
-		n = -n;
+	else if (test_bit(SHARP, spec->flags) && n > 0)
+	{
+		if (spec->specifier == LOWHEX)
+			ret += ft_putstr("0x");
+		else if (spec->specifier == UPPHEX)
+			ret += ft_putstr("0X");
+		else if (spec->specifier == OCTAL)
+			ret += ft_putstr("0");
 	}
-	ret += put_ull_base(n, digits);
-	return (ret);
-}
-
-int	handle_prec(long long n, t_spec *spec, char *digits)
-{
-	int	ret;
-	int	spaces;
-
-	ret = 0;
-	if (spec->width > spec->prec)
-		spaces = spec->width - spec->prec;
-	else
-		spaces = 0;
-	if (n < 0 || (n >= 0 && \
-		(test_bit(PLUS, spec->flags) || test_bit(SPACE, spec->flags))))
-		spaces--;
-	ret += putstr_repeat(" ", spaces);
-	if (n >= 0 && test_bit(PLUS, spec->flags))
+	else if (test_bit(PLUS, spec->flags) && n >= 0)
 		ret += ft_putchar('+');
-	if (n >= 0 && test_bit(SPACE, spec->flags))
+	else if (test_bit(SPACE, spec->flags) && n >= 0)
 		ret += ft_putchar(' ');
+	return (ret);
+}
+
+static int	print_number(long long n, t_spec *spec)
+{
+	int	ret;
+	int	sign;
+
+	ret = 0;
 	if (n < 0)
-	{
-		ret += ft_putchar('-');
-		n = -n;
-	}
-	ret += putstr_repeat("0", spec->prec - amount_digits(n, spec));
-	ret += put_ull_base(n, digits);
+		sign = -1;
+	else
+		sign = 1;
+	if (spec->prec != NOT_SET)
+		ret += putstr_repeat("0", spec->prec - amount_digits(n, spec));
+	if (spec->specifier == LOWHEX)
+		ret += put_ull_base(n * sign, HEXDIGITSLOW);
+	else if (spec->specifier == UPPHEX)
+		ret += put_ull_base(n * sign, HEXDIGITSUPP);
+	else if (spec->specifier == OCTAL)
+		ret += put_ull_base(n * sign, OCTALDIGITS);
+	else
+		ret += put_ull_base(n * sign, DECDIGITS);
 	return (ret);
 }

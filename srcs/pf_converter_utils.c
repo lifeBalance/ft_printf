@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:47:45 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 17:31:25 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,6 @@ void	set_prec_arg(t_spec *spec, va_list data_args)
 {
 	if (test_bit(PREC_ARG, spec->digits))
 		spec->prec = va_arg(data_args, int);
-}
-
-/*
-**	Receives a string argument with the set of allowed digits in a given
-**	numeric base. Returns the base or radix of that numeric base.
-*/
-void	set_base(long long *base, char *digits)
-{
-	*base = 0;
-	while (digits[*base])
-		(*base)++;
 }
 
 /*
@@ -92,4 +81,29 @@ static void	set_uint(t_spec *spec, va_list data_args, long long *num)
 		*num = va_arg(data_args, unsigned long long);
 	else
 		*num = va_arg(data_args, unsigned int);
+}
+
+/*
+**	Splits a double argument into two parts:
+**	- An integer part.
+**	- A decimal part.
+**	Returns both parts as a 't_float' (a struct with two members).
+*/
+t_float	split_float(double num, int pos)
+{
+	unsigned long long	amount;
+	unsigned long long	biggie;
+	unsigned long long	trunc;
+	int					sign;
+
+	sign = 1;
+	if (num < 0)
+		sign = -1;
+	num *= sign;
+	amount = 10;
+	while (--pos > 0)
+		amount *= 10;
+	biggie = num * amount;
+	trunc = (unsigned long long)num;
+	return ((t_float){trunc * sign, biggie - trunc * amount});
 }
