@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 15:55:10 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:00:05 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,22 @@ int	ft_printf(const char *format, ...)
 static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 {
 	int		len;
+	char	*cpy;
 
 	len = 0;
+	cpy = *fmt;
 	init_conv_spec(spec);
 	if (parse_spec(fmt, spec) < 0)
-		exit (EXIT_FAILURE);
+	{
+		*fmt = ++cpy;
+		while (**fmt && ft_strchr("#0-+ ", **fmt))
+			(*fmt)++;
+		while (**fmt && ft_strchr("0123456789*.", **fmt))
+			(*fmt)++;
+		while (**fmt && ft_strchr("hlL", **fmt))
+			(*fmt)++;
+		return (0);
+	}
 	len = disp[spec->specifier](args, spec);
 	return (len);
 }

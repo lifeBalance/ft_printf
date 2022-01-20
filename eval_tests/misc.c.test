@@ -1,0 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   misc.c.test                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/20 22:54:51 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_misc(void)
+{
+	printf("Testing invalid conversion specification\n");
+	printf(" (std) returns: %d\n",    printf("|% -4yo|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% -4yo|", 42) - 2);
+
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

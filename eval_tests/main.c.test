@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 13:16:24 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 22:54:35 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	main(int argc, char **argv)
 			test_upper_hex();
 		else if (ft_strcmp(argv[1], "float") == 0)
 			test_float();
+		else if (ft_strcmp(argv[1], "misc") == 0)
+			test_misc();
 		else
 			printf("No tests for %s\n", argv[1]);
 	}

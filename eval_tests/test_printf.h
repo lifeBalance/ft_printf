@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 12:43:22 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/20 22:55:59 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,6 @@ void	test_unsigned_int(void);
 void	test_hexadecimal(void);
 void	test_upper_hex(void);
 void	test_float(void);
+void	test_misc(void);
 
 #endif
