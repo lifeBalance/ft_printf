@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:30:58 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:29:16 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,13 @@ int	to_string(va_list data_args, t_spec *spec)
 	int		ret;
 	int		null_str;
 
-	// set_width_arg(spec, data_args);
-	// set_prec_arg(spec, data_args);
 	str = va_arg(data_args, char *);
 	null_str = 0;
-	if (str == NULL)
-	{
-		str = ft_strsub("(null)", 0, ft_strlen("(null)"));
-		if (!str)
-			exit (EXIT_FAILURE);
-		null_str = 1;
-	}
 	ret = 0;
-	ret += putstr_aligned(str, spec);
-	if (null_str)
-		ft_strdel(&str);
+	if (str == NULL)
+		ret += putstr_aligned("(null)", spec);
+	else
+		ret += putstr_aligned(str, spec);
 	return (ret);
 }
 
