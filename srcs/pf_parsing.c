@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:27:01 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:22:58 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int	parse_flags(char **fmt, t_spec *spec)
 {
 	while (**fmt && ft_strchr("#0-+ ", **fmt))
 	{
-		// if (repeated_flag(**fmt, spec) < 0)
-		// 	return (-1);
 		if (**fmt == '#')
 			set_bit(SHARP, &spec->flags);
 		else if (**fmt == '0')
@@ -79,8 +77,6 @@ int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 	ret = 0;
 	while (**fmt && ft_strchr("0123456789*.", **fmt))
 	{
-		// if (repeated_width_prec(**fmt, spec) < 0)
-		// 	return (-1);
 		if (**fmt == '.')
 		{
 			set_bit(DOT, &spec->digits);
@@ -90,10 +86,8 @@ int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 		{
 			if (test_bit(DOT, spec->digits))
 				spec->prec = va_arg(args, int);
-				// set_bit(PREC_ARG, &spec->digits);
 			else
 				spec->width = va_arg(args, int);
-				// set_bit(WIDTH_ARG, &spec->digits);
 			(*fmt)++;
 		}
 		else if (ft_isdigit(**fmt))

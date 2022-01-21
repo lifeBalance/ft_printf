@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:29:05 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:20:19 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,6 @@
 #include "pf_parsing.h"
 
 static void	set_uint(t_spec *spec, va_list data_args, long long *num);
-
-/*
-**	It checks the 'digits' field of the 'spec' and ONLY if the WIDTH_ARG bit
-**	is set, extracts a value from the data arguments, and assigns it to
-**	the 'width' field.
-*/
-// void	set_width_arg(t_spec *spec, va_list data_args)
-// {
-// 	if (test_bit(WIDTH_ARG, spec->digits))
-// 		spec->width = va_arg(data_args, int);
-// }
-
-/*
-**	It checks the 'digits' field of the 'spec' and ONLY if the PREC_ARG bit
-**	is set, extracts a value from the data arguments, and assigns it to
-**	the 'precision' field.
-*/
-// void	set_prec_arg(t_spec *spec, va_list data_args)
-// {
-// 	if (test_bit(PREC_ARG, spec->digits))
-// 		spec->prec = va_arg(data_args, int);
-// }
 
 /*
 **	It sets the value of the number according to the length flags
@@ -76,7 +54,7 @@ static void	set_uint(t_spec *spec, va_list data_args, long long *num)
 	else if (test_bit(HH, spec->length))
 		*num = (unsigned char)va_arg(data_args, unsigned int);
 	else if (test_bit(ELL, spec->length))
-		*num = va_arg(data_args, unsigned long);
+		*num = (unsigned long)va_arg(data_args, unsigned long);
 	else if (test_bit(ELLELL, spec->length))
 		*num = va_arg(data_args, unsigned long long);
 	else

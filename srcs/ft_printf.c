@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:23:24 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 17:12:20 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 
 	len = 0;
 	cpy = *fmt;
+	ft_memset(spec, 0, sizeof(*spec));
 	init_conv_spec(spec);
 	if (parse_spec(fmt, args, spec) < 0)
 	{

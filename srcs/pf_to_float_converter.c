@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:30:35 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:21:20 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	to_float(va_list data_args, t_spec *spec)
 	t_float	n;
 
 	ret = 0;
-	// set_width_arg(spec, data_args);
-	// set_prec_arg(spec, data_args);
 	if (spec->prec == NOT_SET)
 		spec->prec = DEFAULT_PREC;
 	n = split_float(va_arg(data_args, double), spec->prec);

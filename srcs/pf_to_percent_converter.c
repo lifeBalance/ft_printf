@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:31:50 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:21:04 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	to_percent(va_list args, t_spec *spec)
 {
 	int	ret;
 
-	// set_width_arg(spec, args);
 	(void)args;
 	ret = 0;
 	if (!test_bit(MINUS, spec->flags) && spec->width > 0)

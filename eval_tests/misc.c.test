@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 22:54:51 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 17:51:56 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,37 @@
 
 void	test_misc(void)
 {
-	printf("Testing invalid conversion specification\n");
-	printf(" (std) returns: %d\n",    printf("|% -4yo|", 42) - 2);
-	printf(" (ft_) returns: %d\n", ft_printf("|% -4yo|", 42) - 2);
+	// printf("Testing invalid conversion specification\n");
+	// printf(" (std) returns: %d\n",    printf("|% -4yo|", 42) - 2);
+	// printf(" (ft_) returns: %d\n", ft_printf("|% -4yo|", 42) - 2);
 
+	printf("Testing DOT without Precision\n");
+	printf(" (std) returns: %d\n",    printf("|hi: %.d|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|hi: %.d|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|hi: %.d|", 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|hi: %.d|", 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|hi: %.d|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|hi: %.d|", -42) - 2);
+	
+	printf("Testing DOT with No Precision and 0 Precision\n");
+	printf(" (std) returns: %d\n",    printf("|(%.d) (%.0d)|", 42, 43) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%.d) (%.0d)|", 42, 43) - 2);
+	printf(" (std) returns: %d\n",    printf("|(%.d) (%.0d)|", 0, 43) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%.d) (%.0d)|", 0, 43) - 2);
+	printf(" (std) returns: %d\n",    printf("|(%.d) (%.0d)|", -42, -43) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%.d) (%.0d)|", -42, -43) - 2);
+
+	printf("Testing DOT with No Precision and 0 Precision. Width 4\n");
+	printf(" (std) returns: %d\n",    printf("|(%6.d) (%6.0d)|", 42, 43) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%6.d) (%6.0d)|", 42, 43) - 2);
+	printf(" (std) returns: %d\n",    printf("|(%6.d) (%6.0d)|", 0, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%6.d) (%6.0d)|", 0, 0) - 2);
+	printf(" (std) returns: %d\n",    printf("|(%6.d) (%6.0d)|", -42, -43) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%6.d) (%6.0d)|", -42, -43) - 2);
+
+	printf("Testing DOT with No Precision and 0 Precision. Octal, '#' flag\n");
+	printf(" (std) returns: %d\n",    printf("|(%#.o) (%#.0o)|", 0, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|(%#.o) (%#.0o)|", 0, 0) - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
