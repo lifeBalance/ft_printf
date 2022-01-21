@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 17:49:17 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 20:25:33 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:05:28 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@
 **	Receives either a '.' or a '*' character and checks if the width or
 **	precision is already set. If not set, returns 0, otherwise -1.
 */
-int	repeated_width_prec(char ch, t_spec *spec)
-{
-	if (ch == '.' && test_bit(DOT, spec->digits))
-		return (-1);
-	else if (ch == '*' && !test_bit(DOT, spec->digits) && \
-		(test_bit(WIDTH_ARG, spec->digits) || test_bit(WIDTH, spec->digits)))
-		return (-1);
-	else if (ch == '*' && test_bit(DOT, spec->digits) && \
-		(test_bit(PREC_ARG, spec->digits) || test_bit(PREC, spec->digits)))
-		return (-1);
-	return (0);
-}
+// int	repeated_width_prec(char ch, t_spec *spec)
+// {
+// 	if (ch == '.' && test_bit(DOT, spec->digits))
+// 		return (-1);
+// 	else if (ch == '*' && !test_bit(DOT, spec->digits) && \
+// 		(test_bit(WIDTH_ARG, spec->digits) || test_bit(WIDTH, spec->digits)))
+// 		return (-1);
+// 	else if (ch == '*' && test_bit(DOT, spec->digits) && \
+// 		(test_bit(PREC_ARG, spec->digits) || test_bit(PREC, spec->digits)))
+// 		return (-1);
+// 	return (0);
+// }

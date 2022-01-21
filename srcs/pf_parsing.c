@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 20:22:50 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:05:31 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,23 @@ int	parse_flags(char **fmt, t_spec *spec)
 */
 int	parse_length(char **fmt, t_spec *spec)
 {
-	if ((*fmt)[1] && **fmt == 'h' && (*fmt)[1] == 'h')
-		set_bit(HH, &spec->length);
-	else if (**fmt == 'h')
-		set_bit(H, &spec->length);
-	if ((*fmt)[1] && **fmt == 'l' && (*fmt)[1] == 'l')
-		set_bit(ELLELL, &spec->length);
-	else if (**fmt == 'l')
-		set_bit(ELL, &spec->length);
-	if (**fmt == 'L')
-		set_bit(UPPELL, &spec->length);
-	if (test_bit(HH, spec->length) || test_bit(ELLELL, spec->length))
-		(*fmt) += 2;
-	else
-		(*fmt)++;
+	while (**fmt && ft_strchr("hlL", **fmt))
+	{
+		if ((*fmt)[1] && **fmt == 'h' && (*fmt)[1] == 'h')
+			set_bit(HH, &spec->length);
+		else if (**fmt == 'h')
+			set_bit(H, &spec->length);
+		if ((*fmt)[1] && **fmt == 'l' && (*fmt)[1] == 'l')
+			set_bit(ELLELL, &spec->length);
+		else if (**fmt == 'l')
+			set_bit(ELL, &spec->length);
+		if (**fmt == 'L')
+			set_bit(UPPELL, &spec->length);
+		if (test_bit(HH, spec->length) || test_bit(ELLELL, spec->length))
+			(*fmt) += 2;
+		else
+			(*fmt)++;
+	}
 	return (0);
 }
 
@@ -76,8 +79,8 @@ int	parse_width_prec(char **fmt, t_spec *spec)
 	ret = 0;
 	while (**fmt && ft_strchr("0123456789*.", **fmt))
 	{
-		if (repeated_width_prec(**fmt, spec) < 0)
-			return (-1);
+		// if (repeated_width_prec(**fmt, spec) < 0)
+		// 	return (-1);
 		if (**fmt == '.')
 		{
 			set_bit(DOT, &spec->digits);
