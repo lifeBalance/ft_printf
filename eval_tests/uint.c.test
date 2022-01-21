@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsigned_int.c.test                                :+:      :+:    :+:   */
+/*   uint.c.test                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:22:37 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 18:42:25 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,13 +118,22 @@ void	test_unsigned_int(void)
 	printf("\nWidth directive ('-0' flags, '0' is ignored)\n");
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", -42) - 2);
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", 42) - 2);
+	printf("\n---------------------------------------------\n");
+	printf("\nTest length directives\n");
+	printf("\n---------------------------------------------\n");
 
-	// printf("\n---------------------------------------------\n");
-	// printf("\nTest length directives\n");
-	// printf(" (std) returns: %d\n", ft_printf("|%lld|") - 2);
-	// printf(" (std) returns: %d\n", ft_printf("|%10.3d|") - 2);
-	// printf(" (std) returns: %d\n", ft_printf("|%#.8d|") - 2);
-	// printf(" (std) returns: %d\n", ft_printf("|%hhd|") - 2);
+	printf("\nUnsigned char. Negative argument\n");
+	printf(" (std) returns: %d\n",    printf("|%hhu|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%hhu|", -42) - 2);
+	printf("\nUnsigned short. Negative argument\n");
+	printf(" (std) returns: %d\n",    printf("|%hu|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%hu|", -42) - 2);
+	printf("\nUnsigned long. Negative argument\n");
+	printf(" (std) returns: %d\n",    printf("|%lu|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%lu|", -42) - 2);
+	printf("\nUnsigned long long. Negative argument\n");
+	printf(" (std) returns: %d\n",    printf("|%llu|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%llu|", -42) - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
