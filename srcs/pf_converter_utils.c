@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 18:20:19 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 22:18:25 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	set_num(t_spec *spec, va_list data_args, long long *num)
 {
 	if (spec->specifier == INT)
 	{
-		if (test_bit(H, spec->length))
+		if (test_bit(H, spec->flags))
 			*num = (short)va_arg(data_args, int);
-		else if (test_bit(HH, spec->length))
+		else if (test_bit(HH, spec->flags))
 			*num = (char)va_arg(data_args, int);
-		else if (test_bit(ELL, spec->length))
+		else if (test_bit(ELL, spec->flags))
 			*num = va_arg(data_args, long);
-		else if (test_bit(ELLELL, spec->length))
+		else if (test_bit(ELLELL, spec->flags))
 			*num = va_arg(data_args, long long);
 		else
 			*num = va_arg(data_args, int);
@@ -49,13 +49,13 @@ void	set_num(t_spec *spec, va_list data_args, long long *num)
 */
 static void	set_uint(t_spec *spec, va_list data_args, long long *num)
 {
-	if (test_bit(H, spec->length))
+	if (test_bit(H, spec->flags))
 		*num = (unsigned short)va_arg(data_args, unsigned int);
-	else if (test_bit(HH, spec->length))
+	else if (test_bit(HH, spec->flags))
 		*num = (unsigned char)va_arg(data_args, unsigned int);
-	else if (test_bit(ELL, spec->length))
+	else if (test_bit(ELL, spec->flags))
 		*num = (unsigned long)va_arg(data_args, unsigned long);
-	else if (test_bit(ELLELL, spec->length))
+	else if (test_bit(ELLELL, spec->flags))
 		*num = va_arg(data_args, unsigned long long);
 	else
 		*num = va_arg(data_args, unsigned int);

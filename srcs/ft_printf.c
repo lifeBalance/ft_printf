@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 17:12:20 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 22:16:35 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ static void	init_conv_spec(t_spec *spec)
 {
 	spec->flags = 0;
 	spec->width = NOT_SET;
-	spec->length = 0;
 	spec->prec = NOT_SET;
 	spec->specifier = NOT_SET;
 }

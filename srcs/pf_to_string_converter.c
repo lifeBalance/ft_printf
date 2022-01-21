@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 13:29:16 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 22:20:24 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,14 @@ int	to_string(va_list data_args, t_spec *spec)
 {
 	char	*str;
 	int		ret;
-	int		null_str;
 
 	str = va_arg(data_args, char *);
-	null_str = 0;
 	ret = 0;
+	if (test_bit(DOT, spec->flags) && spec->prec == NOT_SET)
+	{
+		ret += putstr_repeat(" ", spec->width);
+		return (ret);
+	}
 	if (str == NULL)
 		ret += putstr_aligned("(null)", spec);
 	else

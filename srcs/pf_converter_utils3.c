@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 18:44:17 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 22:15:40 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	print_padding(long long n, t_spec *spec)
 		amount -= 1;
 	if (spec->prec >= 0 && spec->prec > amount_digits(n, spec))
 		amount += spec->width - spec->prec;
-	else if (test_bit(DOT, spec->digits) && spec->prec <= 0 && n == 0)
+	else if (test_bit(DOT, spec->flags) && spec->prec <= 0 && n == 0)
 		amount += spec->width;
 	else
 		amount += spec->width - amount_digits(n, spec);
@@ -100,7 +100,7 @@ static int	print_prefix(long long n, t_spec *spec)
 	int	ret;
 
 	ret = 0;
-	if (n == 0 && test_bit(DOT, spec->digits) && spec->prec <= 0 && \
+	if (n == 0 && test_bit(DOT, spec->flags) && spec->prec <= 0 && \
 		!test_bit(SHARP, spec->flags))
 		return (0);
 	if (n < 0)
@@ -127,7 +127,7 @@ static int	print_number(long long n, t_spec *spec)
 	int	sign;
 
 	ret = 0;
-	if (n == 0 && test_bit(DOT, spec->digits) && spec->prec <= 0)
+	if (n == 0 && test_bit(DOT, spec->flags) && spec->prec <= 0)
 		return (0);
 	if (n < 0)
 		sign = -1;

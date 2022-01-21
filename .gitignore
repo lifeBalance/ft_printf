@@ -1,5 +1,5 @@
 # Ignore everything
-*
+/*
 
 # Whitelist specific files:
 !.gitignore
@@ -7,7 +7,7 @@
 !author
 
 # Whitelist directories:
-!*/
+# !*/
 
 # Whitelist specific files in subdirectories:
 !/libft/includes/*.h

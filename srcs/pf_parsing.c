@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 18:22:58 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 22:17:35 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 #include "pf_parsing.h"
+
+static int	parse_digits(char **fmt, t_spec *spec);
 
 /*
 **	Receives the format string and sets the proper flag field using bit
@@ -48,16 +50,16 @@ int	parse_length(char **fmt, t_spec *spec)
 	while (**fmt && ft_strchr("hlL", **fmt))
 	{
 		if ((*fmt)[1] && **fmt == 'h' && (*fmt)[1] == 'h')
-			set_bit(HH, &spec->length);
+			set_bit(HH, &spec->flags);
 		else if (**fmt == 'h')
-			set_bit(H, &spec->length);
+			set_bit(H, &spec->flags);
 		if ((*fmt)[1] && **fmt == 'l' && (*fmt)[1] == 'l')
-			set_bit(ELLELL, &spec->length);
+			set_bit(ELLELL, &spec->flags);
 		else if (**fmt == 'l')
-			set_bit(ELL, &spec->length);
+			set_bit(ELL, &spec->flags);
 		if (**fmt == 'L')
-			set_bit(UPPELL, &spec->length);
-		if (test_bit(HH, spec->length) || test_bit(ELLELL, spec->length))
+			set_bit(UPPELL, &spec->flags);
+		if (test_bit(HH, spec->flags) || test_bit(ELLELL, spec->flags))
 			(*fmt) += 2;
 		else
 			(*fmt)++;
@@ -79,12 +81,12 @@ int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 	{
 		if (**fmt == '.')
 		{
-			set_bit(DOT, &spec->digits);
+			set_bit(DOT, &spec->flags);
 			(*fmt)++;
 		}
 		else if (**fmt == '*')
 		{
-			if (test_bit(DOT, spec->digits))
+			if (test_bit(DOT, spec->flags))
 				spec->prec = va_arg(args, int);
 			else
 				spec->width = va_arg(args, int);
@@ -100,7 +102,7 @@ int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 **	Receives the format string pointing to a digit, keeps traversing it while
 **	so and set either the 'width' or 'precision' field of the 'spec' struct.
 */
-int	parse_digits(char **fmt, t_spec *spec)
+static int	parse_digits(char **fmt, t_spec *spec)
 {
 	int	n;
 
@@ -110,15 +112,13 @@ int	parse_digits(char **fmt, t_spec *spec)
 		n = n * 10 + (**fmt - '0');
 		(*fmt)++;
 	}
-	if (!test_bit(DOT, spec->digits))
+	if (!test_bit(DOT, spec->flags))
 	{
-		set_bit(WIDTH, &spec->digits);
 		spec->width = n;
 		return (0);
 	}
-	else if (test_bit(DOT, spec->digits))
+	else if (test_bit(DOT, spec->flags))
 	{
-		set_bit(PREC, &spec->digits);
 		spec->prec = n;
 		return (0);
 	}

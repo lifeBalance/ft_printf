@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 18:43:46 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 21:48:05 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,33 +34,49 @@ void	test_string(void)
 	printf(" (std) returns: %d\n",    printf("|%-*s|", 10, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*s|", 10, "hello") - 2);
 
-	printf("\nTesting precision directive with a string\n");
+	printf("\nPrecision directive with a string\n");
 	printf(" (std) returns: %d\n",    printf("|%.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%.4s|", "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-.4s|", "hello") - 2);
 
-	printf("\nTesting width and precision directives with a string\n");
+	printf("\nWidth (10) and Precision (4) with a string\n");
 	printf(" (std) returns: %d\n",    printf("|%10.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%10.4s|", "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-10.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-10.4s|", "hello") - 2);
 
-	printf("\nTesting width and precision directives using '*'\n");
+	printf("\nWidth  (10) and Precision (4)  using '*'\n");
 	printf(" (std) returns: %d\n",    printf("|%*.*s|", 10, 4, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%*.*s|", 10, 4, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-*.*s|", 10, 4, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*.*s|", 10, 4, "hello") - 2);
 
-	printf("\nTesting empty string with ' ' flag (undefined behaviour)\n");
+	printf("\nEmpty string with ' ' flag (undefined behaviour)\n");
 	printf(" (std) returns: %d\n",    printf("|% s|", " ") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|% s|", " ") - 2);
 
-	printf("\nTesting NULL string (must print '(null)')\n");
+	printf("\nNULL string (must print '(null)')\n");
 	printf(" (std) returns: %d\n",    printf("|hello %s|", NULL) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|hello %s|", NULL) - 2);
 	printf(" (std) returns: %d\n",    printf("|hi %s %s|", NULL, "ho!") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|hi %s %s|", NULL, "ho!") - 2);
+
+	printf("\nDOT without precision.\n");
+	printf(" (std) returns: %d\n",    printf("|%.s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.s|", "hello") - 2);
+
+	printf("\nDOT without precision. Width (6)\n");
+	printf(" (std) returns: %d\n",    printf("|%6.s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%6.s|", "hello") - 2);
+
+	printf("\nDOT without precision. Width (6). NULL string\n");
+	printf(" (std) returns: %d\n",    printf("|%6.s|", NULL) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%6.s|", NULL) - 2);
+
+	printf("\nDOT without precision. Width (6). NULL string. (Left aligned)\n");
+	printf(" (std) returns: %d\n",    printf("|%-6.s|", NULL) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-6.s|", NULL) - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
