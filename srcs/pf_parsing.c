@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:05:31 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:27:01 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	parse_length(char **fmt, t_spec *spec)
 **	using bit twiddling. It also set the numeric values for the width and
 **	precision, and advances the format string while the parsing takes place.
 */
-int	parse_width_prec(char **fmt, t_spec *spec)
+int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 {
 	int	ret;
 
@@ -89,9 +89,11 @@ int	parse_width_prec(char **fmt, t_spec *spec)
 		else if (**fmt == '*')
 		{
 			if (test_bit(DOT, spec->digits))
-				set_bit(PREC_ARG, &spec->digits);
+				spec->prec = va_arg(args, int);
+				// set_bit(PREC_ARG, &spec->digits);
 			else
-				set_bit(WIDTH_ARG, &spec->digits);
+				spec->width = va_arg(args, int);
+				// set_bit(WIDTH_ARG, &spec->digits);
 			(*fmt)++;
 		}
 		else if (ft_isdigit(**fmt))
@@ -114,13 +116,13 @@ int	parse_digits(char **fmt, t_spec *spec)
 		n = n * 10 + (**fmt - '0');
 		(*fmt)++;
 	}
-	if (!test_bit(DOT, spec->digits) && spec->width == NOT_SET)
+	if (!test_bit(DOT, spec->digits))
 	{
 		set_bit(WIDTH, &spec->digits);
 		spec->width = n;
 		return (0);
 	}
-	else if (test_bit(DOT, spec->digits) && spec->prec == NOT_SET)
+	else if (test_bit(DOT, spec->digits))
 	{
 		set_bit(PREC, &spec->digits);
 		spec->prec = n;

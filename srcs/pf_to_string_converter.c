@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 18:51:26 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:30:58 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	to_string(va_list data_args, t_spec *spec)
 	int		ret;
 	int		null_str;
 
-	set_width_arg(spec, data_args);
-	set_prec_arg(spec, data_args);
+	// set_width_arg(spec, data_args);
+	// set_prec_arg(spec, data_args);
 	str = va_arg(data_args, char *);
 	null_str = 0;
 	if (str == NULL)

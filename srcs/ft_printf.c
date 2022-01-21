@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 12:00:00 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:23:24 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "pf_parsing.h"
 
 static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
-static int		parse_spec(char **fmt, t_spec *spec);
+static int		parse_spec(char **fmt, va_list args, t_spec *spec);
 static void		init_conv_spec(t_spec *spec);
 static void		init_dispatcher(t_disp *disp);
 
@@ -64,7 +64,7 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	len = 0;
 	cpy = *fmt;
 	init_conv_spec(spec);
-	if (parse_spec(fmt, spec) < 0)
+	if (parse_spec(fmt, args, spec) < 0)
 	{
 		*fmt = ++cpy;
 		while (**fmt && ft_strchr("#0-+ ", **fmt))
@@ -88,7 +88,7 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 **	Returns an integer with the status code of the parsing operation (0 for
 **	no errors and -1 for error).
 */
-int	parse_spec(char **fmt, t_spec *spec)
+int	parse_spec(char **fmt, va_list args, t_spec *spec)
 {
 	int	ret;
 
@@ -97,7 +97,7 @@ int	parse_spec(char **fmt, t_spec *spec)
 	if (ft_strchr("#0-+ ", **fmt))
 		ret += parse_flags(fmt, spec);
 	if (ft_strchr("0123456789*.", **fmt))
-		ret = parse_width_prec(fmt, spec);
+		ret = parse_width_prec(fmt, args, spec);
 	if (ft_strchr("hlL", **fmt))
 		ret += parse_length(fmt, spec);
 	if (ft_strchr("cspdiouxXf%", **fmt))

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 18:45:10 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/21 12:29:53 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	to_numeric(va_list data_args, t_spec *spec)
 	long long	n;
 	int			ret;
 
-	set_width_arg(spec, data_args);
-	set_prec_arg(spec, data_args);
+	// set_width_arg(spec, data_args);
+	// set_prec_arg(spec, data_args);
 	set_num(spec, data_args, &n);
 	ret = 0;
 	cancel_flags(spec);
