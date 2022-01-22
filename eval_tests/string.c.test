@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 21:48:05 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:08:10 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,33 @@
 
 void	test_string(void)
 {
-	printf("Testing string without conversion specification\n");
+	printf("String without conversion specification\n");
 	printf(" (std) returns: %d\n",    printf("|hello|") - 2); // subtract the two '|'
 	printf(" (ft_) returns: %d\n", ft_printf("|hello|") - 2);
 
-	printf("\nTesting barebones string specifier\n");
+	printf("\nBarebones string specifier\n");
 	printf(" (std) returns: %d\n",  printf("|%s|", "hello string") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%s|", "hello string") - 2);
 
-	printf("\nTesting width directive (right and left alignment)\n");
+	printf("\nWidth (10) (right and left alignment)\n");
 	printf(" (std) returns: %d\n", printf("|%10s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%10s|", "hello") - 2);
 	printf(" (std) returns: %d\n", printf("|%-10s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-10s|", "hello") - 2);
 
-	printf("\nTesting width directive using '*' (right and left alignment)\n");
+	printf("\nWidth (10) using '*' (right and left alignment)\n");
 	printf(" (std) returns: %d\n",    printf("|%*s|", 10, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%*s|", 10, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-*s|", 10, "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*s|", 10, "hello") - 2);
+	printf("\n-----------------------------------------------------\n");
 
-	printf("\nPrecision directive with a string\n");
-	printf(" (std) returns: %d\n",    printf("|%.4s|", "hello") - 2);
-	printf(" (ft_) returns: %d\n", ft_printf("|%.4s|", "hello") - 2);
+	printf("\nPrecision (-4)\n");
+	printf(" (std) returns: %d\n",    printf("|%.*s|", -4, "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.*s|", -4, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-.4s|", "hello") - 2);
+	printf("\n-----------------------------------------------------\n");
 
 	printf("\nWidth (10) and Precision (4) with a string\n");
 	printf(" (std) returns: %d\n",    printf("|%10.4s|", "hello") - 2);

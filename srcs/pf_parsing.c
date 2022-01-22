@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 22:17:35 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:11:05 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "pf_parsing.h"
 
 static int	parse_digits(char **fmt, t_spec *spec);
+static void	handle_star(char **fmt, va_list args, t_spec *spec);
 
 /*
 **	Receives the format string and sets the proper flag field using bit
@@ -84,16 +85,10 @@ int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 			set_bit(DOT, &spec->flags);
 			(*fmt)++;
 		}
-		else if (**fmt == '*')
-		{
-			if (test_bit(DOT, spec->flags))
-				spec->prec = va_arg(args, int);
-			else
-				spec->width = va_arg(args, int);
-			(*fmt)++;
-		}
 		else if (ft_isdigit(**fmt))
 			ret += parse_digits(fmt, spec);
+		else if (**fmt == '*')
+			handle_star(fmt, args, spec);
 	}
 	return (ret);
 }
@@ -154,4 +149,20 @@ int	parse_specifier(char **fmt, t_spec *spec)
 		spec->specifier = FLOAT;
 	(*fmt)++;
 	return (0);
+}
+
+static void	handle_star(char **fmt, va_list args, t_spec *spec)
+{
+	if (test_bit(DOT, spec->flags))
+		spec->prec = va_arg(args, int);
+	else
+	{
+		spec->width = va_arg(args, int);
+		if (spec->width < 0)
+		{
+			spec->width *= -1;
+			set_bit(MINUS, &spec->flags);
+		}
+	}
+	(*fmt)++;
 }

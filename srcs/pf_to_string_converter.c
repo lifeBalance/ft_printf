@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 22:20:24 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:15:01 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	putstr_aligned(char *str, t_spec *spec)
 	int		ret;
 
 	ret = 0;
-	if (spec->prec == NOT_SET || spec->prec > (int)ft_strlen(str))
+	if (spec->prec < 0 || spec->prec > (int)ft_strlen(str))
 		spec->prec = ft_strlen(str);
 	if (spec->width > 0 && spec->prec < spec->width && \
 		!test_bit(MINUS, spec->flags))
@@ -69,6 +69,8 @@ static int	putstr_upto_n(char *s, int n)
 	int	i;
 
 	ret = 0;
+	if (n < 0)
+		ret += ft_putstr(s);
 	i = 0;
 	while (i < n)
 	{
