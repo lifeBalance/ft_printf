@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 14:13:17 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 19:23:58 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,10 @@ void	test_integer(void)
 	printf("\nNegative precision (* = -1). Number == 0 ('%%*d')\n");
 	printf(" (std) returns: %d\n",    printf("|%.*d|", -1, 0) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%.*d|", -1, 0) - 2);
+
+	printf("\nWidth (5). Negative precision (* = -15). ('%%05.*d')\n");
+	printf(" (std) returns: %d\n",    printf("|%05.*d|", -15, 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%05.*d|", -15, 42) - 2);
 	// printf("\nWidth (4) ('-0' flags, '0' is ignored)\n");
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", -42) - 2);
 	// printf(" (std) returns: %d\n",    printf("|%-04d|", 42) - 2);
