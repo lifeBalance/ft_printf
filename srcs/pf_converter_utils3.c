@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 22:15:40 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 15:26:42 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,8 @@ static int	print_number(long long n, t_spec *spec)
 	int	sign;
 
 	ret = 0;
-	if (n == 0 && test_bit(DOT, spec->flags) && spec->prec <= 0)
+	if (n == 0 && test_bit(DOT, spec->flags) && \
+		(spec->prec == 0 || !test_bit(PREC, spec->flags)))
 		return (0);
 	if (n < 0)
 		sign = -1;
