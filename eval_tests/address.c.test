@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 14:21:36 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 18:59:12 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ void	test_address(void)
 	printf("Width Argument (*). Left aligned.\n");
 	printf(" (std) returns: %d\n",    printf("|%-*p|", 20, &var) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-*p|", 20, &var) - 2);
+	printf("\n----------------------------------------------------\n");
+
+	printf("Precision (0) and Precision not set (only dot).\n");
+	printf(" (std) returns: %d\n",    printf("%.0p, %.p", &var, &var), - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("%.0p, %.p", &var, &var), - 2);
+
+	printf("Precision (0) and Precision not set (only dot) NULL addresses.\n");
+	printf(" (std) returns: %d\n",    printf("%.0p, %.p", 0, 0), - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("%.0p, %.p", 0, 0), - 2);
+
+	printf("Precision (5) NULL address.\n");
+	printf(" (std) returns: %d\n",    printf("|%.5p|", 0), - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.5p|", 0), - 2);
+
+	printf("Width (2) Precision (9).\n");
+	printf(" (std) returns: %d\n",    printf("|%2.9p|", 1234), - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%2.9p|", 1234), - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
