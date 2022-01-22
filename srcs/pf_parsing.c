@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 13:11:05 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:28:31 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ static int	parse_digits(char **fmt, t_spec *spec)
 	else if (test_bit(DOT, spec->flags))
 	{
 		spec->prec = n;
+		set_bit(PREC, &spec->flags);
 		return (0);
 	}
 	return (-1);
@@ -154,7 +155,10 @@ int	parse_specifier(char **fmt, t_spec *spec)
 static void	handle_star(char **fmt, va_list args, t_spec *spec)
 {
 	if (test_bit(DOT, spec->flags))
+	{
 		spec->prec = va_arg(args, int);
+		set_bit(PREC, &spec->flags);
+	}
 	else
 	{
 		spec->width = va_arg(args, int);

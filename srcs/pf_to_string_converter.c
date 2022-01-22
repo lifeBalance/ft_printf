@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 13:15:01 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:29:25 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	to_string(va_list data_args, t_spec *spec)
 
 	str = va_arg(data_args, char *);
 	ret = 0;
-	if (test_bit(DOT, spec->flags) && spec->prec == NOT_SET)
+	if (test_bit(DOT, spec->flags) && !test_bit(PREC, spec->flags))
 	{
 		ret += putstr_repeat(" ", spec->width);
 		return (ret);

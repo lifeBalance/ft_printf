@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 13:08:10 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:24:10 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void	test_string(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%.*s|", -4, "hello") - 2);
 	printf(" (std) returns: %d\n",    printf("|%-.4s|", "hello") - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%-.4s|", "hello") - 2);
+
+	printf("\nNULL string. Precision (-1)\n");
+	printf(" (std) returns: %d\n",    printf("|%.*s|", -1, 0) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.*s|", -1, 0) - 2);
 	printf("\n-----------------------------------------------------\n");
 
 	printf("\nWidth (10) and Precision (4) with a string\n");

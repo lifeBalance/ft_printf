@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 22:15:05 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:27:08 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 **	Macro for '.' (indicator of precision) flag:
 */
 # define DOT	6
+# define PREC	12
 
 /*
 **	Macros for length:
