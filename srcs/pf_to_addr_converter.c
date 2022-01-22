@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 18:21:41 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:58:31 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,19 @@ int	to_address(va_list args, t_spec *spec)
 {
 	unsigned long	n;
 	int				ret;
+	int				addr_width;
 
-	ret = 0;
 	n = va_arg(args, unsigned long int);
-	if (spec->width > amount_digits(n, spec) + (int)ft_strlen("0x"))
+	ret = 0;
+	addr_width = (int)ft_strlen("0x") + amount_digits(n, spec);
+	if (spec->width > addr_width)
 	{
 		if (!test_bit(MINUS, spec->flags))
-			ret += putstr_repeat(" ", spec->width - amount_digits(n, spec) - 2);
+			ret += putstr_repeat(" ", spec->width - addr_width);
 		ret += ft_putstr("0x");
 		ret += put_ull_base(n, HEXDIGITSLOW);
 		if (test_bit(MINUS, spec->flags))
-			ret += putstr_repeat(" ", spec->width - amount_digits(n, spec) - 2);
+			ret += putstr_repeat(" ", spec->width - addr_width);
 	}
 	else
 	{

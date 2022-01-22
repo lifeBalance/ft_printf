@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 12:04:02 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 13:57:18 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	amount_digits(long long n, t_spec *spec)
 
 	if (spec->specifier == OCTAL)
 		base = 8;
-	else if (spec->specifier == LOWHEX || spec->specifier == UPPHEX)
+	else if (spec->specifier == LOWHEX || spec->specifier == UPPHEX || \
+		spec->specifier == ADDRESS)
 		base = 16;
 	else
 		base = 10;
