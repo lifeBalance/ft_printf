@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 20:51:10 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/22 21:12:17 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,14 +107,14 @@ static int	print_prefix(long long n, t_spec *spec)
 	int	ret;
 
 	ret = 0;
-	if (n == 0 && test_bit(DOT, spec->flags) && spec->prec <= 0 && \
-		!test_bit(SHARP, spec->flags))
+	if ((n == 0 && test_bit(DOT, spec->flags) && !test_bit(PREC, spec->flags)) \
+	|| (n == 0 && spec->prec == 0))
 		return (0);
 	if (n < 0)
 		ret += ft_putchar('-');
 	else if (test_bit(SHARP, spec->flags) && n >= 0)
 	{
-		if (spec->specifier == OCTAL)
+		if (spec->specifier == OCTAL && n > 0)
 			ret += ft_putstr("0");
 		else if (spec->specifier == LOWHEX && n > 0)
 			ret += ft_putstr("0x");
@@ -134,8 +134,8 @@ static int	print_number(long long n, t_spec *spec)
 	int	sign;
 
 	ret = 0;
-	if (n == 0 && test_bit(DOT, spec->flags) && \
-		(spec->prec == 0 || !test_bit(PREC, spec->flags)))
+	if ((n == 0 && test_bit(DOT, spec->flags) && !test_bit(PREC, spec->flags)) \
+	|| (n == 0 && spec->prec == 0))
 		return (0);
 	if (n < 0)
 		sign = -1;
