@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 16:02:09 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 20:42:55 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ static void	set_uint(t_spec *spec, va_list data_args, long long *num)
 	else if (test_bit(H, spec->flags))
 		*num = (unsigned short)va_arg(data_args, unsigned int);
 	else if (test_bit(DBLELL, spec->flags))
-		*num = ((unsigned long long)va_arg(data_args, long long));
+		*num = va_arg(data_args, unsigned long long);
 	else if (test_bit(ELL, spec->flags))
-		*num = ((unsigned long)va_arg(data_args, long));
+		*num = va_arg(data_args, unsigned long);
 	else
 		*num = va_arg(data_args, unsigned int);
 }
