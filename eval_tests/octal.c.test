@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 20:38:41 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:35:40 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,9 @@ void	test_octal(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%#o|", 0) - 2);
 	printf(" (std) returns: %d\n",    printf("|%#.o %#.0o|", 0, 0) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%#.o %#.0o|", 0, 0) - 2);
+	printf("\nPrecision (3) Number == 1 ('#' flag)\n");
+	printf(" (std) returns: %d\n",    printf("|%#.3o|", 1) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#.3o|", 1) - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
