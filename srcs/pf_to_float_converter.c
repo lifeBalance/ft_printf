@@ -6,15 +6,14 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 18:21:20 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:08:58 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
-#include "pf_converting.h"
-#include "pf_parsing.h"
+#include "pf_numeric.h"
 
 static int		no_precision_right(t_float *n, t_spec *spec);
 static int		no_precision_left(t_float *n, t_spec *spec);

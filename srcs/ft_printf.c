@@ -6,17 +6,15 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 22:16:35 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 14:40:49 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
-#include "pf_parsing.h"
 
 static int		convert(char **fmt, va_list args, t_spec *spec, t_disp *disp);
-static int		parse_spec(char **fmt, va_list args, t_spec *spec);
 static void		init_conv_spec(t_spec *spec);
 static void		init_dispatcher(t_disp *disp);
 
@@ -78,34 +76,6 @@ static int	convert(char **fmt, va_list args, t_spec *spec, t_disp *disp)
 	}
 	len = disp[spec->specifier](args, spec);
 	return (len);
-}
-
-/*
-**	Parses the Conversion Specification, filling up the 'spec' structure
-**	with the flags, and stuff that appear in the format string after the '%',
-**	up to, and including, the specifier. It receives the address of the format
-**	string so that, while traversing the specification, it moves forward the
-**	Format String pointer.
-**	Returns an integer with the status code of the parsing operation (0 for
-**	no errors and -1 for error).
-*/
-int	parse_spec(char **fmt, va_list args, t_spec *spec)
-{
-	int	ret;
-
-	ret = 0;
-	(*fmt)++;
-	if (ft_strchr("#0-+ ", **fmt))
-		ret += parse_flags(fmt, spec);
-	if (ft_strchr("0123456789*.", **fmt))
-		ret = parse_width_prec(fmt, args, spec);
-	if (ft_strchr("hlL", **fmt))
-		ret += parse_length(fmt, spec);
-	if (ft_strchr("cspdiouxXf%", **fmt))
-		ret += parse_specifier(fmt, spec);
-	if (spec->specifier == NOT_SET)
-		ret = -1;
-	return (ret);
 }
 
 /*

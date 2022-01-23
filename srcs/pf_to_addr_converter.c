@@ -6,15 +6,14 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 19:00:47 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:08:43 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "bitwise.h"
 #include "ft_printf.h"
-#include "pf_converting.h"
-#include "pf_parsing.h"
+#include "pf_numeric.h"
 
 static int	print_address(unsigned long	n, t_spec *spec);
 

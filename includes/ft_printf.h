@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 22:14:14 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 15:56:57 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define FUN	10
 
 /*
-**	Macros for specifiers:
+**	Macros for conversion specifiers ('specifier' field):
 */
 # define NOT_SET	-1
 # define PERCENT	0
@@ -55,9 +55,35 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define FLOAT		9
 
 /*
+**	Macros for flags ('flags' field):
+*/
+# define SHARP	1
+# define ZERO	2
+# define MINUS	3
+# define PLUS	4
+# define SPACE	5
+
+/*
+**	Macro for '.' (indicator of precision) ('flag' field):
+*/
+# define DOT	6
+# define PREC	7
+
+/*
+**	Macros for length ('flag' field):
+*/
+# define H		8
+# define HH		9
+# define ELL	10
+# define DBLELL	11
+# define UPPELL	12
+
+/*
 **	Function prototypes:
 */
 int	ft_printf(const char *format, ...);
+int	parse_spec(char **fmt, va_list args, t_spec *spec);
+int	to_numeric(va_list data_args, t_spec *spec);
 int	to_percent(va_list data_args, t_spec *conv_spec);
 int	to_char(va_list data_args, t_spec *conv_spec);
 int	to_string(va_list data_args, t_spec *conv_spec);

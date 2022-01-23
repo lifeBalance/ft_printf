@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/20 22:55:59 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:12:14 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 
 # include "libft.h"
 # include "ft_printf.h"
-# include "pf_converting.h"
+# include "pf_numeric.h"
 # include "pf_parsing.h"
 # include "bitwise.h"
 # include <stdio.h>
+# include <limits.h>
 
 /*
 ** Forward declaration

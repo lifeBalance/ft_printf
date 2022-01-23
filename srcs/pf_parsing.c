@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/22 13:28:31 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 15:51:23 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,53 @@
 #include "ft_printf.h"
 #include "pf_parsing.h"
 
-static int	parse_digits(char **fmt, t_spec *spec);
-static void	handle_star(char **fmt, va_list args, t_spec *spec);
+static int	parse_flags(char **fmt, t_spec *spec);
+static int	parse_length(char **fmt, t_spec *spec);
+static int	parse_width_prec(char **fmt, va_list args, t_spec *spec);
+static int	parse_specifier(char **fmt, t_spec *spec);
+
+/*
+**	Parses the Conversion Specification, filling up the 'spec' structure
+**	with the flags, and stuff that appear in the format string after the '%',
+**	up to, and including, the specifier. It receives the address of the format
+**	string so that, while traversing the specification, it moves forward the
+**	Format String pointer.
+**	Returns an integer with the status code of the parsing operation (0 for
+**	no errors and -1 for error).
+*/
+int	parse_spec(char **fmt, va_list args, t_spec *spec)
+{
+	int	ret;
+
+	ret = 0;
+	(*fmt)++;
+	while (**fmt)
+	{
+		if (ft_strchr("#0-+ ", **fmt))
+			ret += parse_flags(fmt, spec);
+		else if (ft_strchr("0123456789*.", **fmt))
+			ret = parse_width_prec(fmt, args, spec);
+		else if (ft_strchr("hlL", **fmt))
+			ret += parse_length(fmt, spec);
+		else if (ft_strchr("cspdiouxXf%", **fmt))
+		{
+			ret += parse_specifier(fmt, spec);
+			break ;
+		}
+		else
+			break ;
+	}
+	if (spec->specifier == NOT_SET)
+		ret = -1;
+	return (ret);
+}
 
 /*
 **	Receives the format string and sets the proper flag field using bit
 **	twiddling. It advances the format string.
 **	A negative return value is used to send error notification up the pipeline.
 */
-int	parse_flags(char **fmt, t_spec *spec)
+static int	parse_flags(char **fmt, t_spec *spec)
 {
 	while (**fmt && ft_strchr("#0-+ ", **fmt))
 	{
@@ -43,37 +81,11 @@ int	parse_flags(char **fmt, t_spec *spec)
 }
 
 /*
-**	Receives the format string and sets the proper length field using bit
-**	twiddling. It advances the format string accordingly.
-*/
-int	parse_length(char **fmt, t_spec *spec)
-{
-	while (**fmt && ft_strchr("hlL", **fmt))
-	{
-		if ((*fmt)[1] && **fmt == 'h' && (*fmt)[1] == 'h')
-			set_bit(HH, &spec->flags);
-		else if (**fmt == 'h')
-			set_bit(H, &spec->flags);
-		if ((*fmt)[1] && **fmt == 'l' && (*fmt)[1] == 'l')
-			set_bit(ELLELL, &spec->flags);
-		else if (**fmt == 'l')
-			set_bit(ELL, &spec->flags);
-		if (**fmt == 'L')
-			set_bit(UPPELL, &spec->flags);
-		if (test_bit(HH, spec->flags) || test_bit(ELLELL, spec->flags))
-			(*fmt) += 2;
-		else
-			(*fmt)++;
-	}
-	return (0);
-}
-
-/*
 **	Receives the format string and sets the proper width and precision fields
 **	using bit twiddling. It also set the numeric values for the width and
 **	precision, and advances the format string while the parsing takes place.
 */
-int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
+static int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 {
 	int	ret;
 
@@ -94,31 +106,22 @@ int	parse_width_prec(char **fmt, va_list args, t_spec *spec)
 }
 
 /*
-**	Receives the format string pointing to a digit, keeps traversing it while
-**	so and set either the 'width' or 'precision' field of the 'spec' struct.
+**	Receives the format string and sets the proper length field using bit
+**	twiddling. It advances the format string accordingly.
 */
-static int	parse_digits(char **fmt, t_spec *spec)
+static int	parse_length(char **fmt, t_spec *spec)
 {
-	int	n;
-
-	n = 0;
-	while (**fmt && ft_isdigit(**fmt))
+	while (**fmt && ft_strchr("hlL", **fmt))
 	{
-		n = n * 10 + (**fmt - '0');
+		if (**fmt == 'h')
+			handle_double_flag(H, HH, spec);
+		if (**fmt == 'l')
+			handle_double_flag(ELL, DBLELL, spec);
+		if (**fmt == 'L' && !test_bit(UPPELL, spec->flags))
+			set_bit(UPPELL, &spec->flags);
 		(*fmt)++;
 	}
-	if (!test_bit(DOT, spec->flags))
-	{
-		spec->width = n;
-		return (0);
-	}
-	else if (test_bit(DOT, spec->flags))
-	{
-		spec->prec = n;
-		set_bit(PREC, &spec->flags);
-		return (0);
-	}
-	return (-1);
+	return (0);
 }
 
 /*
@@ -126,7 +129,7 @@ static int	parse_digits(char **fmt, t_spec *spec)
 **	structure. Returns 1 (length of the specifier), that the caller can use
 **	to advance the format string.
 */
-int	parse_specifier(char **fmt, t_spec *spec)
+static int	parse_specifier(char **fmt, t_spec *spec)
 {
 	if (**fmt == '%')
 		spec->specifier = PERCENT;
@@ -150,23 +153,4 @@ int	parse_specifier(char **fmt, t_spec *spec)
 		spec->specifier = FLOAT;
 	(*fmt)++;
 	return (0);
-}
-
-static void	handle_star(char **fmt, va_list args, t_spec *spec)
-{
-	if (test_bit(DOT, spec->flags))
-	{
-		spec->prec = va_arg(args, int);
-		set_bit(PREC, &spec->flags);
-	}
-	else
-	{
-		spec->width = va_arg(args, int);
-		if (spec->width < 0)
-		{
-			spec->width *= -1;
-			set_bit(MINUS, &spec->flags);
-		}
-	}
-	(*fmt)++;
 }
