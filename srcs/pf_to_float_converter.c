@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 16:08:58 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/23 17:07:56 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ int	to_float(va_list data_args, t_spec *spec)
 	t_float	n;
 
 	ret = 0;
-	if (spec->prec == NOT_SET)
+	if (!test_bit(PREC, spec->flags))
 		spec->prec = DEFAULT_PREC;
-	n = split_float(va_arg(data_args, double), spec->prec);
+	if (test_bit(UPPELL, spec->flags))
+		n = split_float(va_arg(data_args, long double), spec->prec);
+	else
+		n = split_float((va_arg(data_args, double)), spec->prec);
 	if (spec->prec == 0)
 	{
 		if (test_bit(MINUS, spec->flags))
