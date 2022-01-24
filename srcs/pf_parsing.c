@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 15:51:23 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:19:30 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parse_spec(char **fmt, va_list args, t_spec *spec)
 			break ;
 		}
 		else
-			break ;
+			(*fmt)++;
 	}
 	if (spec->specifier == NOT_SET)
 		ret = -1;
