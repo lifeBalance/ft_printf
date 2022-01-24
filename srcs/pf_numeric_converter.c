@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 20:38:34 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:36:50 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ static int	print_prefix(long long n, t_spec *spec)
 	if ((n == 0 && test_bit(DOT, spec->flags) && \
 		!test_bit(PREC, spec->flags)) || (n == 0 && spec->prec == 0))
 		return (0);
-	if (n < 0 && spec->specifier != UINT)
+	if (n < 0 && spec->specifier != UINT && spec->specifier != OCTAL && \
+		spec->specifier != LOWHEX && spec->specifier != UPPHEX)
 		ret += ft_putchar('-');
 	else if (test_bit(SHARP, spec->flags) && n >= 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/19 22:10:56 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 16:30:35 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,11 @@ void	test_hexadecimal(void)
 	// printf(" (std) returns: %d\n", ft_printf("|%10.3d|") - 2);
 	// printf(" (std) returns: %d\n", ft_printf("|%#.8d|") - 2);
 	// printf(" (std) returns: %d\n", ft_printf("|%hhd|") - 2);
+	printf("\n---------------------------------------------\n");
+
+	printf("\nUnsigned long. Minimum and maximum values\n");
+	printf(" (std) returns: %d\n",    printf("|%llx, %llx|", 0ul, ULONG_MAX) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%llx, %llx|", 0ul, ULONG_MAX) - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */
