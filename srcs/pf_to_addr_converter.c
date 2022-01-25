@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 16:08:43 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/25 13:50:44 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "ft_printf.h"
 #include "pf_numeric.h"
 
-static int	print_address(unsigned long	n, t_spec *spec);
+static int	print_address(unsigned long n, t_spec *spec);
 
 /*
 **	Prints the address of a variable in hexadecimal, as an 'unsigned long int'.
@@ -47,7 +47,7 @@ int	to_address(va_list args, t_spec *spec)
 	return (ret);
 }
 
-static int	print_address(unsigned long	n, t_spec *spec)
+static int	print_address(unsigned long n, t_spec *spec)
 {
 	int	ret;
 
