@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 15:56:57 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:38:11 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 /*
 **	Functions in the dispatcher (one per specifier + the one for'%%'):
 */
-# define FUN	10
+# define FUN	11
 
 /*
 **	Macros for conversion specifiers ('specifier' field):
@@ -53,6 +53,7 @@ typedef int	(*t_disp)(va_list data_args, t_spec *spec);
 # define UINT		7
 # define OCTAL		8
 # define FLOAT		9
+# define BIN		10
 
 /*
 **	Macros for flags ('flags' field):
@@ -94,5 +95,6 @@ int	to_octal(va_list data_args, t_spec *spec);
 int	to_hex(va_list data_args, t_spec *spec);
 int	to_upphex(va_list data_args, t_spec *spec);
 int	to_float(va_list data_args, t_spec *spec);
+int	to_bin(va_list data_args, t_spec *spec);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 14:40:49 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:23:42 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ static void	init_dispatcher(t_disp *disp)
 	disp[UINT] = to_uint;
 	disp[OCTAL] = to_octal;
 	disp[FLOAT] = to_float;
+	disp[BIN] = to_bin;
 }

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 00:07:55 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/24 16:19:30 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:28:33 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	parse_spec(char **fmt, va_list args, t_spec *spec)
 			ret = parse_width_prec(fmt, args, spec);
 		else if (ft_strchr("hlL", **fmt))
 			ret += parse_length(fmt, spec);
-		else if (ft_strchr("cspdiouxXf%", **fmt))
+		else if (ft_strchr("cspdiouxXf%b", **fmt))
 		{
 			ret += parse_specifier(fmt, spec);
 			break ;
@@ -151,6 +151,8 @@ static int	parse_specifier(char **fmt, t_spec *spec)
 		spec->specifier = UPPHEX;
 	else if (**fmt == 'f')
 		spec->specifier = FLOAT;
+	else if (**fmt == 'b')
+		spec->specifier = BIN;
 	(*fmt)++;
 	return (0);
 }

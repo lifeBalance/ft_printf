@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/21 17:51:56 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/25 12:19:38 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,44 @@ void	test_misc(void)
 	printf("Testing DOT with No Precision and 0 Precision. Octal, '#' flag\n");
 	printf(" (std) returns: %d\n",    printf("|(%#.o) (%#.0o)|", 0, 0) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|(%#.o) (%#.0o)|", 0, 0) - 2);
+
+	printf("Big Octal values\n");
+	printf(" (std) returns: %d\n",    printf("|%x|", 4294967296) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%x|", 4294967296) - 2);
+	printf("Small Octal values\n");
+	printf(" (std) returns: %d\n",    printf("|%x|", -4294967296) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%x|", -4294967296) - 2);
+	printf("------------------------------------------------------\n");
+
+	printf("Binary values. Signed 'int'.\n");
+	printf(" (ft_) returns: %d\n", ft_printf("|%b|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#b|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%b|", -5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#b|", -5) - 2);
+
+	printf("Binary values. Signed 'char'.\n");
+	printf(" (ft_) returns: %d\n", ft_printf("|%hhb|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#hhb|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%hhb|", -5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#hhb|", -5) - 2);
+
+	printf("Binary values. Width (20). Signed 'char'.\n");
+	printf(" (ft_) returns: %d\n", ft_printf("|%20hhb|", -5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%20#hhb|", -5) - 2);
+	printf("Binary values. Width (20) Left aligned. Signed 'char'.\n");
+	printf(" (ft_) returns: %d\n", ft_printf("|%-20hhb|", -5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-20#hhb|", -5) - 2);
+
+	printf("Binary values. Signed 'long'.\n");
+	printf(" (ft_) returns: %d\n", ft_printf("|%lb|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#lb|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%lb|", -5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#lb|", -5) - 2);
+	printf("Binary values. Signed 'long long'.\n");
+	printf(" (ft_) returns: %d\n", ft_printf("|%llb|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#llb|", 5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%llb|", -5) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#llb|", -5) - 2);
 	printf("End of tests\n");
 }
 /* vi: filetype=c */

@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 17:59:36 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/24 21:59:41 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -271,6 +271,25 @@ void	test_float(void)
 	printf("Float, double, and long double\n");
 	printf(" (std) returns: %d\n",    printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("{%f}{%lf}{%Lf}", 1.42, 1.42, 1.42l) - 2);
+
+	printf("\nFloat, double, and long double (Small positive values).\n");
+	printf(" (std) returns: %d\n",    printf("{%.9f}{%.9lf}{%.9Lf}",
+	42.123456789,
+	42.123456789,
+	42.123456789l) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("{%.9f}{%.9lf}{%.9Lf}",
+	42.123456789,
+	42.123456789,
+	42.123456789l) - 2);
+	printf("\nFloat, double, and long double (Small negative values).\n");
+	printf(" (std) returns: %d\n",    printf("{%.9f}{%.9lf}{%.9Lf}",
+	-42.123456789,
+	-42.123456789,
+	-42.123456789l) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("{%.9f}{%.9lf}{%.9Lf}",
+	-42.123456789,
+	-42.123456789,
+	-42.123456789l) - 2);
 
 	printf("\nFloat, double, and long double (Big positive values).\n");
 	printf(" (std) returns: %d\n",    printf("{%f}{%lf}{%Lf}",
