@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:19:30 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 16:07:29 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/26 13:12:07 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 **	Type definition for floating-point numbers:
 */
 typedef struct s_part {
-	long long			integer;
+	int					sign;
+	unsigned long long	integer;
 	unsigned long long	decimal;
 }	t_float;
 
@@ -47,6 +48,6 @@ void	cancel_flags(t_spec *spec);
 */
 void	set_num(t_spec *spec, va_list data_args, long long *num);
 void	set_pad_char(t_spec *spec, char *pad_char);
-t_float	split_float(double num, int pos);
+t_float	split_float(long double num, int pos);
 
 #endif

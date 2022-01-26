@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 20:42:55 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/26 11:44:03 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,29 +67,4 @@ void	set_pad_char(t_spec *spec, char *pad_char)
 		ft_strcpy(pad_char, "0\0");
 	else
 		ft_strcpy(pad_char, " \0");
-}
-
-/*
-**	Splits a double argument into two parts:
-**	- An integer part.
-**	- A decimal part.
-**	Returns both parts as a 't_float' (a struct with two members).
-*/
-t_float	split_float(double num, int pos)
-{
-	unsigned long long	amount;
-	unsigned long long	biggie;
-	unsigned long long	trunc;
-	int					sign;
-
-	sign = 1;
-	if (num < 0)
-		sign = -1;
-	num *= sign;
-	amount = 10;
-	while (--pos > 0)
-		amount *= 10;
-	biggie = num * amount;
-	trunc = (unsigned long long)num;
-	return ((t_float){trunc * sign, biggie - trunc * amount});
 }

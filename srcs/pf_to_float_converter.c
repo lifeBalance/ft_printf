@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 17:07:56 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:46:27 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	to_float(va_list data_args, t_spec *spec)
 	if (test_bit(UPPELL, spec->flags))
 		n = split_float(va_arg(data_args, long double), spec->prec);
 	else
-		n = split_float((va_arg(data_args, double)), spec->prec);
+		n = split_float((long double)(va_arg(data_args, double)), spec->prec);
 	if (spec->prec == 0)
 	{
 		if (test_bit(MINUS, spec->flags))
@@ -84,7 +84,7 @@ static int	add_spaces(t_float *n, t_spec *spec)
 
 	ret = 0;
 	amount = spec->width - amount_digits(n->integer, spec);
-	if (n->integer < 0 || test_bit(PLUS, spec->flags) || \
+	if (n->sign < 0 || test_bit(PLUS, spec->flags) || \
 		test_bit(SPACE, spec->flags))
 		ret += putstr_repeat(" ", amount - 1);
 	else
@@ -103,7 +103,7 @@ static int	no_precision_right(t_float *n, t_spec *spec)
 	ret = 0;
 	if (!test_bit(ZERO, spec->flags))
 		ret += add_spaces(n, spec);
-	if (n->integer < 0)
+	if (n->sign < 0)
 		ret += ft_putchar('-');
 	else if (test_bit(PLUS, spec->flags))
 		ret += ft_putchar('+');
@@ -111,7 +111,7 @@ static int	no_precision_right(t_float *n, t_spec *spec)
 		ret += ft_putchar(' ');
 	if (test_bit(ZERO, spec->flags))
 	{
-		if (n->integer < 0 || test_bit(PLUS, spec->flags) || \
+		if (n->sign < 0 || test_bit(PLUS, spec->flags) || \
 			test_bit(SPACE, spec->flags))
 			ret += putstr_repeat("0", spec->width - \
 				amount_digits(n->integer, spec) - 1);
@@ -119,8 +119,6 @@ static int	no_precision_right(t_float *n, t_spec *spec)
 			ret += putstr_repeat("0", spec->width - \
 				amount_digits(n->integer, spec));
 	}
-	if (n->integer < 0)
-		n->integer *= -1;
 	ret += put_ull_base(n->integer, DECDIGITS);
 	return (ret);
 }
@@ -136,15 +134,13 @@ static int	no_precision_left(t_float *n, t_spec *spec)
 
 	sign = 1;
 	ret = 0;
-	if (n->integer < 0)
+	if (n->sign < 0)
 		ret += ft_putchar('-');
 	else if (test_bit(PLUS, spec->flags))
 		ret += ft_putchar('+');
 	else if (test_bit(SPACE, spec->flags))
 		ret += ft_putchar(' ');
-	if (n->integer < 0)
-		sign *= -1;
-	ret += put_ull_base(n->integer * sign, DECDIGITS);
+	ret += put_ull_base(n->integer, DECDIGITS);
 	if (spec->prec == 0)
 		ret += add_spaces(n, spec);
 	return (ret);
