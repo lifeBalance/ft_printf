@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/26 18:43:24 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/26 18:52:39 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_float	split_float(long double num, int pos)
 	}
 	else if (num > 0)
 		return ((t_float){sign, trunc, \
-			(unsigned int)((double)num * amount) - amount});
+			(unsigned long long)((double)num * amount) - amount});
 	else
 		return ((t_float){sign, 0, 0});
 }
