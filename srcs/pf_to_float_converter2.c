@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:56:24 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/26 18:52:39 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:30:50 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "bitwise.h"
 #include "ft_printf.h"
 #include "pf_numeric.h"
+
+static unsigned long long	set_amount(int pos);
 
 /*
 **	Splits a double argument into two parts:
@@ -25,6 +27,7 @@ t_float	split_float(long double num, int pos)
 {
 	unsigned long long	amount;
 	unsigned long long	trunc;
+	unsigned long long	decimal;
 	int					sign;
 	long double			one_point;
 
@@ -32,19 +35,29 @@ t_float	split_float(long double num, int pos)
 	if (num < 0)
 		sign = -1;
 	num *= sign;
-	amount = 10;
-	while (--pos > 0)
-		amount *= 10;
+	amount = set_amount(pos);
 	trunc = (unsigned long long)num;
 	if (num >= 2)
 	{
 		one_point = num - (trunc - 1);
-		one_point *= amount;
-		return ((t_float){sign, trunc, one_point - amount});
+		decimal = one_point * amount;
+		if ((decimal % 10) > 0 && (pos < 6))
+			decimal++;
+		return ((t_float){sign, trunc, decimal - amount});
 	}
 	else if (num > 0)
 		return ((t_float){sign, trunc, \
 			(unsigned long long)((double)num * amount) - amount});
 	else
 		return ((t_float){sign, 0, 0});
+}
+
+static unsigned long long	set_amount(int pos)
+{
+	unsigned long long	amount;
+
+	amount = 10;
+	while (--pos > 0)
+		amount *= 10;
+	return (amount);
 }
