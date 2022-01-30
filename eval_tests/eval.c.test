@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/30 20:20:34 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/30 20:50:30 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	test_eval(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%p|", &intnum) - 2);
 	printf(" (std) returns: %d\n",    printf("|%d|", intnum) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%d|", intnum) - 2);
+	printf("Check that %%%% works\n");
+	printf(" (std) returns: %d\n",    printf("|50%%|") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|50%%|") - 2);
 
 	printf("\nLess simple Tests\n");
 	printf("Check that you can put multiple conversions (and so multiple");
