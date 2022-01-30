@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/30 14:59:01 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/30 19:57:08 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	test_eval(void)
 	printf(" (ft_) returns: %d\n", ft_printf("|%i %c|", 42, 'x') - 2);
 	printf(" (std) returns: %d\n",    printf("|%c %i|", 'x', 42) - 2);
 	printf(" (ft_) returns: %d\n", ft_printf("|%c %i|", 'x', 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%08c|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%08c|", 42) - 2);
 	
 	printf("\nMore complicated tests\n");
 	printf("Check the flags: #, 0, -, +, whitespace and the field-width.\n");
