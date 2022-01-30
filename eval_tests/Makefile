@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 13:19:07 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/20 22:54:06 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/30 13:35:34 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ HDRS	:=	test_printf.h
 SRCS	=	main.c.test percent.c.test char.c.test string.c.test int.c.test
 SRCS	+=	uint.c.test hex.c.test upper_hex.c.test
 SRCS	+=	address.c.test octal.c.test float.c.test misc.c.test
+SRCS	+=	eval.c.test
 
 all: $(NAME)
 

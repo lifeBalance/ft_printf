@@ -1,0 +1,91 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   eval.c.test                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/05 13:20:00 by rodrodri          #+#    #+#             */
+/*   Updated: 2022/01/30 14:02:21 by rodrodri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_printf.h"
+
+void	test_eval(void)
+{
+	int	intnum = 69;
+	printf("Simple Tests\n");
+	printf("Check that the usual conversions %%s, %%p, et %%d work fine\n");
+	printf(" (std) returns: %d\n",    printf("|%s|", "hello") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%s|", "hello") - 2);
+	printf(" (std) returns: %d\n",    printf("|%p|", &intnum) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%p|", &intnum) - 2);
+	printf(" (std) returns: %d\n",    printf("|%d|", intnum) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%d|", intnum) - 2);
+
+	printf("\nLess simple Tests\n");
+	printf("Check that you can put multiple conversions (and so multiple");
+	printf("arguments) of the same type in a same printf.\n");
+	printf(" (std) returns: %d\n",    printf("|%s %s|", "hello", "world") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%s %s|", "hello", "world") - 2);
+	printf(" (std) returns: %d\n",    printf("|%p %p|", &intnum, &intnum) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%p %p|", &intnum, &intnum) - 2);
+	printf(" (std) returns: %d\n",    printf("|%d %d|", intnum, intnum) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%d %d|", intnum, intnum) - 2);
+
+	printf("\nSlightly complicated tests\n");
+	printf("Check that the less usual conversions %%i, %%o, %%u, %%x, %%X ");
+	printf("and %%c work fine.\n");
+	printf(" (std) returns: %d\n",    printf("|%i %o %u|", 42, 42, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%i %o %u|", 42, 42, -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%x %X %c|", 42, 42, 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%x %X %c|", 42, 42, 'x') - 2);
+
+	printf("\nComplicated tests\n");
+	printf("Check that multiple conversions and parameters of different ");
+	printf("sizes are all working properly and in different orders. (for ");
+	printf("ex. a char followed by an int then an int followed by a char).\n");
+	printf(" (std) returns: %d\n",    printf("|%i %c|", 42, 'x') - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%i %c|", 42, 'x') - 2);
+	printf(" (std) returns: %d\n",    printf("|%c %i|", 'x', 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%c %i|", 'x', 42) - 2);
+	
+	printf("\nMore complicated tests\n");
+	printf("Check the flags: #, 0, -, +, whitespace and the field-width.\n");
+	printf(" (std) returns: %d\n",    printf("|%#5o|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#5o|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%-#5o|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-#5o|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%-015s|", "hoes") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%-015s|", "hoes") - 2);
+	printf(" (std) returns: %d\n",    printf("|%015s|", "hoes") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%015s|", "hoes") - 2);
+	printf(" (std) returns: %d\n",    printf("|% -15d|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% -15d|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|% +-15d %d|", 42, -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|% +-15d %d|", 42, -42) - 2);
+
+	printf("\nMore stuff to test\n");
+	printf("Check that the flags %%h, %%hh, %%l and %%ll work with diouxX ");
+	printf("conversions.\n");
+	printf(" (std) returns: %d\n",    printf("|%hd|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%hd|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%hhi|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%hhi|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%hhu|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%hhu|", -42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%llx|", 42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%llx|", 42) - 2);
+	printf(" (std) returns: %d\n",    printf("|%#llX|", -42) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%#llX|", -42) - 2);
+
+	printf("\nAnd finally\n");
+	printf("Check the precision (flag \".\")\n");
+	printf(" (std) returns: %d\n",    printf("|%.4s|", "hello world") - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.4s|", "hello world") - 2);
+	printf(" (std) returns: %d\n",    printf("|%.4f|", 2.123456) - 2);
+	printf(" (ft_) returns: %d\n", ft_printf("|%.4f|", 2.123456) - 2);
+	printf("End of tests\n");
+}
+/* vi: filetype=c */

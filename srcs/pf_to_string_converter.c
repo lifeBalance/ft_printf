@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:24:46 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/23 16:09:58 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/01/30 14:09:09 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ static int	putstr_aligned(char *str, t_spec *spec)
 		spec->prec = ft_strlen(str);
 	if (spec->width > 0 && spec->prec < spec->width && \
 		!test_bit(MINUS, spec->flags))
-		ret += putstr_repeat(" ", spec->width - spec->prec);
+	{
+		if (test_bit(ZERO, spec->flags))
+			ret += putstr_repeat("0", spec->width - spec->prec);
+		else
+			ret += putstr_repeat(" ", spec->width - spec->prec);
+	}
 	ret += putstr_upto_n(str, spec->prec);
 	if (spec->width > 0 && spec->prec < spec->width && \
 		test_bit(MINUS, spec->flags))
