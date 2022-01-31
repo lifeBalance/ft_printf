@@ -5,6 +5,9 @@
 !.gitignore
 !Makefile
 !author
+!README.md
+!*.pdf
+!graded.png
 
 # Whitelist directories:
 !libft/
