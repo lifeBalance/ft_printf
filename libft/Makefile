@@ -6,7 +6,7 @@
 #    By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/29 11:09:58 by rodrodri          #+#    #+#              #
-#    Updated: 2022/01/04 18:15:44 by rodrodri         ###   ########.fr        #
+#    Updated: 2022/01/31 22:37:57 by rodrodri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ MORE_LISTS	=	ft_lstprepend.c	ft_lstappend.c	ft_lstcount.c	\
 
 CIRC_LISTS	=	ft_clst_add.c	ft_clst_del.c	ft_clst_cnt.c	ft_clst_iter.c
 
-BITWISE		=	bitwise.c	uint8_tobin.c		uint16_tobin.c
+BITWISE		=	bitwise.c	bitwise2.c
 
 MORE_LIBC	=	get_next_line.c
 
