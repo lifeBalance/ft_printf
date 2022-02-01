@@ -6,7 +6,7 @@
 /*   By: rodrodri <rodrodri@student.hive.fi >       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/29 11:09:18 by rodrodri          #+#    #+#             */
-/*   Updated: 2022/01/13 10:54:20 by rodrodri         ###   ########.fr       */
+/*   Updated: 2022/02/01 12:09:11 by rodrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,13 +114,5 @@ void	ft_clst_add(t_list **lst, t_list *node);
 size_t	ft_clst_cnt(t_list *lst);
 void	ft_clst_iter(t_list *clst, void (*f)(t_list *elem));
 void	ft_clst_del(t_list **clst, void (*del)(void*, size_t));
-char	*ui_tobs(unsigned int n, char *s);
-char	*i_tobs(int n, char *s);
-char	*ch_tobs(char n, char *s);
-char	*uch_tobs(unsigned char n, char *s);
-char	*i_nibblify(int n);
-char	*ui_nibblify(unsigned int n);
-char	*ch_nibblify(char n);
-char	*uch_nibblify(unsigned char n);
 
 #endif
